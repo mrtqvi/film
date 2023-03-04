@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('profile_photo');
             $table->tinyInteger('is_admin')->default(0)->comment('0 => limited access user & 1 => full permission user');
-            $table->tinyInteger('is_staff')->default(0)->comment('0 => normal user & 1 => perssonel');
             $table->rememberToken();
             $table->timestamps();
         });
