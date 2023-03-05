@@ -24,5 +24,9 @@ class BladeServiceProvider extends ServiceProvider
         Blade::if('active', function ($routeName) {
             return str_contains(Route::currentRouteName(), $routeName);
         });
+
+        Blade::if('request', function ($param) {
+            return request($param);
+        });
     }
 }
