@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('poster');
             $table->string('wallpaper')->nullable();
-            $table->decimal('imdb' , 1);
+            $table->decimal('imdb' , 2 ,1);
             $table->string('ages');
             $table->string('year_construction');
             $table->string('country');
