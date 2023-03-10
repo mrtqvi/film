@@ -59,25 +59,49 @@ class SeriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Series $series)
     {
-        //
+        return view('admin.series.edit' , compact('series'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Series $series , ImageService $imageService)
     {
-        //
+        // get all request
+        DB::transaction(function() use($request , $imageService , $series) {
+            $inputs = $request->all();
+            if ($request->has('poster')) {
+                if (!empty($series->poster))
+                    $imageService->deleteImage($series->poster);
+
+                $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "posters");
+                $inputs['poster'] = $imageService->save($request->poster);
+            }
+
+            if ($request->has('wallpaper')) {
+                $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "wallpapers");
+                $inputs['wallpaper'] = $imageService->save($request->wallpaper);
+            }
+
+            if ($request->filled('teaser')) 
+                $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
+
+            $series->update($inputs);
+        });
+
+        return to_route('admin.series.index')->with('toast-success', 'سریال ویرایش شد.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Series $series)
     {
-        //
+        $series->delete();
+
+        return back()->with('toast-success' , 'سریال حذف شد');
     }
 
     private function attachTeaser($teaserPath)

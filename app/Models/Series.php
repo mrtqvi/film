@@ -33,4 +33,9 @@ class Series extends Model
             ]
         ];  
     } 
+
+    public function teaser()
+    {
+        return $this->belongsTo(Teaser::class);
+    }
 }
