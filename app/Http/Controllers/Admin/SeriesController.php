@@ -67,7 +67,7 @@ class SeriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Series $series , ImageService $imageService)
+    public function update(SeriesRequest $request, Series $series , ImageService $imageService)
     {
         // get all request
         DB::transaction(function() use($request , $imageService , $series) {
