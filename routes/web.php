@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SeriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('/' , AdminDashboardController::class)->name('admin.index');
+    Route::resources([
+        'categories'=>  CategoryController::class,
+        'series'    =>  SeriesController::class,
+    ] , ['except' => 'show']);
 });
