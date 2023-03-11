@@ -5,6 +5,8 @@
 /public/storage
 /public/teasers
 /public/images/series
+/public/images/categories
+/public/images/actors
 /storage/*.key
 /vendor
 .env

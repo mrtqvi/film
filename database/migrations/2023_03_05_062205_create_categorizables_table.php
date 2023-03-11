@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('categorizables', function (Blueprint $table) {
             $table->foreignId('category_id')->constrained('categories');
-            $table->morphs('categorizables');
+            $table->morphs('categorizable');
         });
     }
 

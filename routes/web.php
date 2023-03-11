@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FactorController;
 use App\Http\Controllers\Admin\SeriesController;
+use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\TeaserController;
 
 
@@ -22,13 +23,17 @@ use App\Http\Controllers\TeaserController;
 
 Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('/' , AdminDashboardController::class)->name('index');
+    
     Route::resources([
         'categories'=>  CategoryController::class,
         'series'    =>  SeriesController::class,
+        'movies'    =>  MovieController::class,
         'actors'    =>  ActorController::class,
     ] , ['except' => 'show']);
+
     Route::post('/teaser' , TeaserController::class)->name('teaser.store');
 
     Route::get('series/{series}/agents' , [SeriesController::class , 'agentsView'])->name('series.agents');
+    Route::get('movies/{movie}/agents' , [MovieController::class , 'agentsView'])->name('movies.agents');
     Route::post('factors' , FactorController::class)->name('factor.store');
 });
