@@ -31,4 +31,9 @@ class Category extends Model
     {
         return $this->morphedByMany(Series::class, 'categorizable');
     }
+
+    public function movies(): MorphToMany
+    {
+        return $this->morphedByMany(Movie::class, 'categorizable');
+    }
 }

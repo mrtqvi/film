@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['title' => 'پروفایل کاربری'])
+@extends('admin.layouts.app', ['title' => ' ثبت اطلاعات تکمیلی '])
 
 @section('content')
 <div class="row d-flex justify-content-between">
