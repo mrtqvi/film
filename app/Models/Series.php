@@ -5,6 +5,7 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Series extends Model
@@ -45,4 +46,20 @@ class Series extends Model
         return $this->morphToMany(Category::class, 'categorizable');
     }
 
+    public function factors(): MorphMany
+    {
+        return $this->morphMany(Factor::class, 'factorizable');
+    }
+
+    public function getFactor($key)
+    {
+        $factor = $this->factors->where('key' , $key)->first();
+
+        return $factor ? $factor->value : '';
+    }
+
+    public function privatePath()
+    {
+        return route('admin.series.edit' , $this->id);
+    }
 }

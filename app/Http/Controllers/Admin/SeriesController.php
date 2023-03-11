@@ -37,27 +37,25 @@ class SeriesController extends Controller
     public function store(SeriesRequest $request , ImageService $imageService)
     {
         // get all request
-        DB::transaction(function() use($request , $imageService) {
-            $inputs = $request->all();
-            if ($request->has('poster')) {
-                $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "posters");
-                $inputs['poster'] = $imageService->save($request->poster);
-            }
+        $inputs = $request->all();
+        if ($request->has('poster')) {
+            $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "posters");
+            $inputs['poster'] = $imageService->save($request->poster);
+        }
 
-            if ($request->has('wallpaper')) {
-                $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "wallpapers");
-                $inputs['wallpaper'] = $imageService->save($request->wallpaper);
-            }
+        if ($request->has('wallpaper')) {
+            $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "wallpapers");
+            $inputs['wallpaper'] = $imageService->save($request->wallpaper);
+        }
 
-            if ($request->filled('teaser')) 
-                $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
+        if ($request->filled('teaser')) 
+            $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
 
-            $series = Series::create($inputs);
+        $series = Series::create($inputs);
 
-            $series->categories()->sync($inputs['categories']);
-        });
-
-        return to_route('admin.series.index')->with('toast-success', 'سریال جدید اضافه شد.');
+        $series->categories()->sync($inputs['categories']);
+        
+        return to_route('admin.series.agents' , $series->id)->with('toast-success', 'سریال جدید اضافه شد.');
     }
 
     /**
@@ -99,7 +97,7 @@ class SeriesController extends Controller
                 $series->categories()->sync($inputs['categories']);
         });
 
-        return to_route('admin.series.index')->with('toast-success', 'سریال ویرایش شد.');
+        return to_route('admin.series.agents' , $series->id)->with('toast-success', 'سریال ویرایش شد.');
     }
 
     /**
@@ -116,5 +114,10 @@ class SeriesController extends Controller
     {
         $teaser = Teaser::where('teaser', $teaserPath)->first();
         return $teaser ? $teaser->id : null;
+    }
+
+    public function agentsView(Series $series)
+    {
+        return view('admin.agents' , [ 'item' => $series ,'factors' => $series->factors ?? collect([])]);
     }
 }
