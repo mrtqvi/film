@@ -9,6 +9,7 @@ use App\Models\Series;
 use App\Models\Teaser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 
 class SeriesController extends Controller
 {
@@ -26,7 +27,8 @@ class SeriesController extends Controller
      */
     public function create()
     {
-        return view('admin.series.create');
+        $categories = Category::all();
+        return view('admin.series.create' , compact('categories'));
     }
 
     /**
@@ -50,7 +52,9 @@ class SeriesController extends Controller
             if ($request->filled('teaser')) 
                 $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
 
-            Series::create($inputs);
+            $series = Series::create($inputs);
+
+            $series->categories()->sync($inputs['categories']);
         });
 
         return to_route('admin.series.index')->with('toast-success', 'سریال جدید اضافه شد.');
@@ -61,7 +65,8 @@ class SeriesController extends Controller
      */
     public function edit(Series $series)
     {
-        return view('admin.series.edit' , compact('series'));
+        $categories = Category::all();
+        return view('admin.series.edit' , compact('series' , 'categories'));
     }
 
     /**
@@ -88,7 +93,10 @@ class SeriesController extends Controller
             if ($request->filled('teaser')) 
                 $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
 
-            $series->update($inputs);
+                
+                $series->update($inputs);
+                
+                $series->categories()->sync($inputs['categories']);
         });
 
         return to_route('admin.series.index')->with('toast-success', 'سریال ویرایش شد.');

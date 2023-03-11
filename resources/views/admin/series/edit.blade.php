@@ -1,7 +1,8 @@
 @extends('admin.layouts.app', ['title' => ' ویرایش سریال'])
 
 @section('head-tag')
-<script src="{{ asset('assets/admin/plugins/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+    <script src="{{ asset('assets/admin/plugins/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+    <link href="{{ asset('assets/admin/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -20,7 +21,7 @@
             @endforeach
         </div>
     @endif
-    <form action="{{ route('admin.series.update' , $series->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.series.update', $series->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -30,44 +31,50 @@
                     <div class="col-md-12">
                         <div class="form-row">
                             <div class="form-group col-md-12 my-2">
-                                <input type="text" name="fa_title" value="{{ old('fa_title' , $series->fa_title) }}"
+                                <input type="text" name="fa_title" value="{{ old('fa_title', $series->fa_title) }}"
                                     onkeyup="copyToSlug(this)" placeholder="عنوان فارسی سریال را اینجا وارد کنید"
-                                    class="form-control custom-input-size custom-focus @error('fa_title') is-invalid @enderror" id="fa_title">
+                                    class="form-control custom-input-size custom-focus @error('fa_title') is-invalid @enderror"
+                                    id="fa_title">
                             </div>
                             <div class="col-12 slug d-flex">
                                 <span>https://falofilm.com/series/</span>
                                 <span class="slug-box"></span>
                             </div>
                             <div class="form-group col-md-12 my-2">
-                                <input type="text" name="en_title" value="{{ old('en_title' , old('en_title' , $series->en_title)) }}"
+                                <input type="text" name="en_title"
+                                    value="{{ old('en_title', old('en_title', $series->en_title)) }}"
                                     placeholder="عنوان لاتین سریال را اینجا وارد کنید"
-                                    class="form-control url custom-input-size custom-focus @error('en_title') is-invalid @enderror" id="en_title">
+                                    class="form-control url custom-input-size custom-focus @error('en_title') is-invalid @enderror"
+                                    id="en_title">
                             </div>
                             <div class="form-group col-md-12 my-2">
                                 <textarea name="description" id="editor" placeholder="داستان سریال را اینجا وارد کنید"
-                                    class="form-control custom-input-size custom-focus @error('description') is-invalid @enderror" cols="30" rows="5">{{ old('description' , $series->description) }}</textarea>
+                                    class="form-control custom-input-size custom-focus @error('description') is-invalid @enderror" cols="30"
+                                    rows="5">{{ old('description', $series->description) }}</textarea>
                             </div>
                             <div class="form-group col-md-4 my-2">
                                 <label for="director" class="input-title">
                                     کارگردان
                                 </label>
-                                <input type="text" name="director" value="{{ old('director' , $series->director) }}"
+                                <input type="text" name="director" value="{{ old('director', $series->director) }}"
                                     placeholder="نام کارگردان"
-                                    class="form-control custom-focus @error('director') is-invalid @enderror" id="director">
+                                    class="form-control custom-focus @error('director') is-invalid @enderror"
+                                    id="director">
                             </div>
                             <div class="form-group col-md-4 my-2">
                                 <label for="producer" class="input-title">
                                     تهیه کننده (اختیاری)
                                 </label>
-                                <input type="text" name="producer" value="{{ old('producer' , $series->producer) }}"
+                                <input type="text" name="producer" value="{{ old('producer', $series->producer) }}"
                                     placeholder="نام تهیه کننده"
-                                    class="form-control custom-focus @error('producer') is-invalid @enderror" id="producer">
+                                    class="form-control custom-focus @error('producer') is-invalid @enderror"
+                                    id="producer">
                             </div>
                             <div class="form-group col-md-4 my-2">
                                 <label for="" class="input-title">
                                     کشور سازنده
                                 </label>
-                                <input type="text" name="country" value="{{ old('country' , $series->country) }}"
+                                <input type="text" name="country" value="{{ old('country', $series->country) }}"
                                     placeholder="کشور سازنده"
                                     class="form-control custom-focus @error('country') is-invalid @enderror" id="country">
                             </div>
@@ -75,25 +82,29 @@
                                 <label for="imdb" class="input-title">
                                     نمره imdb
                                 </label>
-                                <input type="number" name="imdb" step="any" value="{{ old('imdb' , $series->imdb) }}"
-                                    placeholder="نمره IMDB"
-                                    class="form-control url custom-focus @error('imdb') is-invalid @enderror" id="imdb">
+                                <input type="number" name="imdb" step="any"
+                                    value="{{ old('imdb', $series->imdb) }}" placeholder="نمره IMDB"
+                                    class="form-control url custom-focus @error('imdb') is-invalid @enderror"
+                                    id="imdb">
                             </div>
                             <div class="form-group col-md-4 my-2">
                                 <label for="" class="input-title">
                                     رده سنی
                                 </label>
-                                <input type="number" name="ages" value="{{ old('ages' , $series->ages) }}"
+                                <input type="number" name="ages" value="{{ old('ages', $series->ages) }}"
                                     placeholder="حداقل سن مجاز"
-                                    class="form-control url custom-focus @error('ages') is-invalid @enderror" id="ages">
+                                    class="form-control url custom-focus @error('ages') is-invalid @enderror"
+                                    id="ages">
                             </div>
                             <div class="form-group col-md-4 my-2">
                                 <label for="year_construction" class="input-title">
                                     سال ساخت
                                 </label>
-                                <input type="number" name="year_construction" value="{{ old('year_construction' , $series->year_construction) }}"
+                                <input type="number" name="year_construction"
+                                    value="{{ old('year_construction', $series->year_construction) }}"
                                     placeholder="سال ساخت"
-                                    class="form-control url custom-focus @error('year_construction') is-invalid @enderror" id="year_construction">
+                                    class="form-control url custom-focus @error('year_construction') is-invalid @enderror"
+                                    id="year_construction">
                             </div>
                         </div>
                     </div> <!-- /. col -->
@@ -105,14 +116,16 @@
                     <div class="card-header" onclick="openCard(this)">
                         <div class="row d-flex justify-content-between px-2">
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
-                                    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z" />
                                 </svg>
                                 <span class="ml-1">ثبت و تنظیم</span>
                             </div>
                             <span class="card-dropdown-button caret-up">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-caret-down" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
                                     <path
                                         d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z" />
                                 </svg>
@@ -120,14 +133,26 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <label for="" class="input-title">
+                        <label for="inputFile" class="input-title">
+                            ژانر سریال
+                        </label>
+                        <select class="js-example-basic-multiple form-control custom-input-size custom-focus" name="categories[]"
+                            multiple="multiple">
+                            @php 
+                                $seriesCategories = $series->categories ? $series->categories->pluck('id')->toArray() : [];
+                            @endphp
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" @selected(in_array($category->id , old('categories' , old('categories' , $seriesCategories))))>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <label for="" class="input-title mt-2">
                             پوستر سریال
                         </label>
                         <div class="main-pic">
                             <label class="-label d-flex flex-column justify-content-center align-items-center"
                                 for="file" style="height:15rem !important;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-cloud-upload" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                    fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z" />
                                     <path fill-rule="evenodd"
@@ -135,8 +160,7 @@
                                 </svg>
                             </label>
                             <input id="file" name="poster" type="file" onchange="loadFile(event)" />
-                            <img style="height:15rem !important;" src="{{ asset($series->poster) }}"
-                                id="output">
+                            <img style="height:15rem !important;" src="{{ asset($series->poster) }}" id="output">
                         </div>
                         <label for="inputFile" class="input-title mt-2">
                             تصویر پس زمینه (اختیاری)
@@ -144,11 +168,12 @@
                         <div class="form-group inputDnD">
                             <input type="file" class="form-control-file" name="wallpaper" id="inputFile"
                                 onchange="readUrl(this)" data-title="کلیک کنید یا تصویر را بکشید">
-                            @if($series->wallpaper)
-                            <label for="inputFile" class="input-title mt-2">
-                                تصویر فعلی
-                            </label>
-                            <img src="{{ asset($series->wallpaper) }}" width="200" height="100" alt="">
+                            @if ($series->wallpaper)
+                                <label for="inputFile" class="input-title mt-2">
+                                    تصویر فعلی
+                                </label>
+                                <img src="{{ asset($series->wallpaper) }}" width="200" height="100"
+                                    alt="">
                             @endif
                         </div>
                         <div class="d-flex flex-column mt-2">
@@ -173,9 +198,11 @@
                                     style="width: 75%; height: 100%">75%</div>
                             </div>
                             @if ($series->teaser_id)
-                            <video id="videoPreview" src="{{ old('teaser' , $series->teaser_id) ? URL::to('/') . '/' . old('teaser' , $series->teaser->teaser) : '' }}"
-                                controls class="{{ old('teaser' , $series->teaser->teaser) ? 'block' : 'd-none' }} mt-3"
-                                style="width: 100%; height: auto"></video>
+                                <video id="videoPreview"
+                                    src="{{ old('teaser', $series->teaser_id) ? URL::to('/') . '/' . old('teaser', $series->teaser->teaser) : '' }}"
+                                    controls
+                                    class="{{ old('teaser', $series->teaser->teaser) ? 'block' : 'd-none' }} mt-3"
+                                    style="width: 100%; height: auto"></video>
                             @endif
                             <input type="hidden" name="teaser" value="{{ old('teaser') }}">
                         </div>
@@ -184,9 +211,11 @@
                         <button type="submit" id="save-btn" class="btn btn-indigo w-100">
                             مرحله بعد
                             &nbsp;
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                            </svg> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -199,7 +228,16 @@
     <script>
         renderEditor("#editor");
     </script>
+    <script src="{{ asset('assets/admin/plugins/select2/select2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+
     <script src="{{ asset('assets/admin/plugins/resumable/resumable.min.js') }}"></script>
+
     <script>
         let browseFile = $('#browseFile');
         let progress = $('.progress');

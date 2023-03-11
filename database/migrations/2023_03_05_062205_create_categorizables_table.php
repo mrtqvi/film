@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categorizable', function (Blueprint $table) {
+        Schema::create('categorizables', function (Blueprint $table) {
             $table->foreignId('category_id')->constrained('categories');
             $table->morphs('categorizable');
         });

@@ -36,7 +36,8 @@ class SeriesRequest extends FormRequest
                 'ages'              =>  'required|numeric|min:3|max:30',
                 'country'           =>  'required|string|max:140',
                 'director'          =>  'required|min:2|max:300',
-                'producer'          =>  'nullable|min:2|max:300'
+                'producer'          =>  'nullable|min:2|max:300',
+                'categories'        =>  'required|exists:categories,id'
             ];
         }
 
@@ -52,7 +53,15 @@ class SeriesRequest extends FormRequest
             'ages'              =>  'required|numeric|min:3|max:30',
             'country'           =>  'required|string|max:140',
             'director'          =>  'required|min:2|max:300',
-            'producer'          =>  'nullable|min:2|max:300'
+            'producer'          =>  'nullable|min:2|max:300',
+            'categories'        =>  'required|exists:categories,id'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'categories'    =>  'ژانر'
         ];
     }
 }

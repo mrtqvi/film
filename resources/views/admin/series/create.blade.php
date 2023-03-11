@@ -2,6 +2,7 @@
 
 @section('head-tag')
 <script src="{{ asset('assets/admin/plugins/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+<link href="{{ asset('assets/admin/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -119,7 +120,16 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <label for="" class="input-title">
+                        <label for="inputFile" class="input-title mt-2">
+                            ژانر سریال
+                        </label>
+                        <select class="js-example-basic-multiple form-control custom-input-size custom-focus" name="categories[]"
+                            multiple="multiple">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" @selected(in_array($category->id , old('categories' , old('categories') ?? [] )))>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <label for="" class="input-title mt-2">
                             پوستر سریال
                         </label>
                         <div class="main-pic">
@@ -191,6 +201,13 @@
     <script>
         renderEditor("#editor");
     </script>
+    <script src="{{ asset('assets/admin/plugins/select2/select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+
     <script src="{{ asset('assets/admin/plugins/resumable/resumable.min.js') }}"></script>
     <script>
         let browseFile = $('#browseFile');
