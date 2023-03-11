@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SeriesRequest;
+use App\Http\Services\Image\ImageService;
 use App\Models\Series;
+use App\Models\Teaser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SeriesController extends Controller
 {
@@ -28,17 +32,28 @@ class SeriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SeriesRequest $request , ImageService $imageService)
     {
-        //
-    }
+        // get all request
+        DB::transaction(function() use($request , $imageService) {
+            $inputs = $request->all();
+            if ($request->has('poster')) {
+                $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "posters");
+                $inputs['poster'] = $imageService->save($request->poster);
+            }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+            if ($request->has('wallpaper')) {
+                $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "wallpapers");
+                $inputs['wallpaper'] = $imageService->save($request->wallpaper);
+            }
+
+            if ($request->filled('teaser')) 
+                $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
+
+            Series::create($inputs);
+        });
+
+        return to_route('admin.series.index')->with('toast-success', 'سریال جدید اضافه شد.');
     }
 
     /**
@@ -63,5 +78,11 @@ class SeriesController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function attachTeaser($teaserPath)
+    {
+        $teaser = Teaser::where('teaser', $teaserPath)->first();
+        return $teaser ? $teaser->id : null;
     }
 }

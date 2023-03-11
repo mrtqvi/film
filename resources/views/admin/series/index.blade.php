@@ -55,11 +55,11 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            <small>{{ Str::limit($series->title, 100, '...') }}</small>
+                                            <small>{{ Str::limit($series->fa_title, 100, '...') }}</small>
                                         </td>
                                         <td>{{ $series->created_at }}</td>
                                         <td>
-                                            <a href="{{ $series->publicPath() }}" target="_blank"
+                                            <a href="#" target="_blank"
                                                 class="text-decoration-none text-info mr-3">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">

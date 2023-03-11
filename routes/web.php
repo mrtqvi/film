@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\SeriesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TeaserController;
+use App\Http\Controllers\Admin\ActorController;
+use App\Http\Controllers\Admin\SeriesController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin')->as('admin.')->group(function () {
-    Route::get('/' , AdminDashboardController::class)->name('admin.index');
+    Route::get('/' , AdminDashboardController::class)->name('index');
     Route::resources([
         'categories'=>  CategoryController::class,
         'series'    =>  SeriesController::class,
+        'actors'    =>  ActorController::class,
     ] , ['except' => 'show']);
+    Route::post('/teaser' , TeaserController::class)->name('teaser.store');
 });

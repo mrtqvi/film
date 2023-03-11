@@ -76,9 +76,19 @@ button {
     }
 }
 
-.active {
-    background: #f8f9fa;
-    color: #1b68ff !important;
+.logo {
+    width: 7rem;
+}
+
+.active-sidebar {
+    background: #f7fee7;
+    border-right: solid 2px #a3e635 !important;
+    transition: all 1s;
+}
+
+.active-sidebar .nav-link:hover {
+    color: #65a30d !important;
+    background: transparent !important;
 }
 
 /* custom file input */

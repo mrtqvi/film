@@ -44,6 +44,18 @@ return [
             'throw' => false,
         ],
 
+        'images' => [
+            'driver' => 'local',
+            'root' => public_path('images'),
+            'url' => '/images',
+        ],
+
+        'teasers' => [
+            'driver' => 'local',
+            'root' => 'teasers',
+            'url' =>  '/teasers',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
