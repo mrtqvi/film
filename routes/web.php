@@ -1,11 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TeaserController;
+
 use App\Http\Controllers\Admin\ActorController;
-use App\Http\Controllers\Admin\SeriesController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FactorController;
+use App\Http\Controllers\Admin\SeriesController;
+use App\Http\Controllers\TeaserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +28,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
         'actors'    =>  ActorController::class,
     ] , ['except' => 'show']);
     Route::post('/teaser' , TeaserController::class)->name('teaser.store');
+
+    Route::get('series/{series}/agents' , [SeriesController::class , 'agentsView'])->name('series.agents');
+    Route::post('factors' , FactorController::class)->name('factor.store');
 });
