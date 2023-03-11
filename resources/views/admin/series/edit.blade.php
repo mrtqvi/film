@@ -138,7 +138,7 @@
                         </label>
                         <select class="js-example-basic-multiple form-control custom-input-size custom-focus" name="categories[]"
                             multiple="multiple">
-                            @php 
+                            @php
                                 $seriesCategories = $series->categories ? $series->categories->pluck('id')->toArray() : [];
                             @endphp
                             @foreach($categories as $category)

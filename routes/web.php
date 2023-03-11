@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FactorController;
 use App\Http\Controllers\Admin\SeriesController;
 use App\Http\Controllers\TeaserController;
+use App\Http\Controllers\Admin\SliderController;
 
 
 /*
@@ -26,9 +27,13 @@ Route::prefix('admin')->as('admin.')->group(function () {
         'categories'=>  CategoryController::class,
         'series'    =>  SeriesController::class,
         'actors'    =>  ActorController::class,
+        'sliders'    =>  SliderController::class,
     ] , ['except' => 'show']);
     Route::post('/teaser' , TeaserController::class)->name('teaser.store');
 
     Route::get('series/{series}/agents' , [SeriesController::class , 'agentsView'])->name('series.agents');
     Route::post('factors' , FactorController::class)->name('factor.store');
+
+    Route::get('sliders/{slider}/status', [SliderController::class, 'status'])->name('sliders.status');
+
 });
