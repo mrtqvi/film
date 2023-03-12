@@ -13,7 +13,7 @@ class Movie extends Model
     use HasFactory , Sluggable;
 
     protected $fillable = [
-        'fa_title' , 
+        'fa_title' ,
         'en_title',
         'description',
         'poster',
@@ -27,14 +27,14 @@ class Movie extends Model
         'producer',
     ];
 
-    public function sluggable(): array 
+    public function sluggable(): array
     {
         return [
             'slug' => [
                 'source'    =>  'fa_title'
             ]
-        ];  
-    } 
+        ];
+    }
 
     public function teaser()
     {
@@ -61,5 +61,10 @@ class Movie extends Model
     public function privatePath()
     {
         return route('admin.movies.edit' , $this->id);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment' , 'commentable');
     }
 }
