@@ -1,6 +1,7 @@
 <?php
 
-
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -23,7 +24,7 @@ use App\Http\Controllers\Admin\CommentController;
 |
 */
 
-Route::prefix('admin')->as('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(function () {
     Route::get('/' , AdminDashboardController::class)->name('index');
 
     Route::resources([
@@ -45,3 +46,15 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('comment/{comment}/is_approved', [CommentController::class, 'approved'])->name('comment.is_approved');
 
 });
+
+Route::get('/', function () {
+    return view('app.index');
+})->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

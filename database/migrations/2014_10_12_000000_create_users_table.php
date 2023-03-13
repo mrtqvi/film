@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('profile_photo');
+            $table->string('profile_photo')->nullable();
             $table->tinyInteger('is_admin')->default(0)->comment('0 => limited access user & 1 => full permission user');
             $table->rememberToken();
             $table->timestamps();

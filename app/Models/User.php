@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'user_name',
+        'full_name',
         'email',
         'password',
     ];
@@ -42,5 +43,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getProfilePhotoAttribute()
+    {
+        return $this->profile_photo ?? 'images/default/avatar.jpg';
+    }
 
 }

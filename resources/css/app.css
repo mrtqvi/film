@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: .4rem;
+    cursor: pointer;    
+}
+
+::-webkit-scrollbar-track {
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: #3b434d;
+}
+
+.bg-main {
+    @apply bg-[#15161a]
+}
+
+.bg-high-dark {
+    @apply bg-[#050506]
+}
+
+.font-sans {
+    font-family: iransans;
+}
+
+.active {
+    border-right: solid 3px #67fc5b;
+    opacity: 60%;
+    border-radius: 3px;
+}
+
+.main-color {
+    @apply text-[#67fc5b]
+}
+
+.main-border-green:focus {
+    border: solid #67fc5b 1px;
+}
+
+.sidebar-item {
+    @apply flex h-2 cursor-pointer items-center truncate rounded-[1px] py-4 px-6 mr-5 text-sm outline-none transition duration-300 ease-linear hover:outline-none focus:bg-slate-50 focus:outline-none text-gray-500 hover:text-gray-400
+}
+
+.active-tab {
+    border:  solid 1px #67fc5b;
+    color: #67fc5b;
+}
+
+.dir-ltr {
+    direction: ltr;
+}
