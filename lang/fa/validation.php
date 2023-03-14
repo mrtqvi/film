@@ -248,5 +248,6 @@ return [
         'producer'        => 'تهیه کننده',
         'wallpaper'       => 'تصویر پس زمینه',
         'teaser'          => 'تیزر',  
+        'user_name'       => 'نام کاربری',
     ],
 ];

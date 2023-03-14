@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ActorController;
@@ -32,8 +33,9 @@ Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(func
         'series'    =>  SeriesController::class,
         'movies'    =>  MovieController::class,
         'actors'    =>  ActorController::class,
-        'sliders'    =>  SliderController::class,
-        'comment'    =>  CommentController::class,
+        'sliders'   =>  SliderController::class,
+        'comment'   =>  CommentController::class,
+        'users'     =>  UserController::class 
     ]);
 
     Route::post('/teaser' , TeaserController::class)->name('teaser.store');
