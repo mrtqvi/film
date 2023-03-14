@@ -30,6 +30,10 @@
     @apply bg-[#050506]
 }
 
+.bg-low-dark {
+    @apply bg-[#19191f]
+}
+
 .font-sans {
     font-family: iransans;
 }

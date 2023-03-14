@@ -121,9 +121,10 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Movie $movie): RedirectResponse
     {
-        //
+        $movie->delete();
+        return back()->with('toast-success' , 'فیلم مورد نظر حذف گردید.');
     }
 
     private function attachTeaser($teaserPath)

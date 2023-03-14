@@ -5,21 +5,22 @@
     <!-- end profile -->
     <div class="h-full overflow-y-auto text-gray-300">
         @auth
-            <div class="w-full px-9 flex items-center border-y border-slate-700">
+            <div class="w-full px-4 flex justify-between items-center border-y border-slate-700">
                 <div class="relative my-4 w-10 h-10 overflow-hidden rounded-full bg-gray-600 border border-slate-500">
                     <img src="{{ asset(auth()->user()->profile_photo) }}" alt="">
                 </div>
                 <div class="flex text-xs mr-2 flex-col space-y-1.5 text-gray-400">
                     <strong>{{ auth()->user()->full_name }}</strong>
                 </div>
-                <form class="mr-auto" method="post" action="{{ route('logout') }}">
+                <div class="mr-auto flex justify-center items-center" method="post" action="{{ route('logout') }}">
+                    <a class="text-xs text-sky-300" href="{{ route('profile.edit') }}">پروفایل</a>
                     @csrf
-                    <button class="mt-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    <button class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-red-400">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" />
                         </svg>
                     </button>
-                </form>
+                </div>
             </div>
         @endauth
         @guest

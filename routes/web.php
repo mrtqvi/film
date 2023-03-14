@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FactorController;
 use App\Http\Controllers\Admin\SeriesController;
 use App\Http\Controllers\Admin\MovieController;
-use App\Http\Controllers\TeaserController;
+use App\Http\Controllers\Admin\TeaserController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CommentController;
 
