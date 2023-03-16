@@ -22,6 +22,7 @@ class User extends Authenticatable
         'full_name',
         'email',
         'password',
+        'profile_photo',
     ];
 
     /**
@@ -43,9 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getProfilePhotoAttribute()
-    {
-        return $this->profile_photo ?? 'images/default/avatar.jpg';
-    }
+//    public function getProfilePhotoAttribute()
+//    {
+//        return $this->profile_photo ?? 'images/default/avatar.jpg';
+//    }
 
 }

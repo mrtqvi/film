@@ -9,13 +9,9 @@ class Episode extends Model
 {
     use HasFactory;
 
-    public function commentable()
-    {
-        return $this->morphTo();
-    }
 
-    public function user()
+    public function comments()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphMany('App\Models\Comment' , 'commentable');
     }
 }

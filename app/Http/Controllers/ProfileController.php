@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Services\Image\ImageService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -16,25 +18,37 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        return view('profile.edit', ['user' => $request->user(),]);
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request , imageService $imageService)
     {
-        $request->user()->fill($request->validated());
+        $user = auth()->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        $validated = $request->validate([
+            'full_name' => 'required|string|min:3|max:255',
+            'user_name' => 'required|string|min:3|max:255',
+            'email' => 'required|string|min:3|max:255',
+            'profile_photo' => 'nullable|image|max:2048|min:1',
+        ]);
 
-        $request->user()->save();
+        DB::transaction(function () use($validated , $request , $imageService , $user){
+            if ($request->hasFile('profile_photo')) {
+                if (!empty($user->profile_photo))
+                    $imageService->deleteImage($user->profile_photo);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+                $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . "user" . DIRECTORY_SEPARATOR . "avatars");
+                $image = $imageService->save($request->profile_photo);
+                $validated['profile_photo'] = $image;
+            }
+
+            $user->update($validated);
+        });
+
+        return back()->with('toast-success' , 'اطلاعات کاربری بروز رسانی شد.');
     }
 
     /**
