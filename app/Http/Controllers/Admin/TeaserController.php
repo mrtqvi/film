@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Teaser;
 use Illuminate\Http\Request;
 use Morilog\Jalali\Jalalian;
@@ -20,23 +21,24 @@ class TeaserController extends Controller
     public function __invoke(Request $request): array
     {
         $receiver = new FileReceiver('file', $request, HandlerFactory::classFromRequest($request));
+        
         if (!$receiver->isUploaded()) {
             throw new \Exception("Error Processing Request", 1);
         }
         // receive file
         $fileReceived = $receiver->receive();
-
+        
         if ($fileReceived->isFinished()) {
             $file = $fileReceived->getFile();
-
+            
             $extension = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $extension;
-
+            
             $disk = Storage::disk('teasers');
             $jalaliDate = Jalalian::forge(time());
             $path = $jalaliDate->getYear() . '/' . $jalaliDate->getMonth() . '/' . $jalaliDate->getDay();
             $path = $disk->putFileAs($path, $file, $fileName);
-
+            
             // delete chunked file
             unlink($file->getPathname());
 
