@@ -86,5 +86,4 @@
 
 @section('script')
     <script src="{{ asset('assets/admin/js/custom.js') }}"></script>
-    @include('profile.alerts.confirm')
 @endsection

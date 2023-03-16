@@ -22,11 +22,11 @@
         <a class="nav-link dropdown-toggle text-muted pr-0 mx-2" href="#" id="navbarDropdownMenuLink" role="button"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="avatar avatar-sm mt-2">
-            <img src="{{ asset('images/default/avatar.jpg') }}" alt="پروفایل کاربر" class="profile_image">
+            <img src="{{ asset(auth()->user()->profile_photo) }}" alt="پروفایل کاربر" class="profile_image">
           </span>
         </a>
         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item text-secondary text-left" href="#">یاسین تقوی</a>
+          <a class="dropdown-item text-secondary text-left" href="#">{{ auth()->user()->full_name }}</a>
           <hr class="mb-1 mt-1">
           <a class="dropdown-item text-secondary text-left" href="">
             <i class="fe fe-user"></i>
@@ -35,7 +35,7 @@
           <a class="dropdown-item text-secondary text-left" href="#">
             <i class="fe fe-settings"></i>
             تنظیمات حساب</a>
-          <form action="" method="post" class="d-flex align-items-center">
+          <form action="{{ route('logout') }}" method="post" class="d-flex align-items-center">
             @csrf
             <button class="dropdown-item text-secondary text-left" href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">

@@ -17,89 +17,13 @@
                             </div>
                             <div class="col">
                                 <small><strong>کامنت جدید</strong></small>
-                                <div class="my-0 text-muted small">در بسیاری از کوچه های شهر چاله های عمیقی وجود دارد
+                                <div class="my-0 text-muted small">
                                 </div>
                                 <small class="badge badge-pill badge-light text-muted">2m ago</small>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                            </div>
-                            <div class="col">
-                                <small><strong>خبر جدید</strong></small>
-                                <div class="my-0 text-muted small">بازید شهردار لاهیجان از مقبره چهار پادشاخه</div>
-                                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                            </div>
-                            <div class="col">
-                                <small><strong>خبر جدید</strong></small>
-                                <div class="my-0 text-muted small">بازید شهردار لاهیجان از مقبره چهار پادشاخه</div>
-                                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                            </div>
-                            <div class="col">
-                                <small><strong>خبر جدید</strong></small>
-                                <div class="my-0 text-muted small">بازید شهردار لاهیجان از مقبره چهار پادشاخه</div>
-                                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                            </div>
-                            <div class="col">
-                                <small><strong>خبر جدید</strong></small>
-                                <div class="my-0 text-muted small">بازید شهردار لاهیجان از مقبره چهار پادشاخه</div>
-                                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                            </div>
-                            <div class="col">
-                                <small><strong>خبر جدید</strong></small>
-                                <div class="my-0 text-muted small">بازید شهردار لاهیجان از مقبره چهار پادشاخه</div>
-                                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                            </div>
-                            <div class="col">
-                                <small><strong>خبر جدید</strong></small>
-                                <div class="my-0 text-muted small">بازید شهردار لاهیجان از مقبره چهار پادشاخه</div>
-                                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                            </div>
-                            <div class="col">
-                                <small><strong>خبر جدید</strong></small>
-                                <div class="my-0 text-muted small">بازید شهردار لاهیجان از مقبره چهار پادشاخه</div>
-                                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- / .row -->
                 </div> <!-- / .list-group -->
             </div>

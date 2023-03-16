@@ -16,11 +16,7 @@
     <main class="mb-10 text-gray-400 relative w-full md:w-[calc(100%_-_255px)]">
         @yield('content')
 
-        @include('app.home.slider')
 
-        @include('app.home.slider-movie')
-
-        @include('app.home.blog')
 
         @include('app.layouts.includes.footer')
     </main>

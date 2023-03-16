@@ -4,4 +4,12 @@
 
     @include('profile.alerts.confirm')
 
+    @include('app.home.slider')
+
+
+    @include('app.home.slider-movie')
+
+    @include('app.home.blog')
+
+
 @endsection
