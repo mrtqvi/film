@@ -2,4 +2,7 @@
 
 @section('content')
 
+    @include('profile.alerts.confirm')
+
+
 @endsection

@@ -48,7 +48,7 @@ class ProfileController extends Controller
             $user->update($validated);
         });
 
-        return back()->with('toast-success' , 'اطلاعات کاربری بروز رسانی شد.');
+        return redirect()->back()->with('alert', 'تغیرات با موفقیت اعمال شد.');
     }
 
     /**
@@ -56,15 +56,20 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request)
     {
-            $user = $request->user();
+            if (auth()->user()->is_admin == 0)
+            {
+                $user = $request->user();
 
-            Auth::logout();
+                Auth::logout();
 
-            $user->delete();
+                $user->delete();
 
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
 
-            return Redirect::to('/')->with('toast-success' , 'اطلاعات کاربری بروز رسانی شد.');
+                return Redirect::to('/')->with('alert-toast' , 'حساب شما حذف شد!');
+            }
+        return redirect()->back()->with('alert-danger', 'مدیر سایت نمیتواند حساب خود را غیر فعال کند!');
+
     }
 }

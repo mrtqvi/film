@@ -17,8 +17,6 @@
                             <!-- table -->
                             <table class="table table-striped" id="table-id">
                                 <thead>
-
-                                </div>
                                 <th>#</th>
                                 <th>نویسنده نظر</th>
                                 <th>نظر داده شده</th>

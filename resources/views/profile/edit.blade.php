@@ -5,15 +5,16 @@
     <form class="mr-10" action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
         @csrf
         {{ method_field('put') }}
-        <div class="pt-10  -z-50">
-            <div class="flex justify-start">
-                @if ($errors->any())
-                    <div class="alert alert-danger d-flex flex-column" role="alert">
+        <div class="pt-10">
+            @include('profile.alerts.confirm')
+            @if ($errors->any())
+                <div class="p-4 mb-4 text-sm text-red-600 md:w-[500px] w-[410px]  rounded-lg  bg-gray-800  flex items-center" role="alert">
                         @foreach ($errors->all() as $error)
                             <div class="mt-2">{{ $error }}</div>
                         @endforeach
-                    </div>
-                @endif
+                </div>
+            @endif
+            <div class="flex justify-start">
                 <div class="flex">
                 </div>
                 <div class="profile-pic items-center">
@@ -78,4 +79,9 @@
     </form>
 
 </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('assets/admin/js/custom.js') }}"></script>
+    @include('profile.alerts.confirm')
 @endsection
