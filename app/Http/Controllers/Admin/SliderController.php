@@ -54,7 +54,7 @@ class SliderController extends Controller
 
             // save image
             if ($request->hasFile('image')) {
-                $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . "content" . DIRECTORY_SEPARATOR . "slider");
+                $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . "content" . DIRECTORY_SEPARATOR . "slider-top");
                 $inputs['image'] = $imageService->save($inputs['image']);
             }
 

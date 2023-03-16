@@ -4,5 +4,4 @@
 
     @include('profile.alerts.confirm')
 
-
 @endsection

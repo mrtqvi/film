@@ -560,7 +560,7 @@ interface SizeInputSpec extends FormComponentWithLabelSpec {
     enabled?: boolean;
 }
 interface SliderSpec extends FormComponentSpec {
-    type: 'slider';
+    type: 'slider-top';
     label: string;
     min?: number;
     max?: number;
