@@ -27,6 +27,11 @@ class Series extends Model
         'producer',
     ];
 
+    protected $with = [
+        'categories' ,
+        'actors',
+    ];
+
     public function sluggable(): array 
     {
         return [
