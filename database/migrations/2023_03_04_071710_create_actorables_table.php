@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('actorable', function (Blueprint $table) {
+        Schema::create('actorables', function (Blueprint $table) {
             $table->foreignId('actor_id')->constrained('actors');
             $table->morphs('actorable');
         });

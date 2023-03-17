@@ -249,5 +249,6 @@ return [
         'wallpaper'       => 'تصویر پس زمینه',
         'teaser'          => 'تیزر',
         'user_name'       => 'نام کاربری',
+        'factors.*.value' => ' ' 
     ],
 ];

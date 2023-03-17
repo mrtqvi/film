@@ -26,14 +26,14 @@ class ActorRequest extends FormRequest
             if($this->isMethod('post')){
                 return [
                     'full_name' => 'required|max:120|min:2',
-                    'image'  => 'required|image|mimes:png,jpg,jpeg,gif|max:3072|min:1',
+                    'image'  => 'required|image|mimes:png,jpg,jpeg,gif,webp|max:3072|min:1',
 
                 ];
             }
             else{
                 return [
                     'full_name' => 'required|max:120|min:2',
-                    'image' => 'image|mimes:png,jpg,jpeg,gif|max:3072|min:1',
+                    'image' => 'image|mimes:png,jpg,jpeg,gif,webp|max:3072|min:1',
                 ];
             }
     }

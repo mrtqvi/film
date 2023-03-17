@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\MovieRequest;
 use App\Http\Services\Image\ImageService;
+use App\Models\Actor;
 use App\Models\Category;
 use App\Models\Movie;
 use App\Models\Teaser;
@@ -135,6 +136,6 @@ class MovieController extends Controller
 
     public function agentsView(Movie $movie)
     {
-        return view('admin.agents' , [ 'item' => $movie ,'factors' => $movie->factors ?? collect([])]);
+        return view('admin.agents' , [ 'item' => $movie ,'factors' => $movie->factors ?? collect([]) , 'actors' => Actor::all()]);
     }
 }

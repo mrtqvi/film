@@ -1,14 +1,18 @@
 @extends('admin.layouts.app', ['title' => ' ثبت اطلاعات تکمیلی '])
 
+@section('head-tag')
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/select2.min.css') }}">
+@endsection
+
 @section('content')
-<div class="row d-flex justify-content-between">
-    <div class="d-flex justify-content-between align-items-center">
-        <h2 class="h3 mb-0 section-heading">{{ $item->fa_title }}</h2>
+    <div class="row d-flex justify-content-between">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="h3 mb-0 section-heading">{{ $item->fa_title }}</h2>
+        </div>
+        <div class="col-auto mb-3">
+            <a href="{{ $item->privatePath() }}" type="button" class="btn btn-success px-4">بازگشت</a>
+        </div>
     </div>
-    <div class="col-auto mb-3">
-        <a href="{{ $item->privatePath() }}" type="button" class="btn btn-success px-4">بازگشت</a>
-    </div>
-</div>
     @if ($errors->any())
         <div class="alert alert-danger d-flex flex-column row" role="alert">
             @foreach ($errors->all() as $error)
@@ -16,6 +20,47 @@
             @endforeach
         </div>
     @endif
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">اضافه کردن بازیگر</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('admin.actors.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="profile-pic ">
+                            <label class="-label border d-flex flex-column justify-content-center align-items-center"
+                                for="file">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                                    class="bi bi-camera-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                    <path
+                                        d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
+                                </svg>
+                            </label>
+                            <input id="file" name="image" type="file" onchange="loadFile(event)" />
+                            <img src="" id="output">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">نام و نام خانوادگی</label>
+                            <input type="text" name="full_name" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="نام و نام خانوادگی بازیگر">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                        <button class="btn btn-primary">ذخیره</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 pr-2">
             <div class="card">
@@ -29,7 +74,7 @@
                                 <path
                                     d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z" />
                             </svg>
-                            <span class="ml-1">ثبت اطلاعات عوامل سریال</span>
+                            <span class="ml-1">ثبت اطلاعات عوامل </span>
                         </div>
                     </div>
                 </div>
@@ -40,7 +85,26 @@
                     <div class="px-4 text-danger mt-3">*** مقدار دهی موارد زیر اختیاری است***</div>
                     <div class="card-body">
                         <div class="form-row">
-
+                            <label for="actors" class="input-title">
+                                ثبت بازیگران
+                            </label>
+                            <div class="form-row col-12 my-2">
+                                <div class="col-10">
+                                    @php
+                                        $itemActors = $item->actors->pluck('id')->toArray();
+                                    @endphp
+                                    <select class="js-example-basic-multiple w-100" name="actors[]" multiple="multiple">
+                                        @foreach ($actors as $actor)
+                                            <option value="{{ $actor->id }}" @selected(in_array($actor->id , $itemActors))>{{ $actor->full_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-info px-4" data-toggle="modal" data-target="#exampleModalCenter">
+                                        بازیگر جدید
+                                    </button>
+                                </div>
+                            </div>
                             <div class="form-group col-md-4 my-2">
                                 <label for="filmnamenevis" class="input-title">
                                     فیلم‌نامه‌نویس
@@ -135,7 +199,7 @@
                                 <label for="jelve-vijhe" class="input-title">
                                     طراح جلوه های ویژه
                                 </label>
-                                <input type="hidden" name="factors[8][key]" value="آهنگساز">
+                                <input type="hidden" name="factors[8][key]" value="طراح جلوه های ویژه">
                                 <input type="text" name="factors[8][value]"
                                     value="{{ old('factors.8.value', $item->getFactor('طراح جلوه های ویژه')) }}"
                                     placeholder="طراح جلوه های ویژه"
@@ -148,7 +212,7 @@
                                 </label>
                                 <input type="hidden" name="factors[9][key]" value="عکاس">
                                 <input type="text" name="factors[9][value]"
-                                    value="{{ old('factors.3.value', $item->getFactor('عکاس')) }}" placeholder="عکاس"
+                                    value="{{ old('factors.9.value', $item->getFactor('عکاس')) }}" placeholder="عکاس"
                                     class="form-control custom-focus @error('factors.9.value') is-invalid @enderror"
                                     id="akkas">
                             </div>
@@ -174,4 +238,14 @@
 
 @section('script')
     <script src="{{ asset('assets/admin/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/select2/select2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                'placeholder': 'بازیگران را انتخاب کنید',
+                'dir': 'rtl'
+            });
+        });
+    </script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SeriesRequest;
 use App\Http\Services\Image\ImageService;
+use App\Models\Actor;
 use App\Models\Series;
 use App\Models\Teaser;
 use Illuminate\Http\Request;
@@ -118,6 +119,6 @@ class SeriesController extends Controller
 
     public function agentsView(Series $series)
     {
-        return view('admin.agents' , [ 'item' => $series ,'factors' => $series->factors ?? collect([])]);
+        return view('admin.agents' , [ 'item' => $series ,'factors' => $series->factors ?? collect([]) , 'actors' => Actor::all()]);
     }
 }

@@ -46,6 +46,11 @@ class Series extends Model
         return $this->morphToMany(Category::class, 'categorizable');
     }
 
+    public function actors(): MorphToMany
+    {
+        return $this->morphToMany(Actor::class, 'actorable');
+    }
+
     public function factors(): MorphMany
     {
         return $this->morphMany(Factor::class, 'factorizable');

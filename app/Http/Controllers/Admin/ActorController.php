@@ -8,6 +8,8 @@ use App\Http\Services\Image\ImageService;
 use App\Models\Actor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Illuminate\View\View;
 
 class ActorController extends Controller
 {
@@ -16,7 +18,7 @@ class ActorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $actors = Actor::query()->latest();
 
@@ -34,7 +36,7 @@ class ActorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ActorRequest $request , ImageService $imageService)
+    public function store(ActorRequest $request , ImageService $imageService): RedirectResponse
     {
         $inputs = $request->all();
 
@@ -44,20 +46,9 @@ class ActorController extends Controller
             Actor::create($inputs);
         });
 
-        return to_route('admin.actors.index')->with('toast-success', 'بازیگر ایجاد شد');
+        return back()->with('toast-success', 'بازیگر ایجاد شد');
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -66,7 +57,7 @@ class ActorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ActorRequest $request,Actor $actor, ImageService $imageService)
+    public function update(ActorRequest $request,Actor $actor, ImageService $imageService): RedirectResponse
     {
         DB::transaction(function () use ($request, $actor, $imageService) {
             $inputs = $request->all();
@@ -89,7 +80,7 @@ class ActorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Actor $actor,ImageService $imageService )
+    public function destroy(Actor $actor,ImageService $imageService ): RedirectResponse
     {
         DB::transaction(function () use($actor, $imageService) {
             if (!empty($actor->image))
