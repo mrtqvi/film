@@ -61,8 +61,8 @@
         <div class="lg:col-span-6 col-span-12   flex flex-wrap">
             <div class="">
                 <div class="flex md:mr-10 mr-5">
-                    <img src="{{ asset($series->poster) }}"
-                        class="w-[142px] h-[200px] md:flex  object-cover rounded-lg" alt="">
+                    <img src="{{ asset($series->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
+                        alt="">
                     <div class="">
                         <p class="text-white font-bold text-4xl mr-4 mt-2">Dune</p>
                         <div class="flex justify-start items-center mr-3 mt-3">
@@ -130,15 +130,15 @@
         <div class="swiper">
             <section class="slide-container">
                 <div class="swiper-wrapper">
-                    @foreach($series->actors as $actor)
-                    <div class="swiper-slide">
-                        <div class="flex justify-center">
-                            <img src="{{ asset($actor->image) }}"
-                                class="rounded-full md:w-20 md:h-20 w-14 h-14 flex justify-center items-center object-cover"
-                                alt="">
+                    @foreach ($series->actors as $actor)
+                        <div class="swiper-slide">
+                            <div class="flex justify-center">
+                                <img src="{{ asset($actor->image) }}"
+                                    class="rounded-full md:w-20 md:h-20 w-14 h-14 flex justify-center items-center object-cover"
+                                    alt="">
+                            </div>
+                            <p class="flex text-sm mt-2 justify-center text-center items-center">{{ $actor->full_name }}</p>
                         </div>
-                        <p class="flex text-sm mt-2 justify-center text-center items-center">{{ $actor->full_name }}</p>
-                    </div>
                     @endforeach
                 </div>
             </section>
@@ -147,9 +147,9 @@
     </div>
     <!-- end cst -->
 
-    <!-- ipizpde -->
+    <!-- episode -->
     <div class="md:px-32 px-20 py-2 mt-12">
-        <div class="rounded-md bg-gray-900 border  border-gray-800 shadow-lg">
+        <div class="rounded-md bg-low-dark border  border-gray-800 shadow-lg">
             <div class="lg:flex px-4 leading-none max-w-4xl">
                 <div class="flex-none">
                     <img src="../assets/images/dun-series.jpg" alt="pic"
@@ -181,7 +181,7 @@
                 </div>
             </div>
         </div>
-        <div class="rounded-md bg-gray-900 border mt-12 border-gray-800 shadow-lg">
+        <div class="rounded-md bg-low-dark border mt-12 border-gray-800 shadow-lg">
             <div class="lg:flex px-4 leading-none max-w-4xl">
                 <div class="flex-none ">
                     <img src="../assets/images/dune1.jpeg" alt="pic"
@@ -215,19 +215,38 @@
             </div>
         </div>
     </div>
-    <!-- end ipizpde -->
+    <!-- end episode -->
 
     <!-- comment -->
-    <section class="py-8 lg:py-16">
+    <section class="py-8 lg:py-16" id="comments">
         <div class="max-w-4xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-bold text-gray-200 ">دیدگاه (20)</h2>
+                <h2 class="text-lg lg:text-2xl font-bold text-gray-200 ">دیدگاه
+                    ({{ $series->comments()->approved()->get()->count() }})</h2>
             </div>
-            <form class="mb-6">
-                <div class="py-2 px-4 mb-4 rounded-lg rounded-t-lg  bg-gray-800 ">
+            @if ($message = session('success'))
+            <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
+                role="alert">
+                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 ml-3" fill="currentColor"
+                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span class="font-medium">موفقیت آمیز</span> {{ $message }}
+                </div>
+            </div>
+            @endif
+            <form action="{{ route('comment.store') }}" class="mb-6" method="post">
+                @csrf
+                <input type="hidden" name="commentable_id" value="{{ $series->id }}">
+                <input type="hidden" name="commentable_type" value="{{ get_class($series) }}">
+                <div class="py-2 px-4 mb-4 rounded-lg rounded-t-lg  bg-low-dark ">
                     <label for="comment" class="sr-only"></label>
-                    <textarea id="comment" rows="1"
-                        class="px-0 w-full text-sm 0 border-0 focus:ring-0 focus:outline-none text-white placeholder-gray-400 bg-gray-800"
+                    <textarea id="comment" rows="2" name="comment"
+                        class="px-0 w-full text-sm 0 border-0 focus:ring-0 focus:outline-none text-white placeholder-gray-400 bg-low-dark"
                         placeholder="دیدگاه خود را بنویسید ..." required></textarea>
                 </div>
                 <button type="submit"
@@ -235,20 +254,23 @@
                     اضافه کردن دیدگاه
                 </button>
             </form>
-            <article class="p-6 mb-6 text-base  rounded-lg bg-gray-900">
-                <footer class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <p class="inline-flex items-center ml-3 text-sm text-white"><img class="ml-2 w-6 h-6 rounded-full"
-                                src="../assets/images/profile.jpg" alt="Michael Gough">یاسین تقوی</p>
-                        <p class="text-sm text-gray-400"><time pubdate datetime="2022-02-08"
-                                title="February 8th, 2022">18 اسفند 1401</time></p>
-                    </div>
-                </footer>
-                <p class="text-gray-500 dark:text-gray-400">من این داستان دوست دارم چون کسشر محظه به نظرم فال و فیلم ریده
-                    به هرچی فیلمای خارجی من فقط عاشق فیلمای ایرانیم ارعععععععععع میتونی دبخوریش؟؟</p>
-                <div class="flex items-center mt-4 space-x-4">
-
-                </div>
+            <article class=" text-base  rounded-lg">
+                @foreach ($series->comments()->approved()->get() as $comment)
+                    <section class="bg-low-dark p-6 mb-3 rounded">
+                        <section class="flex flex-col justify-between">
+                            <div class="flex items-center">
+                                <p class="inline-flex items-center ml-3 text-sm text-white"><img
+                                        class="ml-2 w-10 h-10 rounded-full object-cover"
+                                        src="{{ asset($comment->user->profile()) }}"
+                                        alt="{{ $comment->user->full_name }}">{{ $comment->user->full_name }}</p>
+                                <p class="text-sm text-gray-400"><time pubdate datetime="2022-02-08"
+                                        title="February 8th, 2022">{{ jalaliDate($comment->created_at, '%d %B %Y') }}</time>
+                                </p>
+                            </div>
+                        </section>
+                        <div class="text-gray-500 dark:text-gray-400 mt-2">{{ $comment->comment }}</d>
+                    </section>
+                @endforeach
             </article>
 
 

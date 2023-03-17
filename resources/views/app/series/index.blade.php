@@ -14,7 +14,7 @@
                 </div>
             </label>
             <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
-                <span class="text-sm ml-2">نمره IMDB</span>
+                <span class="text-sm ml-2" onclick="filterAction('imdb')">نمره IMDB</span>
                 <input type="checkbox" value="1" id="imdb" class="sr-only peer" @checked(request('imdb') == 1) data-filter="imdb"
                 data-action="{{ request()->fullUrlWithQuery(['imdb' => 1]) }}">
                 <div onclick="filterAction('imdb')"

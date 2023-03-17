@@ -45,5 +45,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function profile()
+    {
+        return $this->profile_photo ?? 'images/default/avatar.jpg';
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class , 'comments');
+    }
 
 }

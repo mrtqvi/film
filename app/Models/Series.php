@@ -56,6 +56,11 @@ class Series extends Model
         return $this->morphToMany(Category::class, 'categorizable');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class , 'commentable');
+    }
+
     public function actors(): MorphToMany
     {
         return $this->morphToMany(Actor::class, 'actorable');

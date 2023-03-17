@@ -9,6 +9,14 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'commentable_id',
+        'commentable_type',
+        'commentable_user_id',
+        'is_approved',
+        'user_id',
+        'comment'
+    ];
     public function commentable()
     {
         return $this->morphTo();
@@ -16,7 +24,12 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class , 'user_id');
+        return $this->belongsTo(User::class);
+    }
+
+    public function scopeApproved($query)
+    {
+        $query->where('is_approved' , 1);
     }
 
 }
