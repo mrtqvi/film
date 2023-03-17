@@ -35,7 +35,7 @@ Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(func
         'movies'    =>  MovieController::class,
         'actors'    =>  ActorController::class,
         'sliders'   =>  SliderController::class,
-        'comment'   =>  CommentController::class,
+        'comments'   =>  CommentController::class,
         'users'     =>  UserController::class
     ]);
 

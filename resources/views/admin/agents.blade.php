@@ -106,6 +106,17 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4 my-2">
+                                <label for="ahangsaz" class="input-title">
+                                    نویسنده / نویسندگان
+                                </label>
+                                <input type="hidden" name="factors[10][key]" value="نویسنده">
+                                <input type="text" name="factors[10][value]"
+                                    value="{{ old('factors.10.value', $item->getFactor('نویسنده')) }}"
+                                    placeholder="نویسنده"
+                                    class="form-control custom-focus @error('factors.10.value') is-invalid @enderror"
+                                    id="ahangsaz">
+                            </div>
+                            <div class="form-group col-md-4 my-2">
                                 <label for="filmnamenevis" class="input-title">
                                     فیلم‌نامه‌نویس
                                 </label>

@@ -1,7 +1,6 @@
 @extends('admin.layouts.app', ['title' => 'ویرایش فیلم سینمایی'])
 
 @section('head-tag')
-    <script src="{{ asset('assets/admin/plugins/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
     <link href="{{ asset('assets/admin/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 @endsection
 
@@ -31,6 +30,9 @@
                     <div class="col-md-12">
                         <div class="form-row">
                             <div class="form-group col-md-12 my-2">
+                                <label for="fa_title" class="input-title">
+                                    عنوان فارسی
+                                </label>
                                 <input type="text" name="fa_title" value="{{ old('fa_title', $movie->fa_title) }}"
                                     onkeyup="copyToSlug(this)" placeholder="عنوان فارسی سریال را اینجا وارد کنید"
                                     class="form-control custom-input-size custom-focus @error('fa_title') is-invalid @enderror"
@@ -41,6 +43,9 @@
                                 <span class="slug-box"></span>
                             </div>
                             <div class="form-group col-md-12 my-2">
+                                <label for="en_title" class="input-title">
+                                    عنوان لاتین
+                                </label>
                                 <input type="text" name="en_title"
                                     value="{{ old('en_title', old('en_title', $movie->en_title)) }}"
                                     placeholder="عنوان لاتین سریال را اینجا وارد کنید"
@@ -48,6 +53,23 @@
                                     id="en_title">
                             </div>
                             <div class="form-group col-md-12 my-2">
+                                <label for="categories" class="input-title">
+                                    ژانر فیلم
+                                </label>
+                                <select class="js-example-basic-multiple form-control custom-input-size custom-focus" name="categories[]"
+                                    multiple="multiple" id="categories">
+                                    @php 
+                                        $movieCategories = $movie->categories ? $movie->categories->pluck('id')->toArray() : [];
+                                    @endphp
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" @selected(in_array($category->id , old('categories' , old('categories' , $movieCategories))))>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12 my-2">
+                                <label for="categories" class="input-title">
+                                    داستان سریال
+                                </label>
                                 <textarea name="description" id="editor" placeholder="داستان سریال را اینجا وارد کنید"
                                     class="form-control custom-input-size custom-focus @error('description') is-invalid @enderror" cols="30"
                                     rows="5">{{ old('description', $movie->description) }}</textarea>
@@ -133,18 +155,6 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <label for="inputFile" class="input-title">
-                            ژانر سریال
-                        </label>
-                        <select class="js-example-basic-multiple form-control custom-input-size custom-focus" name="categories[]"
-                            multiple="multiple">
-                            @php 
-                                $movieCategories = $movie->categories ? $movie->categories->pluck('id')->toArray() : [];
-                            @endphp
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}" @selected(in_array($category->id , old('categories' , old('categories' , $movieCategories))))>{{ $category->name }}</option>
-                            @endforeach
-                        </select>
                         <label for="" class="input-title mt-2">
                             پوستر سریال
                         </label>
@@ -225,9 +235,6 @@
 @endsection
 
 @section('script')
-    <script>
-        renderEditor("#editor");
-    </script>
     <script src="{{ asset('assets/admin/plugins/select2/select2.min.js') }}"></script>
 
     <script>
