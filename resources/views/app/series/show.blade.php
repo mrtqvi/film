@@ -64,7 +64,7 @@
                     <img src="{{ asset($series->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
                         alt="">
                     <div class="">
-                        <p class="text-white font-bold text-4xl mr-4 mt-2">Dune</p>
+                        <p class="text-white font-bold text-4xl mr-4 mt-2">{{ $series->en_title }}</p>
                         <div class="flex justify-start items-center mr-3 mt-3">
                             <div
                                 class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center md:text-xs text-[10px] rounded-full">
