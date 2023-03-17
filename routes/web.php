@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\TeaserController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\SeriesController as AppSeriesController;
 
 
 /*
@@ -46,6 +47,7 @@ Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(func
     Route::post('factors' , FactorController::class)->name('factor.store');
 
     Route::get('sliders/{slider-top}/status', [SliderController::class, 'status'])->name('sliders.status');
+    Route::get('series/{series}/status', [SeriesController::class, 'status'])->name('series.status');
     Route::get('comment/{comment}/is_approved', [CommentController::class, 'approved'])->name('comment.is_approved');
 
 });
@@ -64,4 +66,4 @@ require __DIR__.'/auth.php';
 
 
 Route::get("/", [HomeController::class, 'home'])->name('home');
-
+Route::resource('series' , AppSeriesController::class)->parameters(['series' => 'series:slug'])->only('index' , 'show');

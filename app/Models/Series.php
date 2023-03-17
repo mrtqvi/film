@@ -36,6 +36,11 @@ class Series extends Model
         ];  
     } 
 
+    public function show()
+    {
+        return route('series.show' , $this->slug);
+    }
+
     public function teaser()
     {
         return $this->belongsTo(Teaser::class);

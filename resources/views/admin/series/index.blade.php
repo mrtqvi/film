@@ -48,6 +48,7 @@
                                     <th>#</th>
                                     <th>عنوان سریال</th>
                                     <th>تاریخ ساخته شدن</th>
+                                    <th>وضعیت انتشار</th>
                                     <th>عملیات</th>
                                     </tr>
                                 </thead>
@@ -57,7 +58,14 @@
                                         <td>
                                             <small>{{ Str::limit($series->fa_title, 100, '...') }}</small>
                                         </td>
-                                        <td>{{ $series->created_at }}</td>
+                                        <td>{{ jalaliDate($series->created_at) }}</td>
+                                        <td>
+                                            <label>
+                                                <input id="{{ $series->id }}" onchange="changeStatus({{ $series->id }})"
+                                                    data-url="{{ route('admin.series.status', $series->id) }}"
+                                                    type="checkbox" @if ($series->status === 1) checked @endif>
+                                            </label>
+                                        </td>
                                         <td>
                                             <a href="#" target="_blank"
                                                 class="text-decoration-none text-info mr-3">
@@ -129,10 +137,10 @@
                     if (response.status) {
                         if (response.checked) {
                             element.prop('checked', true);
-                            successToast('فراخوان فعال شد')
+                            successToast('سریال منتشر شد')
                         } else {
                             element.prop('checked', false);
-                            successToast('فراخوان غیر فعال شد')
+                            successToast('سریال از حالت انتشار خارج شد')
                         }
                     } else {
                         element.prop('checked', elementValue);

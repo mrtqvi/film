@@ -121,4 +121,19 @@ class SeriesController extends Controller
     {
         return view('admin.agents' , [ 'item' => $series ,'factors' => $series->factors ?? collect([]) , 'actors' => Actor::all()]);
     }
+
+    public function status(Series $series)
+    {
+        $series->status = $series->status == 0 ? 1 : 0;
+        $result = $series->save();
+        if ($result) {
+            if ($series->status == 0) {
+                return response()->json(['status' => true, 'checked' => false]);
+            } else {
+                return response()->json(['status' => true, 'checked' => true]);
+            }
+        } else {
+            return response()->json(['status' => false]);
+        }
+    }
 }
