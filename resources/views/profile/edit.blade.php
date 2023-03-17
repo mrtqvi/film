@@ -9,7 +9,7 @@
                 @include('profile.alerts.confirm')
                 @if ($errors->any())
                     <div
-                        class="p-4 mb-4 text-sm text-red-600 md:w-[500px] w-[410px]  rounded-lg  bg-gray-800  flex items-center"
+                        class="p-4 mb-4  text-sm text-red-600 md:w-[500px] w-[410px]  rounded-lg  bg-gray-800  flex flex-col"
                         role="alert">
                         @foreach ($errors->all() as $error)
                             <div class="mt-2">{{ $error }}</div>

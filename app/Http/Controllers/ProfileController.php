@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -30,8 +31,8 @@ class ProfileController extends Controller
 
         $validated = $request->validate([
             'full_name' => 'required|string|min:3|max:255',
-            'user_name' => 'required|string|min:3|max:255',
-            'email' => 'required|string|min:3|max:255',
+            'user_name' => ['required','string','min:3','max:255' , Rule::unique('users' , 'user_name')->ignore($user->id)],
+            'email' => ['required','string','min:3','max:255' , Rule::unique('users' , 'email')->ignore($user->id)],
             'profile_photo' => 'nullable|image|max:2048|min:1',
         ]);
 
