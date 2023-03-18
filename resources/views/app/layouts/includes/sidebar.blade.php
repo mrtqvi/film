@@ -98,8 +98,8 @@ active
                 </a>
             </li>
             <li class="relative">
-                <a href="./genres.html"
-                    class="flex h-12 cursor-pointer items-center truncate rounded-[5px] py-4 px-6 text-sm outline-none transition duration-300 ease-linear hover:outline-none  focus:outline-none hover:opacity-60"
+                <a href="{{ route('categories.index') }}"
+                    class="flex h-12 cursor-pointer items-center truncate rounded-[5px] py-4 px-6 text-sm outline-none transition duration-300 ease-linear hover:outline-none  focus:outline-none hover:opacity-60 @active('categories') active @endactive"
                     data-te-sidenav-link-ref>
                     <span class="ml-4 [&>svg]:text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
