@@ -858,9 +858,6 @@ video {
 .h-9{
   height: 2.25rem;
 }
-.h-\[170px\]{
-  height: 170px;
-}
 .h-\[200px\]{
   height: 200px;
 }
@@ -959,9 +956,6 @@ video {
 }
 .w-\[120px\]{
   width: 120px;
-}
-.w-\[140px\]{
-  width: 140px;
 }
 .w-\[142px\]{
   width: 142px;
@@ -1120,11 +1114,6 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.space-x-4 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1rem * var(--tw-space-x-reverse));
-  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
@@ -1359,10 +1348,6 @@ video {
 }
 .bg-gray-800\/80{
   background-color: rgb(31 41 55 / 0.8);
-}
-.bg-gray-900{
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 .bg-green-100{
   --tw-bg-opacity: 1;
@@ -2730,9 +2715,6 @@ video {
 .h-9{
   height: 2.25rem;
 }
-.h-\[170px\]{
-  height: 170px;
-}
 .h-\[200px\]{
   height: 200px;
 }
@@ -2831,9 +2813,6 @@ video {
 }
 .w-\[120px\]{
   width: 120px;
-}
-.w-\[140px\]{
-  width: 140px;
 }
 .w-\[142px\]{
   width: 142px;
@@ -2992,11 +2971,6 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.space-x-4 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1rem * var(--tw-space-x-reverse));
-  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
@@ -3231,10 +3205,6 @@ video {
 }
 .bg-gray-800\/80{
   background-color: rgb(31 41 55 / 0.8);
-}
-.bg-gray-900{
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 .bg-green-100{
   --tw-bg-opacity: 1;
@@ -4266,11 +4236,6 @@ video {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
   }
-
-  .peer:focus ~ .dark\:peer-focus\:ring-yellow-800{
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgb(133 77 14 / var(--tw-ring-opacity));
-  }
 }
 
 @media (min-width: 640px){
@@ -5134,11 +5099,6 @@ video {
   .dark\:hover\:text-white:hover{
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
-  }
-
-  .peer:focus ~ .dark\:peer-focus\:ring-yellow-800{
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgb(133 77 14 / var(--tw-ring-opacity));
   }
 }
 

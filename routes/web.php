@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\TeaserController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\SeriesController as AppSeriesController;
+use App\Http\Controllers\MovieController as AppMovieController;
 use App\Http\Controllers\CommentController as AppCommentController;
 
 
@@ -68,4 +69,5 @@ require __DIR__.'/auth.php';
 
 Route::get("/", [HomeController::class, 'home'])->name('home');
 Route::resource('series' , AppSeriesController::class)->parameters(['series' => 'series:slug'])->only('index' , 'show');
+Route::resource('movies' , AppMovieController::class)->parameters(['movies' => 'movie:slug'])->only('index' , 'show');
 Route::post('/comment' , AppCommentController::class)->name('comment.store');

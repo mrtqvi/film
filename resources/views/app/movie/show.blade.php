@@ -1,9 +1,9 @@
-@extends('app.layouts.app', ['title' => "سریال $series->fa_title"])
+@extends('app.layouts.app', ['title' => "سریال $movie->fa_title"])
 
 @section('content')
     <section>
         <div class="w-full h-[450px]">
-            <img src="{{ asset($series->wallpaper) }}" class="w-full h-[400px]  object-cover relative" alt="">
+            <img src="{{ asset($movie->wallpaper) }}" class="w-full h-[400px]  object-cover relative" alt="">
             <div class="bg-gradient-to-t from-[#191a1f] to-transparent w-full h-[400px] top-0 absolute">
                 <div class="flex flex-row flex-wrap w-full md:px-16 px-5 h-full justify-center items-end mt-14">
                     <div class="grid grid-cols-12">
@@ -21,7 +21,7 @@
                                 <div class="pl-1 flex justify-center items-center">
                                     <p
                                         class="text-white md:mr-3 md:mt-2 md:text-xl sm:text-sm text-xs text-center font-bold z-30">
-                                        IMDB {{ $series->imdb }}</p>
+                                        IMDB {{ $movie->imdb }}</p>
                                 </div>
                             </div>
                             <div
@@ -29,7 +29,7 @@
                                 <div class="pl-1 flex justify-center items-center">
                                     <p
                                         class="text-white md:mr-3 md:mt-2 md:text-3xl sm:text-sm text-xs  text-center font-bold z-30">
-                                        {{ $series->ages }}+</p>
+                                        {{ $movie->ages }}+</p>
                                 </div>
                             </div>
                             <div
@@ -37,7 +37,7 @@
                                 <div class="pl-1 flex justify-center items-center">
                                     <p
                                         class="text-white md:mr-3 md:mt-2 md:text-xl sm:text-sm text-xs text-center font-bold z-30">
-                                        {{ $series->year_construction }}</p>
+                                        {{ $movie->year_construction }}</p>
                                 </div>
                             </div>
                             <div
@@ -61,20 +61,17 @@
         <div class="lg:col-span-6 col-span-12   flex flex-wrap">
             <div class="">
                 <div class="flex md:mr-10 mr-5">
-                    <img src="{{ asset($series->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
+                    <img src="{{ asset($movie->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
                         alt="">
                     <div class="">
-                        <p class="text-white font-bold text-4xl mr-4 mt-2">{{ $series->en_title }}</p>
+                        <p class="text-white font-bold text-4xl mr-4 mt-2">{{ $movie->en_title }}</p>
                         <div class="flex justify-start items-center mr-3 mt-3">
+                            @foreach ($movie->categories as $movieCategory)
                             <div
                                 class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center md:text-xs text-[10px] rounded-full">
-                                اکشن </div>
-                            <div
-                                class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center mr-1 md:text-xs text-[10px] rounded-full">
-                                درام </div>
-                            <div
-                                class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center mr-1 md:text-xs text-[10px] rounded-full">
-                                علمی تخیلی </div>
+                                {{ $movieCategory->name }} 
+                            </div>
+                            @endforeach
                         </div>
                         <div class="flex">
                             <button
@@ -112,13 +109,13 @@
             <div class="mt-7 ml-10 md:mr-10 mr-5">
                 <p class="text-white font-semibold">خلاصه داستان</p>
                 <p class="text-gray-400 mt-1 w-full text-sm">
-                    {{ $series->description }}
+                    {{ $movie->description }}
                 </p>
             </div>
         </div>
         <div class="lg:col-span-6  col-span-12 md:mr-10 md:ml-5 mr-5 ml-5 md:mt-0 mt-7 flex flex-wrap">
             <div class="w-full h-64">
-                <video src="{{ asset($series->teaser->teaser ?? '') }}" controls class="rounded-xl"></video>
+                <video src="{{ asset($movie->teaser->teaser ?? '') }}" controls class="rounded-xl"></video>
             </div>
         </div>
     </div>
@@ -130,7 +127,7 @@
         <div class="swiper">
             <section class="slide-container">
                 <div class="swiper-wrapper">
-                    @foreach ($series->actors as $actor)
+                    @foreach ($movie->actors as $actor)
                         <div class="swiper-slide">
                             <div class="flex justify-center">
                                 <img src="{{ asset($actor->image) }}"
@@ -147,82 +144,12 @@
     </div>
     <!-- end cst -->
 
-    <!-- episode -->
-    <div class="md:px-32 px-20 py-2 mt-12">
-        <div class="rounded-md bg-low-dark border  border-gray-800 shadow-lg">
-            <div class="lg:flex px-4 leading-none max-w-4xl">
-                <div class="flex-none">
-                    <img src="../assets/images/dun-series.jpg" alt="pic"
-                        class="h-72 w-56 rounded-md transform -translate-y-4 border-4 object-cover border-gray-300 shadow-lg" />
-                </div>
-                <div class="flex-col md:mr-4 mr-1 pb-5 text-gray-300">
-                    <p class="md:pt-4 pt-1 md:text-2xl text-center flex font-bold mr-3 md:mt-4">قسمت 1 | فصل 1</p>
-                    <hr class="hr-text" data-content="">
-                    <div class="text-md flex justify-between px-4 my-2">
-                        <span class="font-bold mb-2">2 ساعت و 13 دقیقه </span>
-                        <span class="font-bold"></span>
-                    </div>
-                    <p class=" lg:block px-4 my-4 text-sm ">داستان این مجموعهٔ تلویزیونی در مورد دو برادر است که
-                        یکی از آنها برای قتلی که انجام نداده به اعدام محکوم شده ... </p>
-
-
-                    <div class="text-xs">
-                        <button type="button"
-                            class="border flex items-center  border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-500 group hover:text-black focus:outline-none focus:shadow-outline">
-                            <svg class="mt-[2px] text-gray-400 group-hover:text-gray-700 transition-all"
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z">
-                                </path>
-                            </svg>
-                            همین حالا تماشا کنید</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rounded-md bg-low-dark border mt-12 border-gray-800 shadow-lg">
-            <div class="lg:flex px-4 leading-none max-w-4xl">
-                <div class="flex-none ">
-                    <img src="../assets/images/dune1.jpeg" alt="pic"
-                        class="h-72 w-56 rounded-md transform -translate-y-4 border-4 object-cover border-gray-300 shadow-lg" />
-                </div>
-                <div class="flex-col md:mr-4 mr-1 pb-5 text-gray-300">
-                    <p class="md:pt-4 pt-1 md:text-2xl text-center flex font-bold mr-3 md:mt-4">قسمت 2 | فصل 1</p>
-                    <hr class="hr-text" data-content="">
-                    <div class="text-md flex justify-between px-4 my-2">
-                        <span class="font-bold mb-2">1 ساعت و 13 دقیقه </span>
-                        <span class="font-bold"></span>
-                    </div>
-                    <p class=" md:block px-4 my-4 text-sm ">داستان این مجموعهٔ تلویزیونی در مورد دو برادر است که
-                        یکی از آنها برای قتلی که انجام نداده به اعدام محکوم شده ... </p>
-
-
-                    <div class="text-xs">
-                        <button type="button"
-                            class="border flex items-center  border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-500 group hover:text-black focus:outline-none focus:shadow-outline">
-                            <svg class="mt-[2px] text-gray-400 group-hover:text-gray-700 transition-all"
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z">
-                                </path>
-                            </svg>
-                            همین حالا تماشا کنید</button>
-                        <!--             <p>ICON BTNS</p> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end episode -->
-
     <!-- comment -->
     <section class="py-8 lg:py-16" id="comments">
         <div class="max-w-4xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-lg lg:text-2xl font-bold text-gray-200 ">دیدگاه
-                    ({{ $series->comments()->approved()->get()->count() }})</h2>
+                    ({{ $movie->comments()->approved()->get()->count() }})</h2>
             </div>
             @if ($message = session('success'))
             <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
@@ -241,8 +168,8 @@
             @endif
             <form action="{{ route('comment.store') }}" class="mb-6" method="post">
                 @csrf
-                <input type="hidden" name="commentable_id" value="{{ $series->id }}">
-                <input type="hidden" name="commentable_type" value="{{ get_class($series) }}">
+                <input type="hidden" name="commentable_id" value="{{ $movie->id }}">
+                <input type="hidden" name="commentable_type" value="{{ get_class($movie) }}">
                 <div class="py-2 px-4 mb-4 rounded-lg rounded-t-lg  bg-low-dark ">
                     <label for="comment" class="sr-only"></label>
                     <textarea id="comment" rows="2" name="comment"
@@ -255,7 +182,7 @@
                 </button>
             </form>
             <article class=" text-base  rounded-lg">
-                @foreach ($series->comments()->approved()->get() as $comment)
+                @foreach ($movie->comments()->approved()->get() as $comment)
                     <section class="bg-low-dark p-6 mb-3 rounded">
                         <section class="flex flex-col justify-between">
                             <div class="flex items-center">

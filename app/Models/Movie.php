@@ -31,9 +31,14 @@ class Movie extends Model
     {
         return [
             'slug' => [
-                'source'    =>  'fa_title'
+                'source'    =>  'slug'
             ]
         ];
+    }
+
+    public function show()
+    {
+        return route('movies.show' , $this->slug);
     }
 
     public function teaser()
