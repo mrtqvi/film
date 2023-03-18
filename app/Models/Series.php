@@ -27,6 +27,12 @@ class Series extends Model
         'producer',
     ];
 
+
+    protected $with = [
+        'categories' ,
+        'actors',
+    ];
+
     public function sluggable(): array
     {
         return [
@@ -34,6 +40,11 @@ class Series extends Model
                 'source'    =>  'fa_title'
             ]
         ];
+    }
+
+    public function show()
+    {
+        return route('series.show' , $this->slug);
     }
 
     public function teaser()
@@ -44,6 +55,11 @@ class Series extends Model
     public function categories(): MorphToMany
     {
         return $this->morphToMany(Category::class, 'categorizable');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class , 'commentable');
     }
 
     public function actors(): MorphToMany

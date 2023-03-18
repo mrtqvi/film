@@ -48,7 +48,7 @@
                                         </td>
                                         <td class="px-2">
                                             @if($comment->is_approved == 1)
-                                                <a href="{{ route('admin.comment.is_approved' , $comment->id) }}"
+                                                <a href="{{ route('admin.comments.is_approved' , $comment->id) }}"
                                                    class="text-warning  " type="submit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                          fill="currentColor" class="bi bi-shield-x" viewBox="0 0 16 16">
@@ -59,7 +59,7 @@
                                                     </svg>
                                                 </a>
                                             @else
-                                                <a href="{{ route('admin.comment.is_approved' , $comment->id) }}"
+                                                <a href="{{ route('admin.comments.is_approved' , $comment->id) }}"
                                                    class=" text-success " type="submit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                          fill="currentColor" class="bi bi-shield-check"
@@ -71,7 +71,7 @@
                                                     </svg>
                                                 </a>
                                             @endif
-                                            <a href="{{ route('admin.comment.show', $comment->id) }}" target="_blank"
+                                            <a href="{{ route('admin.comments.show', $comment->id) }}" target="_blank"
                                                class="text-decoration-none text-info">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                      fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -82,7 +82,7 @@
                                                 </svg>
                                             </a>
                                             <form
-                                                action="{{ route('admin.comment.destroy', $comment->id) }}"
+                                                action="{{ route('admin.comments.destroy', $comment->id) }}"
                                                 class="d-inline " method="post">
                                                 @csrf
                                                 @method('DELETE')

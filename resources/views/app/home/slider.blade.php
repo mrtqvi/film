@@ -3,7 +3,7 @@
     <div class="swiper-wrapper mt-5">
 
        @foreach($sliders as $slider)
-        <div class="swiper- px-3 md:px-6 lg:mx-10">
+        <div class="swiper-slide px-3 md:px-6 lg:mx-10">
             <section href="#!" class="relative flex">
                 <img src="{{ $slider->image }}"
                      class="w-full md:h-96 rounded relative sm:h-[400px] h-[370px] object-cover" alt="">

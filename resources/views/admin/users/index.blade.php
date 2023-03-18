@@ -71,7 +71,7 @@
                                         <td>
                                             <span class="avatar avatar-sm mt-2">
                                                 <img src="{{ asset($user->profile_photo) }}"
-                                                    alt="{{ auth()->user()->full_name }}" class="profile_image">
+                                                    alt="{{ $user->full_name }}" class="profile_image">
                                             </span>
                                         </td>
                                         <td>

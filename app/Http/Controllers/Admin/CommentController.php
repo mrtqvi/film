@@ -19,9 +19,9 @@ class CommentController extends Controller
         $comment->is_approved = $comment->is_approved == 0 ? 1 : 0;
         $result = $comment->save();
         if ($result) {
-            return to_route('admin.comment.index')->with('toast-success' , 'نظر با موفقیت تغیر کرد');
+            return to_route('admin.comments.index')->with('toast-success' , 'نظر با موفقیت تغیر کرد');
         } else {
-            return to_route('admin.comment.index')->with('toast-success' , 'وضعیت با خظا مواجه شد');
+            return to_route('admin.comments.index')->with('toast-success' , 'وضعیت با خظا مواجه شد');
         }
     }
     public function show(Comment $comment)
