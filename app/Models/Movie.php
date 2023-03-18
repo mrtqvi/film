@@ -25,14 +25,14 @@ class Movie extends Model
         'director',
         'teaser_id',
         'producer',
-        'status'
+        'status',
     ];
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source'    =>  'slug'
+                'source'    =>  'fa_title'
             ]
         ];
     }
