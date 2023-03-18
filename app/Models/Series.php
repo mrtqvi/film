@@ -89,5 +89,10 @@ class Series extends Model
         return $this->hasOne(Slider::class);
     }
 
+    public function user()
+    {
+       return $this->belongsToMany(User::class);
+    }
+
 
 }

@@ -32,4 +32,8 @@ class Comment extends Model
         $query->where('is_approved' , 1);
     }
 
+
+
+
+
 }

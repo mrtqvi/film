@@ -6,7 +6,7 @@
         <div class="swiper-slide px-3 md:px-6 lg:mx-10">
             <section href="#!" class="relative flex">
                 <img src="{{ $slider->image }}"
-                     class="w-full md:h-96 rounded relative sm:h-[400px] h-[370px] object-cover" alt="">
+                     class="w-full md:h-96 rounded  sm:h-[400px] h-[370px] object-cover" alt="">
                 <div
                     class="flex flex-col  justify-end flex-wrap bg-gradient-to-b rounded from-transparent to-black/70 w-full h-full  absolute bottom-0 right-0 z-50">
                     <div class="mb-7 pr-5 md:justify-end justify-center sm:mr-0 w-96">
@@ -30,7 +30,7 @@
                         </div>
                         <p class="text-gray-100 text-sm md:flex hidden mt-2 w-auto ">{{ $slider->description }} </p>
                         <div class="flex flex-row  justify-start">
-                            <button
+                            <a href=""
                                 class="mt-5 flex text-sm h-8 px-4   items-center  bg-[#64D947] hover:bg-[#00BD08] text-black hover:text-white font-bold py-2  rounded">
                                 <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                      fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
@@ -38,7 +38,7 @@
                                         d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                                 </svg>
                                 تماشا
-                            </button>
+                            </a>
                             <button
                                 class="mt-5 mr-3 text-sm h-8 px-7 flex items-center  text-center  bg-gray-500/50 hover:bg-gray-600/50 text-gray-200 hover:text-white font-bold py-2  rounded">
                                 تیزر
@@ -51,17 +51,6 @@
                         class="mr-3 flex h-10 w-10 rounded-full justify-center text-center items-center flex-row bg-gray-500/50 hover:bg-gray-600/50 text-gray-200 hover:text-white font-light text-xs py-2 px-4">
                         تماشا همه
                     </button>
-                    @foreach($sliders  as $slider)
-                        @foreach($slider->series->actors as $actor)
-                    <div class="mr-3">
-                        <img src="{{ asset($actor->image) }}" class="w-10 h-10 rounded-full object-cover"
-                             alt="">
-                        <span
-                            class="font-light mt-1 text-xs text-center flex items-center justify-center text-white w-10">{{ $actor->full_name }}</span>
-                    </div>
-                        @endforeach
-                    @endforeach
-
 
 
                 </div>

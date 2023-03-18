@@ -1,4 +1,8 @@
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+<script src="{{ asset('assets/app/js/jquery-3.5.1.min.js') }}"></script>
+
 <!-- start scripts -->
 <script>
     function toggleSidebar() {
@@ -19,22 +23,15 @@
         }
     }
 </script>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
 <!-- Initialize Swiper -->
 <script>
     var swiper = new Swiper(".mySwiper", {
         spaceBetween: 30,
         effect: "fade",
-        loop: true,
-        centeredSlides: true,
         autoplay: {
             delay: 6500,
             disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
         },
         navigation: {
             nextEl: "#swiper-button-next",

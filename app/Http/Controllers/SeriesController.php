@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Series;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class SeriesController extends Controller
@@ -22,7 +23,6 @@ class SeriesController extends Controller
         }
 
         $allSeries = $allSeries->latest()->paginate(8);
-
         return view('app.series.index', compact('allSeries'));
     }
 
@@ -36,5 +36,23 @@ class SeriesController extends Controller
     {
         return view('app.series.show' , compact('series'));
     }
+
+    public function addToFavorite(Series $series)
+    {
+        if(Auth::check())
+        {
+            $series->user()->toggle([Auth::user()->id]);
+            if($series->user->contains(Auth::user()->id)){
+                return response()->json(['status' => 1]);
+            }
+            else{
+                return response()->json(['status' => 2]);
+            }
+        }
+        else{
+            return response()->json(['status' => 3]);
+        }
+    }
+
 
 }

@@ -71,6 +71,6 @@ class ProfileController extends Controller
                 return Redirect::to('/')->with('alert-toast' , 'حساب شما حذف شد!');
             }
         return redirect()->back()->with('alert-danger', 'مدیر سایت نمیتواند حساب خود را غیر فعال کند!');
-
     }
+
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\SeriesController as AppSeriesController;
 use App\Http\Controllers\MovieController as AppMovieController;
 use App\Http\Controllers\CommentController as AppCommentController;
+use App\Http\Controllers\FavoriteController;
 
 
 /*
@@ -70,4 +71,6 @@ require __DIR__.'/auth.php';
 Route::get("/", [HomeController::class, 'home'])->name('home');
 Route::resource('series' , AppSeriesController::class)->parameters(['series' => 'series:slug'])->only('index' , 'show');
 Route::resource('movies' , AppMovieController::class)->parameters(['movies' => 'movie:slug'])->only('index' , 'show');
+Route::resource('my-favorite' , FavoriteController::class)->parameters(['my-favorite' => 'my-favorite:slug'])->only('index' , 'destroy');
 Route::post('/comment' , AppCommentController::class)->name('comment.store');
+Route::get('/add-to-favorite/series/{series:slug}' , [AppSeriesController::class, 'addToFavorite'])->name('series.add-to-favorite');
