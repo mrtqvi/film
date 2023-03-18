@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -51,6 +52,7 @@ Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(func
 
     Route::get('sliders/{slider-top}/status', [SliderController::class, 'status'])->name('sliders.status');
     Route::get('series/{series}/status', [SeriesController::class, 'status'])->name('series.status');
+    Route::get('movies/{movie}/status', [MovieController::class, 'status'])->name('movies.status');
     Route::get('comment/{comment}/is_approved', [CommentController::class, 'approved'])->name('comments.is_approved');
 
 });
@@ -72,4 +74,5 @@ Route::get("/", [HomeController::class, 'home'])->name('home');
 Route::resource('series' , AppSeriesController::class)->parameters(['series' => 'series:slug'])->only('index' , 'show');
 Route::resource('movies' , AppMovieController::class)->parameters(['movies' => 'movie:slug'])->only('index' , 'show');
 Route::resource('categories' , AppCategoryController::class)->parameters(['categories' => 'category:slug'])->only('index' , 'show');
+Route::get('search' , SearchController::class)->name('search');
 Route::post('/comment' , AppCommentController::class)->name('comment.store');

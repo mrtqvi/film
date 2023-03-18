@@ -25,6 +25,7 @@ class Movie extends Model
         'director',
         'teaser_id',
         'producer',
+        'status'
     ];
 
     public function sluggable(): array
@@ -34,6 +35,11 @@ class Movie extends Model
                 'source'    =>  'slug'
             ]
         ];
+    }
+
+    public function scopePublished($query)
+    {
+        $query->where('status' , 1);
     }
 
     public function show()

@@ -25,7 +25,7 @@ class="border-gray-200 bg-main z-40 px-2 sm:px-4 border-b border-b-slate-600 md:
     </div>
     <!-- search bar -->
     <div type="button" class="flex order-3 py-3 mr-0 md:mr-auto">
-        <form>
+        <form action="{{ route('search') }}">
             <label for="default-search" class="mb-2 text-sm font-medium sr-only text-gray-100">جستجو</label>
             <div class="relative">
                 <div onclick="toggleSearch()"
