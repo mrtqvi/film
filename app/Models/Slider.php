@@ -12,6 +12,7 @@ class Slider extends Model
     protected $fillable = [
         'title' ,
         'image' ,
+        'series_id' ,
         'description' ,
         'url' ,
         'status',
@@ -23,5 +24,15 @@ class Slider extends Model
     {
         str_contains($url, request()->root()) ?
             $this->attributes['url'] = str_replace(request()->root(), '', $url) : $this->attributes['url'] = $url;
+    }
+
+    public function series()
+    {
+        return $this->belongsTo(Series::class);
+    }
+
+    public function actors()
+    {
+        return $this->belongsToMany(Actor::class);
     }
 }

@@ -9,7 +9,6 @@
 
     @include('app.home.slider-movie')
 
-    @include('app.home.blog')
 
 
 @endsection

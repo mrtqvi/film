@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/tagify/tagify.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/jalalidatepicker/persian-datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/select2.min.css') }}">
+
 
     <!-- tinymce -->
     <script src="{{ asset('assets/admin/plugins/tinymce/js/tinymce/tinymce.min.js') }}"
@@ -43,7 +45,7 @@
                                        class="form-control custom-input-size custom-focus" id="title">
                             </div>
                             <div class="form-group col-md-12 my-2">
-                                <textarea name="description" class="" id="editor">{{ old('description' , $slider->description) }}</textarea>
+                                <textarea placeholder="توضیحات اسلایدر" name="description" class="form-control col-md-12">{{ old('description' , $slider->description) }}</textarea>
                             </div>
                         </div>
                         <div class="form-row">
@@ -54,6 +56,11 @@
                                        class="form-control url custom-input-size custom-focus" id="title">
                             </div>
                         </div>
+                        <select class="js-example-basic-multiple col-12" name="series_id">
+                        @foreach ($series as $serie)
+                                <option value="{{ $serie->id }}" @if(old('series_id', $slider->series_id) == $serie->id) selected @endif>{{ $serie->fa_title }}</option>
+                            @endforeach
+                        </select>
                         <div class="form-row">
 
                         </div>
@@ -125,8 +132,15 @@
     <script src="{{ asset('assets/admin/plugins/jalalidatepicker/persian-date.min.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/jalalidatepicker/persian-datepicker.min.js') }}"></script>
 
+    <script src="{{ asset('assets/admin/plugins/select2/select2.min.js') }}"></script>
+
     <script>
-        renderEditor('#editor')
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                'placeholder': 'سریال اسلایدر را انتخاب کنید',
+                'dir': 'rtl'
+            });
+        });
     </script>
 
 @endsection

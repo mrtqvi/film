@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SliderRequest;
 use App\Http\Services\Image\ImageService;
+use App\Models\Series;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +38,8 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('admin.sliders.create');
+        $series = Series::all();
+        return view('admin.sliders.create' , compact('series'));
     }
 
     /**
@@ -77,7 +79,8 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        return view('admin.sliders.edit' , compact('slider'));
+        $series = Series::all();
+        return view('admin.sliders.edit' , compact('slider' , 'series'));
     }
 
     /**

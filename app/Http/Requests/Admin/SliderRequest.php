@@ -27,6 +27,7 @@ class SliderRequest extends FormRequest
             return [
                 'title' => 'required|max:120|min:2',
                 'description' => 'required|max:600|min:2',
+                'series_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:categories,id',
                 'url' => 'nullable|max:500|',
                 'image'  => 'required|image|mimes:png,jpg,jpeg,gif|max:3072|min:1',
 
@@ -36,9 +37,17 @@ class SliderRequest extends FormRequest
             return [
                 'title' => 'required|max:120|min:2',
                 'description' => 'required|max:600|min:2',
+                'series_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:categories,id',
                 'url' => 'max:500',
                 'image' => 'image|mimes:png,jpg,jpeg,gif|max:3072|min:1',
             ];
         }
+    }
+
+    public function attributes()
+    {
+        return [
+          'series_id' => 'سریال اسلایدر'
+        ];
     }
 }

@@ -13,7 +13,7 @@ class Series extends Model
     use HasFactory , Sluggable;
 
     protected $fillable = [
-        'fa_title' , 
+        'fa_title' ,
         'en_title',
         'description',
         'poster',
@@ -27,14 +27,14 @@ class Series extends Model
         'producer',
     ];
 
-    public function sluggable(): array 
+    public function sluggable(): array
     {
         return [
             'slug' => [
                 'source'    =>  'fa_title'
             ]
-        ];  
-    } 
+        ];
+    }
 
     public function teaser()
     {
@@ -67,4 +67,11 @@ class Series extends Model
     {
         return route('admin.series.edit' , $this->id);
     }
+
+    public function sliders()
+    {
+        return $this->hasOne(Slider::class);
+    }
+
+
 }

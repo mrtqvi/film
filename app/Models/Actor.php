@@ -24,4 +24,7 @@ class Actor extends Model
     {
         return $this->morphedByMany(Movie::class, 'actorable');
     }
+
+
+
 }

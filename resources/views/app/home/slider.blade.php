@@ -1,8 +1,9 @@
 <!-- start swipper slider-top top -->
 <div class="swiper mySwiper">
     <div class="swiper-wrapper mt-5">
+
        @foreach($sliders as $slider)
-        <div class="swiper-slide px-3 md:px-6 lg:mx-10">
+        <div class="swiper- px-3 md:px-6 lg:mx-10">
             <section href="#!" class="relative flex">
                 <img src="{{ $slider->image }}"
                      class="w-full md:h-96 rounded relative sm:h-[400px] h-[370px] object-cover" alt="">
@@ -18,16 +19,16 @@
                                     <path
                                         d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
-                                <p class="text-white mt-1 text-lg font-semibold">8.2</p>
+                                <p class="text-white mt-1 text-lg font-semibold">{{ $slider->series->imdb }}</p>
                             </section>
                             <div class="flex md:flex-row flex-wrap items-center ">
                                 <span class="text-white md:mx-2 md:flex hidden">|</span>
                                 <span
                                     class="font-light mt-1 md:d-flex  sm:flex-col flex text-center items-center justify-center text-sm text-gray-200">2:15:00
-                                                - اکشن ، درام - 2021</span>
+                                                -  - {{ $slider->series->year_construction }}</span>
                             </div>
                         </div>
-                        <p class="text-gray-100 text-sm md:flex hidden mt-2 w-auto ">{!! $slider->description !!} </p>
+                        <p class="text-gray-100 text-sm md:flex hidden mt-2 w-auto ">{{ $slider->description }} </p>
                         <div class="flex flex-row  justify-start">
                             <button
                                 class="mt-5 flex text-sm h-8 px-4   items-center  bg-[#64D947] hover:bg-[#00BD08] text-black hover:text-white font-bold py-2  rounded">
@@ -50,39 +51,18 @@
                         class="mr-3 flex h-10 w-10 rounded-full justify-center text-center items-center flex-row bg-gray-500/50 hover:bg-gray-600/50 text-gray-200 hover:text-white font-light text-xs py-2 px-4">
                         تماشا همه
                     </button>
+                    @foreach($sliders  as $slider)
+                        @foreach($slider->series->actors as $actor)
                     <div class="mr-3">
-                        <img src="../assets/images/shakira.jpg" class="w-10 h-10 rounded-full object-cover"
+                        <img src="{{ asset($actor->image) }}" class="w-10 h-10 rounded-full object-cover"
                              alt="">
                         <span
-                            class="font-light mt-1 text-xs text-center flex items-center justify-center text-white w-10">شکیرا</span>
+                            class="font-light mt-1 text-xs text-center flex items-center justify-center text-white w-10">{{ $actor->full_name }}</span>
                     </div>
-                    <div class="mr-3">
-                        <img src="../assets/images/images.jpg" class="w-10 h-10 rounded-full object-cover"
-                             alt="">
-                        <span
-                            class="font-light mt-1 text-xs text-center flex items-center justify-center text-white w-10">وندا</span>
-                    </div>
-                    <div class="mr-3">
-                        <img src="../assets/images/tabrizi.jpg" class="w-10 h-10 rounded-full object-cover"
-                             alt="">
-                        <span
-                            class="font-light mt-1 text-xs text-center flex items-center justify-center text-white w-10">مرتضی
-                                        تبریزی</span>
-                    </div>
-                    <div class="mr-3">
-                        <img src="../assets/images/selena.jpg" class="w-10 h-10 rounded-full object-cover"
-                             alt="">
-                        <span
-                            class="font-light mt-1 text-xs text-center flex items-center justify-center text-white w-10">سلنا
-                                        گومز</span>
-                    </div>
-                    <div class="mr-3">
-                        <img src="../assets/images/yorgen.jpg" class="w-10 h-10 rounded-full object-cover"
-                             alt="">
-                        <span
-                            class="font-light mt-1 text-xs text-center flex items-center justify-center text-white w-10">یورگن
-                                        کلوپ</span>
-                    </div>
+                        @endforeach
+                    @endforeach
+
+
 
                 </div>
             </section>

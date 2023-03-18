@@ -116,34 +116,4 @@
 @section('script')
     @include('admin.alerts.confirm')
 
-    <script type="text/javascript">
-        function changeStatus(id) {
-            var element = $("#" + id)
-            var url = element.attr('data-url')
-            var elementValue = !element.prop('checked');
-
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function(response) {
-                    if (response.status) {
-                        if (response.checked) {
-                            element.prop('checked', true);
-                            successToast('فراخوان فعال شد')
-                        } else {
-                            element.prop('checked', false);
-                            successToast('فراخوان غیر فعال شد')
-                        }
-                    } else {
-                        element.prop('checked', elementValue);
-                        errorToast('مشکلی بوجود امده است')
-                    }
-                },
-                error: function() {
-                    element.prop('checked', elementValue);
-                    errorToast('ارتباط برقرار نشد')
-                }
-            });
-        }
-    </script>
 @endsection

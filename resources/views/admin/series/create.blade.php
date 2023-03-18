@@ -202,6 +202,7 @@
         renderEditor("#editor");
     </script>
     <script src="{{ asset('assets/admin/plugins/select2/select2.min.js') }}"></script>
+    
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
