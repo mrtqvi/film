@@ -124,8 +124,6 @@
 @section('script')
     @include('admin.alerts.confirm')
 
-<<<<<<< HEAD
-=======
     <script type="text/javascript">
         function changeStatus(id) {
             var element = $("#" + id)
@@ -156,5 +154,4 @@
             });
         }
     </script>
->>>>>>> d64af9447b13ab10578db8934347a0727fa69b92
 @endsection

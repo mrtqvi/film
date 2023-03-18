@@ -287,9 +287,6 @@
                     </section>
                 @endforeach
             </article>
-
-
-
         </div>
     </section>
     <!-- end comment -->

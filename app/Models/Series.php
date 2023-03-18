@@ -47,6 +47,11 @@ class Series extends Model
         return route('series.show' , $this->slug);
     }
 
+    public function scopePublished($query)
+    {
+        $query->where('status' , 1);
+    }
+
     public function teaser()
     {
         return $this->belongsTo(Teaser::class);

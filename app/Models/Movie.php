@@ -25,15 +25,22 @@ class Movie extends Model
         'director',
         'teaser_id',
         'producer',
+        'status',
     ];
+
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source'    =>  'slug'
+                'source'    =>  'fa_title'
             ]
         ];
+    }
+
+    public function scopePublished($query)
+    {
+        $query->where('status' , 1);
     }
 
     public function show()
@@ -76,5 +83,10 @@ class Movie extends Model
     public function comments()
     {
         return $this->morphMany('App\Models\Comment' , 'commentable');
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

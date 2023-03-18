@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\SeriesController as AppSeriesController;
 use App\Http\Controllers\MovieController as AppMovieController;
+use App\Http\Controllers\CategoryController as AppCategoryController;
 use App\Http\Controllers\CommentController as AppCommentController;
 use App\Http\Controllers\FavoriteController;
 
@@ -51,6 +53,7 @@ Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(func
 
     Route::get('sliders/{slider-top}/status', [SliderController::class, 'status'])->name('sliders.status');
     Route::get('series/{series}/status', [SeriesController::class, 'status'])->name('series.status');
+    Route::get('movies/{movie}/status', [MovieController::class, 'status'])->name('movies.status');
     Route::get('comment/{comment}/is_approved', [CommentController::class, 'approved'])->name('comments.is_approved');
 
 });
@@ -71,6 +74,14 @@ require __DIR__.'/auth.php';
 Route::get("/", [HomeController::class, 'home'])->name('home');
 Route::resource('series' , AppSeriesController::class)->parameters(['series' => 'series:slug'])->only('index' , 'show');
 Route::resource('movies' , AppMovieController::class)->parameters(['movies' => 'movie:slug'])->only('index' , 'show');
-Route::resource('my-favorite' , FavoriteController::class)->parameters(['my-favorite' => 'my-favorite:slug'])->only('index' , 'destroy');
+
+
+Route::resource('categories' , AppCategoryController::class)->parameters(['categories' => 'category:slug'])->only('index' , 'show');
+Route::get('search' , SearchController::class)->name('search');
 Route::post('/comment' , AppCommentController::class)->name('comment.store');
+
+Route::resource('my-favorite' , FavoriteController::class)->parameters(['my-favorite' => 'my-favorite:slug'])->only('index' , 'destroy');
 Route::get('/add-to-favorite/series/{series:slug}' , [AppSeriesController::class, 'addToFavorite'])->name('series.add-to-favorite');
+Route::get('/add-to-favorite/movies/{movies:slug}' , [AppMovieController::class, 'addToFavorite'])->name('movies.add-to-favorite');
+
+

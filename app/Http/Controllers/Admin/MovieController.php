@@ -138,4 +138,19 @@ class MovieController extends Controller
     {
         return view('admin.agents' , [ 'item' => $movie ,'factors' => $movie->factors ?? collect([]) , 'actors' => Actor::all()]);
     }
+
+    public function status(Movie $movie)
+    {
+        $movie->status = $movie->status == 0 ? 1 : 0;
+        $result = $movie->save();
+        if ($result) {
+            if ($movie->status == 0) {
+                return response()->json(['status' => true, 'checked' => false]);
+            } else {
+                return response()->json(['status' => true, 'checked' => true]);
+            }
+        } else {
+            return response()->json(['status' => false]);
+        }
+    }
 }

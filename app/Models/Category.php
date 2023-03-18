@@ -22,9 +22,14 @@ class Category extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'slug'
             ]
         ];
+    }
+
+    public function show()
+    {
+        return route('categories.show' , $this->slug);
     }
 
     public function series(): MorphToMany

@@ -48,6 +48,7 @@
                                     <th>#</th>
                                     <th>عنوان سریال</th>
                                     <th>تاریخ ساخته شدن</th>
+                                    <th>وضعیت انتشار</th>
                                     <th>عملیات</th>
                                     </tr>
                                 </thead>
@@ -57,7 +58,14 @@
                                         <td>
                                             <small>{{ Str::limit($movie->fa_title, 100, '...') }}</small>
                                         </td>
-                                        <td>{{ $movie->created_at }}</td>
+                                        <td>{{ jalaliDate($movie->created_at) }}</td>
+                                        <td>
+                                            <label>
+                                                <input id="{{ $movie->id }}" onchange="changeStatus({{ $movie->id }})"
+                                                    data-url="{{ route('admin.movies.status', $movie->id) }}"
+                                                    type="checkbox" @if ($movie->status === 1) checked @endif>
+                                            </label>
+                                        </td>
                                         <td>
                                             <a href="#" target="_blank"
                                                 class="text-decoration-none text-info mr-3">
@@ -129,10 +137,10 @@
                     if (response.status) {
                         if (response.checked) {
                             element.prop('checked', true);
-                            successToast('فراخوان فعال شد')
+                            successToast('فیلم سینمایی منتشر شد')
                         } else {
                             element.prop('checked', false);
-                            successToast('فراخوان غیر فعال شد')
+                            successToast('فیلم سینمایی از حالت انتشار خارج شد')
                         }
                     } else {
                         element.prop('checked', elementValue);

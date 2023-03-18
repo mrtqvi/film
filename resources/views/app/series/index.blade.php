@@ -157,13 +157,6 @@
         }
     </script>
 
-    {{--    <script>--}}
-    {{--        $('.add-to-favorite button').click(function() {--}}
-    {{--            alert('hi');--}}
-    {{--        })--}}
-
-    {{--    </script>--}}
-
     <script>
         $('.add-to-favorite button').click(function () {
             var url = $(this).attr('data-url');

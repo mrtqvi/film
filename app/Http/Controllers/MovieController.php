@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class MovieController extends Controller
@@ -35,5 +36,22 @@ class MovieController extends Controller
     public function show(Movie $movie): View
     {
         return view('app.movie.show' , compact('movie'));
+    }
+
+    public function addToFavorite(Movie $movies)
+    {
+        if(Auth::check())
+        {
+            $movies->user()->toggle([Auth::user()->id]);
+            if($movies->user->contains(Auth::user()->id)){
+                return response()->json(['status' => 1]);
+            }
+            else{
+                return response()->json(['status' => 2]);
+            }
+        }
+        else{
+            return response()->json(['status' => 3]);
+        }
     }
 }
