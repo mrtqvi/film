@@ -80,7 +80,12 @@ Route::resource('categories' , AppCategoryController::class)->parameters(['categ
 Route::get('search' , SearchController::class)->name('search');
 Route::post('/comment' , AppCommentController::class)->name('comment.store');
 
-Route::resource('my-favorite' , FavoriteController::class)->parameters(['my-favorite' => 'my-favorite:slug'])->only('index' , 'destroy');
+//Route::resource('my-favorite' , FavoriteController::class)->parameters(['my-favorite' => 'my-favorite:id'])->only('index' , 'destroy');
+
+Route::get('/my-favorite', [FavoriteController::class, 'index'])->name('my-favorite');
+Route::get('/my-favorite/delete-series/{series}', [FavoriteController::class, 'deleteSeries'])->name('my-favorite.delete-series');
+Route::get('/my-favorite/delete-movie/{movie}', [FavoriteController::class, 'deleteMovie'])->name('my-favorite.delete-movie');
+
 Route::get('/add-to-favorite/series/{series:slug}' , [AppSeriesController::class, 'addToFavorite'])->name('series.add-to-favorite');
 Route::get('/add-to-favorite/movies/{movies:slug}' , [AppMovieController::class, 'addToFavorite'])->name('movies.add-to-favorite');
 
