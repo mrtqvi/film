@@ -22,6 +22,14 @@ class MovieController extends Controller
             $movies->orderBy('imdb' , 'DESC');
         }
 
+        if (request('most-comments')) {
+            $movies->withCount('comments')->orderBy('comments_count' , 'DESC');
+        }
+
+        if (request('favorites')) {
+            $movies->withCount('user')->orderBy('user_count' , 'DESC');
+        }
+
         $movies = $movies->latest()->paginate(8);
 
         return view('app.movie.index', compact('movies'));

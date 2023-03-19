@@ -21,7 +21,7 @@
         @foreach ($items->where('status' , 1) as $item)
         <div class="flex justify-center bg-main rounded col-span-full lg:col-span-6 relative">
             <span class="px-1 py-0.5 bg-lime-300 text-gray-800 border border-lime-600 absolute rounded-xl text-xs left-3 top-3">{{ get_class($item) == App\Models\Series::class ? 'سریال' : ' سینمایی' }}</span>
-            <div class="flex items-center rounded-lg shadow border border-gray-800 md:max-w-full md:flex-row">
+            <div class="flex items-center rounded-lg shadow border border-gray-800 md:min-w-full md:flex-row">
                 <img class="w-36 h-48 object-cover rounded-3xl p-4" src="{{ asset($item->poster) }}" alt="" />
                 <div class="flex flex-col justify-start p-6">
                     <h5 class="mb-2 text-gray-400">
@@ -31,7 +31,7 @@
                         {{ Str::limit($item->description, 100, '...') }}
                     </p>
                     <div class="flex justify-between">
-                        <a href=""
+                        <a href="{{ $item->show() }}"
                             class="flex text-xs h-8 px-4 items-center bg-[#64D947] hover:bg-[#00BD08] text-slate-900 transition-all delay-200 py-2  rounded">
                             <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">

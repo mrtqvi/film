@@ -22,6 +22,14 @@ class SeriesController extends Controller
             $allSeries->orderBy('imdb' , 'DESC');
         }
 
+        if (request('most-comments')) {
+            $allSeries->withCount('comments')->orderBy('comments_count' , 'DESC');
+        }
+
+        if (request('favorites')) {
+            $allSeries->withCount('user')->orderBy('user_count' , 'DESC');
+        }
+
         $allSeries = $allSeries->latest()->paginate(8);
         return view('app.series.index', compact('allSeries'));
     }
