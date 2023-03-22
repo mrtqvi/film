@@ -5,7 +5,7 @@
 @endif
 
 @if (session('alert-danger'))
-    <div class="p-4 mt-3 mb-4 text-sm text-red-600 md:w-[500px] w-[410px]  rounded-lg  bg-gray-800  flex items-center" role="alert">
+    <div class="p-4 mt-3 mb-4 text-sm text-red-600 w-full  rounded-lg  bg-gray-800  flex items-center" role="alert">
     {{ session('alert-danger') }}
     </div>
 @endif

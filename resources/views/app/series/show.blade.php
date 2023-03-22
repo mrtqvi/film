@@ -96,7 +96,7 @@
                                             <section class="add-to-favorite flex justify-start">
                                                 <button
                                                     data-url="{{ route('series.add-to-favorite' , $series) }}">
-                                                    <i class="text-red-600 ">
+                                                    <i class="text-red-600 flex items-center mt-1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -163,39 +163,47 @@
     <!-- end cst -->
 
     <!-- episode -->
-    <div class="md:px-32 px-20 py-2 mt-12">
-        <div class="rounded-md bg-low-dark border  border-gray-800 shadow-lg">
-            <div class="lg:flex px-4 leading-none max-w-4xl">
-                <div class="flex-none">
-                    <img src="../assets/images/dun-series.jpg" alt="pic"
-                        class="h-72 w-56 rounded-md transform -translate-y-4 border-4 object-cover border-gray-300 shadow-lg" />
-                </div>
-                <div class="flex-col md:mr-4 mr-1 pb-5 text-gray-300">
-                    <p class="md:pt-4 pt-1 md:text-2xl text-center flex font-bold mr-3 md:mt-4">قسمت 1 | فصل 1</p>
-                    <hr class="hr-text" data-content="">
-                    <div class="text-md flex justify-between px-4 my-2">
-                        <span class="font-bold mb-2">2 ساعت و 13 دقیقه </span>
-                        <span class="font-bold"></span>
-                    </div>
-                    <p class=" lg:block px-4 my-4 text-sm ">داستان این مجموعهٔ تلویزیونی در مورد دو برادر است که
-                        یکی از آنها برای قتلی که انجام نداده به اعدام محکوم شده ... </p>
+    <div class="px-20">
+        <div class="relative font-medium flex items-center content-center">
+            <div class="w-full">
+                <div class=" mx-auto bg-low-dark border  border-gray-800 rounded-xl  overflow-hidden ">
+                    <div class="md:flex">
+                        <div class="md:m-2">
+                            <img class="h-72 w-full object-cover md:h-full md:w-96 rounded-r-lg" src="../assets/images/dun-series.jpg" alt="Man looking at item at a store">
+                        </div>
+                        <div class="p-2 h-[260px]">
+                            <div class="flex-col md:mr-4 mr-1  text-gray-300">
+                                <p class="md:pt-4 pt-1 md:text-2xl text-center flex font-bold mr-3 ">قسمت 1 | فصل 1</p>
+                                <hr class="hr-text" data-content="">
+                                <div class="text-md flex justify-between px-4 my-2">
+                                    <span class="font-bold mb-2">2 ساعت و 13 دقیقه </span>
+                                    <span class="font-bold"></span>
+                                </div>
+                                <p class=" lg:block px-4 my-4 text-sm ">داستان این مجموعهٔ تلویزیونی در مورد دو برادر است که
+                                    یکی از آنها برای قتلی که انجام نداده به اعدام محکوم شده ... </p>
 
 
-                    <div class="text-xs">
-                        <button type="button"
-                            class="border flex items-center  border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-500 group hover:text-black focus:outline-none focus:shadow-outline">
-                            <svg class="mt-[2px] text-gray-400 group-hover:text-gray-700 transition-all"
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z">
-                                </path>
-                            </svg>
-                            همین حالا تماشا کنید</button>
+                                <div class="text-xs">
+                                    <button type="button"
+                                            class="border flex items-center  border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-500 group hover:text-black focus:outline-none focus:shadow-outline">
+                                        <svg class="mt-[2px] text-gray-400 group-hover:text-gray-700 transition-all"
+                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                             viewBox="0 0 16 16">
+                                            <path
+                                                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z">
+                                            </path>
+                                        </svg>
+                                        همین حالا تماشا کنید</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="md:px-32 px-20 py-2 mt-12">
         <div class="rounded-md bg-low-dark border mt-12 border-gray-800 shadow-lg">
             <div class="lg:flex px-4 leading-none max-w-4xl">
                 <div class="flex-none ">

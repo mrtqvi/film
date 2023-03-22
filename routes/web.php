@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/update-password]', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 });
 
 require __DIR__.'/auth.php';
@@ -80,7 +81,6 @@ Route::resource('categories' , AppCategoryController::class)->parameters(['categ
 Route::get('search' , SearchController::class)->name('search');
 Route::post('/comment' , AppCommentController::class)->name('comment.store');
 
-//Route::resource('my-favorite' , FavoriteController::class)->parameters(['my-favorite' => 'my-favorite:id'])->only('index' , 'destroy');
 
 Route::get('/my-favorite', [FavoriteController::class, 'index'])->name('my-favorite');
 Route::get('/my-favorite/delete-series/{series}', [FavoriteController::class, 'deleteSeries'])->name('my-favorite.delete-series');

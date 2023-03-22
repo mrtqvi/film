@@ -51,8 +51,6 @@
                         class="mr-3 flex h-10 w-10 rounded-full justify-center text-center items-center flex-row bg-gray-500/50 hover:bg-gray-600/50 text-gray-200 hover:text-white font-light text-xs py-2 px-4">
                         تماشا همه
                     </button>
-
-
                 </div>
             </section>
         </div>
