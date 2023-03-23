@@ -100,4 +100,6 @@ class Series extends Model
     }
 
 
+
+
 }
