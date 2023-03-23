@@ -99,7 +99,7 @@
                                         <td>
                                     </tr>
                                 @empty
-                                    <p class="text-center text-muted">هیچ سریالی وجود ندارد.</p>
+                                    <p class="text-center text-muted">هیچ اپیزودی وجود ندارد.</p>
                                 @endforelse
                             </table>
                             {{-- <section class="d-flex justify-content-center">

@@ -23,7 +23,7 @@ active-sidebar
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item dropdown @active('admin.series')
 active-sidebar
-@endactive">
+@endactive @active('admin.episodes') active-sidebar @endactive">
                 <a href="#series" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-camera-reels" viewBox="0 0 16 16">

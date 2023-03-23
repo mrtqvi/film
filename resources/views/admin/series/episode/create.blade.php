@@ -5,75 +5,12 @@
 @endsection
 
 @section('content')
-    <!-- upload modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">آپلود ویدئو </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="upload-container" class="text-center">
-                        <button type="button" id="browseFile" class="btn btn-outline-primary w-100 my-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-cloud-upload" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z" />
-                                <path fill-rule="evenodd"
-                                    d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z" />
-                            </svg>
-                            <span class="ml-2">آپلود کیفیت 1080P</span>
-                        </button>
-                        <button type="button" onclick="uploadVideo(event)" id="720" class="btn btn-outline-primary w-100 my-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-cloud-upload" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z" />
-                                <path fill-rule="evenodd"
-                                    d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z" />
-                            </svg>
-                            <span class="ml-2">آپلود کیفیت 720</span>
-                        </button>
-                        <button type="button" onclick="uploadVideo(event)" id="480" class="btn btn-outline-primary w-100 my-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-cloud-upload" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z" />
-                                <path fill-rule="evenodd"
-                                    d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z" />
-                            </svg>
-                            <span class="ml-2">آپلود کیفیت 480</span>
-                        </button>
-                        <button type="button" onclick="uploadVideo(event)" id="360" class="btn btn-outline-primary w-100 my-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-cloud-upload" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z" />
-                                <path fill-rule="evenodd"
-                                    d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z" />
-                            </svg>
-                            <span class="ml-2">آپلود کیفیت 360</span>
-                        </button>
-                        <div style="display: none" id="proccess360" class="progress mt-3" style="height: 25px">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary " role="progressbar"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; height: 100%">75%
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row d-flex justify-content-between">
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="h3 mb-0 section-heading">قسمت جدید سریال {{ $series->fa_title }}</h2>
         </div>
         <div class="col-auto mb-3">
-            <a href="{{ route('admin.series.index') }}" type="button" class="btn btn-success px-4">بازگشت</a>
+            <a href="{{ route('admin.episodes.index' , $series->id) }}" type="button" class="btn btn-success px-4">بازگشت</a>
         </div>
     </div>
     @if ($errors->any())
@@ -83,7 +20,7 @@
             @endforeach
         </div>
     @endif
-    <form action="{{ route('admin.series.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.episodes.store' , $series->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-12 col-md-9 position-sticky">
@@ -93,12 +30,12 @@
                         <div class="form-row">
                             <div class="form-group col-md-12 mb-0">
                                 <label for="fa_title" class="input-title">
-                                    عنوان فارسی
+                                    عنوان 
                                 </label>
                                 <input type="text" name="title"
                                     value="{{ old('title', "فصل {$season} قسمت {$episode} سریال  {$series->fa_title}") }}"
                                     onkeyup="copyToSlug(this)" placeholder="عنوان قسمت  سریال را اینجا وارد کنید"
-                                    class="form-control custom-input-size custom-focus @error('fa_title') is-invalid @enderror"
+                                    class="form-control custom-input-size custom-focus @error('title') is-invalid @enderror"
                                     id="title">
                             </div>
                             <div class="col-12 slug d-flex">
@@ -119,7 +56,7 @@
                 </div> <!-- /. end-section -->
             </div>
             <div class="col-12 col-md-3 my-2 px-0">
-                <div class="card">
+                <!-- <div class="card">
                     <div class="card-header" onclick="openCard(this)">
                         <div class="row d-flex justify-content-between px-2">
                             <div>
@@ -158,7 +95,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="card mt-2">
                     <div class="card-header" onclick="openCard(this)">
                         <div class="row d-flex justify-content-between px-2">
@@ -180,6 +117,17 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @if ($series->episodes->where('season' , $season)->count() >= 1)
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" value="{{ $season +1 }}" name="season"
+                            class="form-checkbox border-none ring-none h-5 w-5 text-cyan-700 rounded bg-slate-300 dark:bg-slate-600"
+                            @checked(old('season')== $season + 1)><span class="text-sm text-gray-700 dark:text-slate-400 mr-2">
+                                اضافه کردن به فصل {{ $season +1  }}
+                            </span>
+                        </label>
+                        @else
+                        <input type="hidden" name="season" value="{{ $season }}">
+                        @endif  
                         <label for="" class="input-title">
                             تصویر شاخص
                         </label>
@@ -194,7 +142,7 @@
                                         d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z" />
                                 </svg>
                             </label>
-                            <input id="file" name="poster" type="file" onchange="loadFile(event)" />
+                            <input id="file" name="image" type="file" onchange="loadFile(event)" />
                             <img style="height:8rem !important;" src="{{ asset('images/default/no-photo.png') }}"
                                 id="output">
                         </div>

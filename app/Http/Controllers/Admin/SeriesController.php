@@ -85,6 +85,8 @@ class SeriesController extends Controller
             }
 
             if ($request->has('wallpaper')) {
+                if (!empty($series->wallpaper))
+                    $imageService->deleteImage($series->wallpaper);
                 $imageService->setExclusiveDirectory("images" . DIRECTORY_SEPARATOR ."series" . DIRECTORY_SEPARATOR . "wallpapers");
                 $inputs['wallpaper'] = $imageService->save($request->wallpaper);
             }
