@@ -1361,6 +1361,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(190 242 100 / var(--tw-bg-opacity));
 }
+.bg-slate-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
 .bg-slate-800{
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
@@ -1656,6 +1660,10 @@ video {
 .text-black{
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+.text-cyan-700{
+  --tw-text-opacity: 1;
+  color: rgb(14 116 144 / var(--tw-text-opacity));
 }
 .text-gray-100{
   --tw-text-opacity: 1;
@@ -3200,6 +3208,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(190 242 100 / var(--tw-bg-opacity));
 }
+.bg-slate-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
 .bg-slate-800{
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
@@ -3495,6 +3507,10 @@ video {
 .text-black{
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+.text-cyan-700{
+  --tw-text-opacity: 1;
+  color: rgb(14 116 144 / var(--tw-text-opacity));
 }
 .text-gray-100{
   --tw-text-opacity: 1;
@@ -4154,6 +4170,11 @@ video {
     background-color: rgb(22 101 52 / var(--tw-bg-opacity));
   }
 
+  .dark\:bg-slate-600{
+    --tw-bg-opacity: 1;
+    background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+  }
+
   .dark\:text-gray-400{
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -4172,6 +4193,11 @@ video {
   .dark\:text-green-200{
     --tw-text-opacity: 1;
     color: rgb(187 247 208 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-slate-400{
+    --tw-text-opacity: 1;
+    color: rgb(148 163 184 / var(--tw-text-opacity));
   }
 
   .dark\:text-white{
@@ -5014,6 +5040,11 @@ video {
     background-color: rgb(22 101 52 / var(--tw-bg-opacity));
   }
 
+  .dark\:bg-slate-600{
+    --tw-bg-opacity: 1;
+    background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+  }
+
   .dark\:text-gray-400{
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -5032,6 +5063,11 @@ video {
   .dark\:text-green-200{
     --tw-text-opacity: 1;
     color: rgb(187 247 208 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-slate-400{
+    --tw-text-opacity: 1;
+    color: rgb(148 163 184 / var(--tw-text-opacity));
   }
 
   .dark\:text-white{
