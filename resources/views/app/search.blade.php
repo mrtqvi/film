@@ -18,7 +18,7 @@
                 {{ Str::limit($item->description, 300, '...') }}
             </p>
             <div class="flex justify-between">
-                <a href=""
+                <a href="{{ $item->show() }}"
                     class="flex text-xs h-8 px-4 items-center bg-[#64D947] hover:bg-[#00BD08] text-slate-900 transition-all delay-200 py-2  rounded">
                     <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">

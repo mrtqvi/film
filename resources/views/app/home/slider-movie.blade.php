@@ -8,7 +8,7 @@
             <section class="card-wrapper swiper-wrapper w-52 h-72">
                 @foreach($popularFilms as $popularFilm)
                     <section class="swiper-slide flex ">
-                        <a href="#" class="flex justify-center w-full absolute">
+                        <a href="{{ $popularFilm->show() }}" class="flex justify-center w-full absolute">
                             <img src="{{ asset($popularFilm->poster) }}"
                                  class="object-cover relative rounded-lg  h-64 w-52" alt="">
                             <div
@@ -102,7 +102,7 @@
             <section class="card-wrapper swiper-wrapper w-52 h-72">
                 @foreach($newFilms as $film)
                     <section class="swiper-slide flex ">
-                        <a href="#" class="flex justify-center w-full absolute">
+                        <a href="{{ $film->show() }}" class="flex justify-center w-full absolute">
                             <img src="{{ asset($film->poster) }}"
                                  class="object-cover relative rounded-lg  h-64 w-52" alt="">
                             <div
@@ -196,7 +196,7 @@
             <section class="card-wrapper swiper-wrapper w-52 h-72">
                 @foreach($mostComments as $series)
                     <section class="swiper-slide flex ">
-                        <a href="#" class="flex justify-center w-full absolute">
+                        <a href="{{ $series->show() }}" class="flex justify-center w-full absolute">
                             <img src="{{ asset($series->poster) }}"
                                  class="object-cover relative rounded-lg  h-64 w-52" alt="">
                             <div

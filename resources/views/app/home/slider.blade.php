@@ -32,7 +32,7 @@
                             </div>
                             <p class="text-gray-100 text-sm md:flex hidden mt-2 w-auto ">{{ $slider->description }} </p>
                             <div class="flex flex-row  justify-start">
-                                <a href=""
+                                <a href="{{ $slider->series->show() }}"
                                    class="mt-5 flex text-sm h-8 px-4   items-center  bg-[#64D947] hover:bg-[#00BD08] text-black hover:text-white font-bold py-2  rounded">
                                     <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                          fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">

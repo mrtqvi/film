@@ -95,11 +95,10 @@
                                 </div>
                                 تماشا
                             </button>
+                            @auth
                             <div
                                 class="border border-gray-600 flex justify-center items-center w-12 h-12 rounded-full mt-6 mr-2">
-
-                                    @auth
-                                        @if($series->user->contains(auth()->user()->id))
+                                 @if($series->user->contains(auth()->user()->id))
                                             <section class="add-to-favorite flex justify-start">
                                                 <button
                                                     data-url="{{ route('series.add-to-favorite' , $series) }}">
@@ -125,8 +124,8 @@
                                                 </button>
                                             </section>
                                         @endif
-                                    @endauth
-                            </div>
+                                </div>
+                            @endauth
                         </div>
                     </div>
                 </div>
