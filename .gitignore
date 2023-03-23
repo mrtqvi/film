@@ -9,6 +9,7 @@
 /public/images/actors
 /public/images/movies
 /public/images/user/avatars
+/storage/debugbar
 /storage/*.key
 /vendor
 .env

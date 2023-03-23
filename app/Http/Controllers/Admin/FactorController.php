@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use App\Models\Series;
+use App\Models\Movie;
 
 class FactorController extends Controller
 {
+    private $routeNames = [
+        Series::class => 'admin.series.index',
+        Movie::class  => 'admin.movies.index' 
+    ];
+
     /**
      * Handle the incoming request.
      *
@@ -49,6 +56,6 @@ class FactorController extends Controller
             }
         });
 
-        return back()->with('toast-success', 'اطلاعات عوامل فیلم ثبت شد.');
+        return to_route($this->routeNames[$request->factorizable_type] ?? 'admin.index')->with('toast-success', 'اطلاعات عوامل فیلم ثبت شد.');
     }
 }

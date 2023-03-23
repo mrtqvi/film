@@ -1,5 +1,12 @@
 @extends('app.layouts.app', ['title' => "سریال $series->fa_title"])
 
+@section('head-tag')
+<link href="{{ asset('assets/app/plugins/video-js/video-js.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/app/plugins/video-js/quality-selector.css') }}" rel="stylesheet">
+<script src="{{ asset('assets/app/plugins/video-js/video.js') }}"></script>
+<script src="{{ asset('assets/app/plugins/video-js/videojs-quality-selector.min.js') }}"></script>
+@endsection
+
 @section('content')
     <section>
         <div class="w-full h-[450px]">
@@ -133,7 +140,11 @@
         </div>
         <div class="lg:col-span-6  col-span-12 md:mr-10 md:ml-5 mr-5 ml-5 md:mt-0 mt-7 flex flex-wrap">
             <div class="w-full h-64">
-                <video src="{{ asset($series->teaser->teaser ?? '') }}" controls class="rounded-xl"></video>
+                <video id="video" class="video-js vjs-default-skin w-full rounded-lg h-64" controls preload="auto">
+                    <source src="{{ asset('teasers/test/720.mp4') }}" type="video/mp4" label="720P">
+                    <source src="{{ asset('teasers/test/480.mp4') }}" type="video/mp4" label="480P" selected="true">
+                    <source src="{{ asset('teasers/test/360.mp4') }}" type="video/mp4" label="360P">
+                </video>
             </div>
         </div>
     </div>
@@ -152,7 +163,8 @@
                                     class="rounded-full md:w-20 md:h-20 w-14 h-14 flex justify-center items-center object-cover"
                                     alt="">
                             </div>
-                            <p class="flex text-sm mt-2 justify-center text-center items-center">{{ $actor->full_name }}</p>
+                            <p class="flex text-sm mt-2 justify-center text-center items-center">{{ $actor->full_name }}
+                            </p>
                         </div>
                     @endforeach
                 </div>
@@ -248,19 +260,19 @@
                     ({{ $series->comments()->approved()->get()->count() }})</h2>
             </div>
             @if ($message = session('success'))
-            <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
-                role="alert">
-                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 ml-3" fill="currentColor"
-                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                <span class="sr-only">Info</span>
-                <div>
-                    <span class="font-medium">موفقیت آمیز</span> {{ $message }}
+                <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
+                    role="alert">
+                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 ml-3" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                        <span class="font-medium">موفقیت آمیز</span> {{ $message }}
+                    </div>
                 </div>
-            </div>
             @endif
             <form action="{{ route('comment.store') }}" class="mb-6" method="post">
                 @csrf
@@ -301,24 +313,40 @@
 @endsection
 
 @section('script')
+    <script>
+        var options, player;
 
-<script>
-    $('.add-to-favorite button').click(function () {
-        var url = $(this).attr('data-url');
-        var element = $(this);
-        $.ajax({
-            url: url,
-            success: function (result) {
-                if (result.status == 1) {
-                    $(element).children().first().addClass('text-red-600');
-                } else if (result.status == 2) {
-                    $(element).children().first().removeClass('text-red-600')
-                } else if (result.status == 3) {
-                    $('.toast').toast('show');
+        options = {
+            controlBar: {
+                children: [
+                    'playToggle',
+                    'progressControl',
+                    'volumePanel',
+                    'qualitySelector',
+                    'fullscreenToggle',
+                ],
+            },
+        };
+
+        player = videojs('video', options);
+    </script>
+
+    <script>
+        $('.add-to-favorite button').click(function() {
+            var url = $(this).attr('data-url');
+            var element = $(this);
+            $.ajax({
+                url: url,
+                success: function(result) {
+                    if (result.status == 1) {
+                        $(element).children().first().addClass('text-red-600');
+                    } else if (result.status == 2) {
+                        $(element).children().first().removeClass('text-red-600')
+                    } else if (result.status == 3) {
+                        $('.toast').toast('show');
+                    }
                 }
-            }
+            })
         })
-    })
-</script>
-
+    </script>
 @endsection
