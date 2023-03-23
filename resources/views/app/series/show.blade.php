@@ -1,5 +1,12 @@
 @extends('app.layouts.app', ['title' => "سریال $series->fa_title"])
 
+@section('head-tag')
+<link href="{{ asset('assets/app/plugins/video-js/video-js.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/app/plugins/video-js/quality-selector.css') }}" rel="stylesheet">
+<script src="{{ asset('assets/app/plugins/video-js/video.js') }}"></script>
+<script src="{{ asset('assets/app/plugins/video-js/videojs-quality-selector.min.js') }}"></script>
+@endsection
+
 @section('content')
     <section>
         <div class="w-full h-[450px]">
@@ -91,34 +98,33 @@
                             <div
                                 class="border border-gray-600 flex justify-center items-center w-12 h-12 rounded-full mt-6 mr-2">
 
-                                    @auth
-                                        @if($series->user->contains(auth()->user()->id))
-                                            <section class="add-to-favorite flex justify-start">
-                                                <button
-                                                    data-url="{{ route('series.add-to-favorite' , $series) }}">
-                                                    <i class="text-red-600 ">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"/>
-                                                        </svg>
-                                                    </i>
-                                                </button>
-                                            </section>
-                                        @else
-                                            <section class="add-to-favorite">
-                                                <button   data-url="{{ route('series.add-to-favorite' , $series) }}">
-                                                    <i>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"/>
-                                                        </svg>
-                                                    </i>
-                                                </button>
-                                            </section>
-                                        @endif
-                                    @endauth
+                                @auth
+                                    @if ($series->user->contains(auth()->user()->id))
+                                        <section class="add-to-favorite flex justify-start">
+                                            <button data-url="{{ route('series.add-to-favorite', $series) }}">
+                                                <i class="text-red-600 ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+                                                    </svg>
+                                                </i>
+                                            </button>
+                                        </section>
+                                    @else
+                                        <section class="add-to-favorite">
+                                            <button data-url="{{ route('series.add-to-favorite', $series) }}">
+                                                <i>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+                                                    </svg>
+                                                </i>
+                                            </button>
+                                        </section>
+                                    @endif
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -133,7 +139,11 @@
         </div>
         <div class="lg:col-span-6  col-span-12 md:mr-10 md:ml-5 mr-5 ml-5 md:mt-0 mt-7 flex flex-wrap">
             <div class="w-full h-64">
-                <video src="{{ asset($series->teaser->teaser ?? '') }}" controls class="rounded-xl"></video>
+                <video id="video" class="video-js vjs-default-skin w-full rounded-lg h-64" controls preload="auto">
+                    <source src="{{ asset('teasers/test/720.mp4') }}" type="video/mp4" label="720P">
+                    <source src="{{ asset('teasers/test/480.mp4') }}" type="video/mp4" label="480P" selected="true">
+                    <source src="{{ asset('teasers/test/360.mp4') }}" type="video/mp4" label="360P">
+                </video>
             </div>
         </div>
     </div>
@@ -152,7 +162,8 @@
                                     class="rounded-full md:w-20 md:h-20 w-14 h-14 flex justify-center items-center object-cover"
                                     alt="">
                             </div>
-                            <p class="flex text-sm mt-2 justify-center text-center items-center">{{ $actor->full_name }}</p>
+                            <p class="flex text-sm mt-2 justify-center text-center items-center">{{ $actor->full_name }}
+                            </p>
                         </div>
                     @endforeach
                 </div>
@@ -240,19 +251,19 @@
                     ({{ $series->comments()->approved()->get()->count() }})</h2>
             </div>
             @if ($message = session('success'))
-            <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
-                role="alert">
-                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 ml-3" fill="currentColor"
-                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                <span class="sr-only">Info</span>
-                <div>
-                    <span class="font-medium">موفقیت آمیز</span> {{ $message }}
+                <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
+                    role="alert">
+                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 ml-3" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                        <span class="font-medium">موفقیت آمیز</span> {{ $message }}
+                    </div>
                 </div>
-            </div>
             @endif
             <form action="{{ route('comment.store') }}" class="mb-6" method="post">
                 @csrf
@@ -293,24 +304,40 @@
 @endsection
 
 @section('script')
+    <script>
+        var options, player;
 
-<script>
-    $('.add-to-favorite button').click(function () {
-        var url = $(this).attr('data-url');
-        var element = $(this);
-        $.ajax({
-            url: url,
-            success: function (result) {
-                if (result.status == 1) {
-                    $(element).children().first().addClass('text-red-600');
-                } else if (result.status == 2) {
-                    $(element).children().first().removeClass('text-red-600')
-                } else if (result.status == 3) {
-                    $('.toast').toast('show');
+        options = {
+            controlBar: {
+                children: [
+                    'playToggle',
+                    'progressControl',
+                    'volumePanel',
+                    'qualitySelector',
+                    'fullscreenToggle',
+                ],
+            },
+        };
+
+        player = videojs('video', options);
+    </script>
+
+    <script>
+        $('.add-to-favorite button').click(function() {
+            var url = $(this).attr('data-url');
+            var element = $(this);
+            $.ajax({
+                url: url,
+                success: function(result) {
+                    if (result.status == 1) {
+                        $(element).children().first().addClass('text-red-600');
+                    } else if (result.status == 2) {
+                        $(element).children().first().removeClass('text-red-600')
+                    } else if (result.status == 3) {
+                        $('.toast').toast('show');
+                    }
                 }
-            }
+            })
         })
-    })
-</script>
-
+    </script>
 @endsection

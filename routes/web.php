@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -44,6 +45,8 @@ Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(func
         'comments'   =>  CommentController::class,
         'users'     =>  UserController::class
     ]);
+
+    Route::resource('{series}/episodes' , EpisodeController::class);
 
     Route::post('/teaser' , TeaserController::class)->name('teaser.store');
 

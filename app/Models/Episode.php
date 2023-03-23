@@ -14,4 +14,9 @@ class Episode extends Model
     {
         return $this->morphMany('App\Models\Comment' , 'commentable');
     }
+
+    public function series()
+    {
+        return $this->belongsTo(Series::class);
+    }
 }

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['title' => ' سریال ها'])
+@extends('admin.layouts.app', ['title' => "سریال $series->fa_title" ])
 
 @section('head-tag')
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/jalalidatepicker/persian-datepicker.min.css') }}">
@@ -7,12 +7,12 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col">
-            <h2 class="h3 mb-0 page-title">سریال ها
-                <span class="text-sm text-muted">({{ $allSeries->total() }})</span>
+            <h2 class="h3 mb-0 page-title">سریال {{ $series->fa_title }}
+                <span class="text-sm text-muted">({{ $series->episodes->count() }})</span>
             </h2>
         </div>
         <div class="col-auto">
-            <a href="{{ route('admin.series.create') }}" type="button" class="btn btn-primary px-4">ایجاد</a>
+            <a href="{{ route('admin.episodes.create' , $series->id) }}" type="button" class="btn btn-primary px-4">ایجاد</a>
         </div>
         <div class="col-12">
 
@@ -48,25 +48,16 @@
                                     <th>#</th>
                                     <th>عنوان سریال</th>
                                     <th>تاریخ ساخته شدن</th>
-                                    <th>وضعیت انتشار</th>
                                     <th>عملیات</th>
-                                    <th></th>
                                     </tr>
                                 </thead>
-                                @forelse($allSeries as $series)
+                                @forelse($series->episodes as $episode)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            <small>{{ Str::limit($series->fa_title, 100, '...') }}</small>
+                                            <small>{{ Str::limit($episode->title, 150, '...') }}</small>
                                         </td>
-                                        <td>{{ jalaliDate($series->created_at) }}</td>
-                                        <td>
-                                            <label>
-                                                <input id="{{ $series->id }}" onchange="changeStatus({{ $series->id }})"
-                                                    data-url="{{ route('admin.series.status', $series->id) }}"
-                                                    type="checkbox" @if ($series->status === 1) checked @endif>
-                                            </label>
-                                        </td>
+                                        <td>{{ jalaliDate($episode->created_at) }}</td>
                                         <td>
                                             <a href="#" target="_blank"
                                                 class="text-decoration-none text-info mr-3">
@@ -78,7 +69,7 @@
                                                         d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                                 </svg>
                                             </a>
-                                            <a href="{{ route('admin.series.edit', $series->id) }}"
+                                            <a href="{{ route('admin.episodes.edit', [$series->id , $episode->id]) }}"
                                                 class="text-decoration-none text-primary mr-3">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -89,11 +80,11 @@
                                                 </svg>
                                             </a>
                                             <form
-                                                action="{{ route('admin.series.destroy', $series->id) }}"
+                                                action="{{ route('admin.episodes.destroy', [$series->id , $episode->id]) }}"
                                                 class="d-inline" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" x-data="{{ $series->id }}"
+                                                <button type="submit" x-data="{{ $episode->id }}"
                                                     class="delete border-none bg-transparent text-decoration-none text-danger mr-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                         fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -106,16 +97,14 @@
                                             </form>
                                         </td>
                                         <td>
-                                        <a href="{{ route('admin.episodes.index' , $series->id) }}">قسمت ها ({{ $series->episodes->count() }})</a>
-                                        </td>
                                     </tr>
                                 @empty
                                     <p class="text-center text-muted">هیچ سریالی وجود ندارد.</p>
                                 @endforelse
                             </table>
-                            <section class="d-flex justify-content-center">
-                                {{ $allSeries->render() }}
-                            </section>
+                            {{-- <section class="d-flex justify-content-center">
+                                {{ $series->episodes->render() }}
+                            </section> --}}
                         </div>
                     </div> <!-- simple table -->
                 </div> <!-- end section -->
