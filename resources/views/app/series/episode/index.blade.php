@@ -14,7 +14,6 @@
     <div class="w-full">
         <video id="my-video" class="video-js vjs-theme-forest" controls preload="auto" style="width: 100%;" height="500"  data-setup="{}">
             <source src="{{ asset('teasers/film.mp4') }}" type="video/mp4" data-quality='1080p'/>
-            <source src="{{ asset('teasers/film.mp4') }}" type="video/mp4 "data-quality='1080p'/>
         </video>
     </div>
 

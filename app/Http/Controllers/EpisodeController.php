@@ -9,6 +9,6 @@ class EpisodeController extends Controller
 {
     public function index()
     {
-        return view('app.episode.index');
+        return view('app.series.episode.index');
     }
 }

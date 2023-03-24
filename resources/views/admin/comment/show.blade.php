@@ -14,7 +14,7 @@
                         <div class="card-body table-responsive">
                             <thead>
                                <p class="mb-3 mr-2">
-                                  نظر {{ $comment->commentable->fa_title == null ? 'فیلم' : 'سریال'}} : {{ $comment->commentable->en_title == null ? $comment->commentable->title : $comment->commentable->en_title}}</p>
+                                   دیدگاه فیلم :  {{ $comment->commentable->en_title == null ? $comment->commentable->title : $comment->commentable->en_title}}</p>
                             </thead>
                             <!-- table -->
                             <table class="table table-striped" id="table-id">

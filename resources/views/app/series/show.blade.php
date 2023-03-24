@@ -193,6 +193,7 @@
 
 
                                 <div class="text-xs ">
+                                    <a href="{{ route('episode' , $episode->id) }}">
                                     <button type="button"
                                             class="border flex items-center  text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-500 group hover:text-black focus:outline-none focus:shadow-outline">
                                         <svg class="mt-[2px] text-gray-400 group-hover:text-gray-700 transition-all"
@@ -203,6 +204,7 @@
                                             </path>
                                         </svg>
                                         همین حالا تماشا کنید</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
