@@ -2,58 +2,60 @@
 <div class="swiper mySwiper">
     <div class="swiper-wrapper mt-5">
 
-       @foreach($sliders as $slider)
-        <div class="swiper-slide px-3 md:px-6 lg:mx-10">
-            <section href="#!" class="relative flex">
-                <img src="{{ $slider->image }}"
-                     class="w-full md:h-96 rounded  sm:h-[400px] h-[370px] object-cover" alt="">
-                <div
-                    class="flex flex-col  justify-end flex-wrap bg-gradient-to-b rounded from-transparent to-black/70 w-full h-full  absolute bottom-0 right-0 z-50">
-                    <div class="mb-7 pr-5 md:justify-end justify-center sm:mr-0 w-96">
-                        <p class="text-white md:text-5xl text-2xl font-bold mb-2">{{ $slider->title }}</p>
-                        <div class="flex md:flex-row flex-col ">
-                            <section class="flex">
-                                <svg class="ml-2 mt-[9px]  text-yellow-300"
-                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                     fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                </svg>
-                                <p class="text-white mt-1 text-lg font-semibold">{{ $slider->series->imdb }}</p>
-                            </section>
-                            <div class="flex md:flex-row flex-wrap items-center ">
-                                <span class="text-white md:mx-2 md:flex hidden">|</span>
-                                <span
-                                    class="font-light mt-1 md:d-flex  sm:flex-col flex text-center items-center justify-center text-sm text-gray-200">2:15:00
-                                                -  - {{ $slider->series->year_construction }}</span>
+        @foreach($sliders as $slider)
+            <div class="swiper-slide px-3 md:px-6 lg:mx-10">
+                <section href="#!" class="relative flex">
+                    <img src="{{ $slider->image }}"
+                         class="w-full md:h-96 rounded  sm:h-[400px] h-[370px] object-cover" alt="">
+                    <div
+                        class="flex flex-col  justify-end flex-wrap bg-gradient-to-b rounded from-transparent to-black/70 w-full h-full  absolute bottom-0 right-0 z-50">
+                        <div class="mb-7 pr-5 md:justify-end justify-center sm:mr-0 w-96">
+                            <p class="text-white md:text-5xl text-2xl font-bold mb-2">{{ $slider->title }}</p>
+                            <div class="flex md:flex-row flex-col ">
+                                <section class="flex">
+                                    <svg class="ml-2 mt-[9px]  text-yellow-300"
+                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                         fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <p class="text-white mt-1 text-lg font-semibold">{{ $slider->series->imdb }}</p>
+                                </section>
+                                <div class="flex md:flex-row flex-wrap items-center ">
+                                    <span class="text-white md:mx-2 md:flex hidden">|</span>
+                                    <span
+                                        class="font-light mt-1 md:d-flex  sm:flex-col flex text-center items-center justify-center text-sm text-gray-200">2:15:00
+                                                - @foreach ($slider->series->categories as $serieCategory)
+                                            {{ $serieCategory->name . ' ' }}
+                                        @endforeach - {{ $slider->series->year_construction }}</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-100 text-sm md:flex hidden mt-2 w-auto ">{{ $slider->description }} </p>
+                            <div class="flex flex-row  justify-start">
+                                <a href="{{ $slider->series->show() }}"
+                                   class="mt-5 flex text-sm h-8 px-4   items-center  bg-[#64D947] hover:bg-[#00BD08] text-black hover:text-white font-bold py-2  rounded">
+                                    <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                         fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                                    </svg>
+                                    تماشا
+                                </a>
+                                <button
+                                    class="mt-5 mr-3 text-sm h-8 px-7 flex items-center  text-center  bg-gray-500/50 hover:bg-gray-600/50 text-gray-200 hover:text-white font-bold py-2  rounded">
+                                    تیزر
+                                </button>
                             </div>
                         </div>
-                        <p class="text-gray-100 text-sm md:flex hidden mt-2 w-auto ">{{ $slider->description }} </p>
-                        <div class="flex flex-row  justify-start">
-                            <a href=""
-                                class="mt-5 flex text-sm h-8 px-4   items-center  bg-[#64D947] hover:bg-[#00BD08] text-black hover:text-white font-bold py-2  rounded">
-                                <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                     fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-                                </svg>
-                                تماشا
-                            </a>
-                            <button
-                                class="mt-5 mr-3 text-sm h-8 px-7 flex items-center  text-center  bg-gray-500/50 hover:bg-gray-600/50 text-gray-200 hover:text-white font-bold py-2  rounded">
-                                تیزر
-                            </button>
-                        </div>
                     </div>
-                </div>
-                <div class="flex-row absolute z-50 bottom-7 left-5 lg:flex hidden ">
-                    <button
-                        class="mr-3 flex h-10 w-10 rounded-full justify-center text-center items-center flex-row bg-gray-500/50 hover:bg-gray-600/50 text-gray-200 hover:text-white font-light text-xs py-2 px-4">
-                        تماشا همه
-                    </button>
-                </div>
-            </section>
-        </div>
+                    <div class="flex-row absolute z-50 bottom-7 left-5 lg:flex hidden ">
+                        <button
+                            class="mr-3 flex h-10 w-10 rounded-full justify-center text-center items-center flex-row bg-gray-500/50 hover:bg-gray-600/50 text-gray-200 hover:text-white font-light text-xs py-2 px-4">
+                            تماشا همه
+                        </button>
+                    </div>
+                </section>
+            </div>
         @endforeach
     </div>
     <div>

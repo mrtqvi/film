@@ -104,4 +104,6 @@ class Series extends Model
         return $this->hasMany(Episode::class);
     }
 
+
+
 }
