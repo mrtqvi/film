@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -50,6 +51,9 @@ Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(func
     Route::resource('{series}/episodes' , EpisodeController::class);
 
     Route::post('/teaser' , TeaserController::class)->name('teaser.store');
+
+    Route::get('upload-video' , [VideoController::class , 'index'])->name('upload-video.index');
+    Route::post('upload-video/store' , [VideoController::class , 'store'])->name('upload-video.store');
 
     Route::get('series/{series}/agents' , [SeriesController::class , 'agentsView'])->name('series.agents');
     Route::get('movies/{movie}/agents' , [MovieController::class , 'agentsView'])->name('movies.agents');

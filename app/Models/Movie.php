@@ -90,5 +90,13 @@ class Movie extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function videosable()
+    {
+        return $this->morphMany(Video::class , 'videosable');
+    }
 
+    public function isUploaded($quality)
+    {
+        return $this->videosable->where('quality' , $quality)->first() ? true : false;
+    }
 }

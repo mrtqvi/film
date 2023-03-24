@@ -8,22 +8,20 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Video extends Model
 {
+    protected $table = 'videosable';
+    
     use HasFactory;
 
     protected $fillable = [
         'video' ,
         'videosable_type',
         'videosable_id',
+        'quality'
     ];
 
-    public function episodes(): MorphToMany
+    public function videosable()
     {
-        return $this->morphedByMany(Episode::class, 'videosable');
-    }
-
-    public function movies(): MorphToMany
-    {
-        return $this->morphedByMany(Movie::class, 'videosable');
+        return $this->morphTo();
     }
 
 }

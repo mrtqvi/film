@@ -42,5 +42,6 @@ return [
         ],
     ],
     'max_upload_file_size'  => 104850000,
+    'max_upload_video_size' => 4294967296,
     'allowed_file_types'    => ['mp4']
 ];

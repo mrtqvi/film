@@ -30,8 +30,13 @@ class Episode extends Model
         return $this->belongsTo(Series::class);
     }
 
-    public function videos(): MorphToMany
+    public function videosable()
     {
-        return $this->morphToMany(Video::class, 'videosable');
+        return $this->morphMany(Video::class , 'videosable');
+    }
+
+    public function isUploaded($quality)
+    {
+        return $this->videosable->where('quality' , $quality)->first() ? true : false;
     }
 }
