@@ -31,3 +31,10 @@
   color: #818078;
   background-color: #fcfcfa;
 }
+
+.vjs-quality-selector-container {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 9999 !important;
+}

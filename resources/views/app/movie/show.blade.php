@@ -64,7 +64,7 @@
                     <img src="{{ asset($movie->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
                         alt="">
                     <div class="">
-                        <p class="text-white font-bold text-4xl mr-4 mt-2">{{ $movie->en_title }}</p>
+                        <p class="text-white font-bold text-4xl mr-4 mt-2">{{ $movie->fa_title }}</p>
                         <div class="flex justify-start items-center mr-3 mt-3">
                             @foreach ($movie->categories as $movieCategory)
                             <div
@@ -166,6 +166,7 @@
                 <h2 class="text-lg lg:text-2xl font-bold text-gray-200 ">دیدگاه
                     ({{ $movie->comments()->approved()->get()->count() }})</h2>
             </div>
+
             @if ($message = session('success'))
             <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
                 role="alert">
