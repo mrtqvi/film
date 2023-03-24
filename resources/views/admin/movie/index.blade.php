@@ -47,8 +47,8 @@
                                     </div>
                                     <th>#</th>
                                     <th>عنوان سریال</th>
-                                    <th>تاریخ ساخته شدن</th>
                                     <th>وضعیت انتشار</th>
+                                    <th>آپلود</th>
                                     <th>عملیات</th>
                                     </tr>
                                 </thead>
@@ -58,13 +58,19 @@
                                         <td>
                                             <small>{{ Str::limit($movie->fa_title, 100, '...') }}</small>
                                         </td>
-                                        <td>{{ jalaliDate($movie->created_at) }}</td>
                                         <td>
                                             <label>
                                                 <input id="{{ $movie->id }}" onchange="changeStatus({{ $movie->id }})"
                                                     data-url="{{ route('admin.movies.status', $movie->id) }}"
                                                     type="checkbox" @if ($movie->status === 1) checked @endif>
                                             </label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.upload-video.index' , ['id' => $movie->id , 'quality' => '1080' , 'model' => get_class($movie)]) }}" class="btn btn-sm btn-outline-dark @if ($movie->isUploaded('1080')) btn-success @endif" target="_blank">1080P</a>
+                                            <a href="{{ route('admin.upload-video.index' , ['id' => $movie->id , 'quality' => '720' , 'model' => get_class($movie)]) }}" class="btn btn-sm btn-outline-dark @if ($movie->isUploaded('720')) btn-success @endif" target="_blank">720P</a>
+                                            <a href="{{ route('admin.upload-video.index' , ['id' => $movie->id , 'quality' => '480' , 'model' => get_class($movie)]) }}" class="btn btn-sm btn-outline-dark @if ($movie->isUploaded('480')) btn-success @endif" target="_blank">480P</a>
+                                            <a href="{{ route('admin.upload-video.index' , ['id' => $movie->id , 'quality' => '360' , 'model' => get_class($movie)]) }}" class="btn btn-sm btn-outline-dark @if ($movie->isUploaded('360')) btn-success @endif" target="_blank">360P</a>
+                                            <a href="{{ route('admin.upload-video.index' , ['id' => $movie->id , 'quality' => '240' , 'model' => get_class($movie)]) }}" class="btn btn-sm btn-outline-dark @if ($movie->isUploaded('240')) btn-success @endif" target="_blank">240P</a>
                                         </td>
                                         <td>
                                             <a href="#" target="_blank"

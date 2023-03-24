@@ -58,7 +58,7 @@ class VideoController extends Controller
             $disk = Storage::disk('videos');
             $jalaliDate = Jalalian::forge(time());
             $item = $this->valid_models[$request->model]::findOrFail($request->id);
-            $path = $jalaliDate->getYear() . '/' . $item->title;
+            $path = $jalaliDate->getYear() . '/' . $request->model == 'episodes' ? $item->title : $item->fa_title;
             $path = $disk->putFileAs($path, $file, $fileName);
 
             // delete chunked file
