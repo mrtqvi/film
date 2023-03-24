@@ -97,5 +97,5 @@ Route::get('/my-favorite/delete-movie/{movie}', [FavoriteController::class, 'del
 Route::get('/add-to-favorite/series/{series:slug}' , [AppSeriesController::class, 'addToFavorite'])->name('series.add-to-favorite');
 Route::get('/add-to-favorite/movies/{movies:slug}' , [AppMovieController::class, 'addToFavorite'])->name('movies.add-to-favorite');
 
-Route::get('/episode/{movies:id}', [AppEpisodeController::class, 'index'])->name('episode');
+Route::get('/episode/{episode}', [AppEpisodeController::class, 'index'])->name('episode');
 

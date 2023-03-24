@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Episode;
 use App\Models\Movie;
 use App\Models\Series;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class CommentController extends Controller
 
     private $valid_models = [
         Series::class,
-        Movie::class
+        Movie::class,
+        Episode::class
     ];
 
     /**
