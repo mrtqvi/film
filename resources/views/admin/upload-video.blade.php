@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="d-flex flex-column mt-2">
+    <h4>{{ $item->title ?? $item->fa_title }}</h4>
     @if ($item->videosable->where('quality' , $quality)->first())
         <p class="text-danger my-4">توجه ! ویدئویی برای این آیتم با این کیفیت وجود دارد ، در صورت آپلود مجدد ویدئوی قبلی پاک خواهد شد.</p>
     @endif
