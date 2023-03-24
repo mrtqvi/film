@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Episode;
 use App\Models\Series;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,9 +41,9 @@ class SeriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Series $series): View
+    public function show(Series $series , Episode $episodes): View
     {
-        return view('app.series.show' , compact('series'));
+        return view('app.series.show' , compact('series' , 'episodes'));
     }
 
     public function addToFavorite(Series $series)

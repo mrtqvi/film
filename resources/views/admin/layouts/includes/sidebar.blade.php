@@ -5,7 +5,7 @@
     <nav class="vertnav navbar navbar-light">
         <!-- nav bar -->
         <div class="w-100 mb-4 d-flex flex-wrap justify-content-between align-items-center">
-            <a target="_blank" class="d-flex justify-content-center mt-2 flex-fill" href="{{ route('admin.index') }}">
+            <a target="_blank" class="d-flex justify-content-center mt-2 flex-fill" href="{{ route('home') }}">
                 <img src="{{ asset('images/default/logo.png') }}" alt="logo" class="logo">
             </a>
         </div>

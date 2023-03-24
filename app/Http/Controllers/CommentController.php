@@ -36,12 +36,12 @@ class CommentController extends Controller
         $item = $validData['commentable_type']::findOrFail($request->commentable_id);
 
         if ($item) {
-            Comment::create([
-                'commentable_type'  =>  $validData['commentable_type'],
-                'commentable_id'    =>  $request->commentable_id,
-                'comment'           =>  $validData['comment'],
-                'user_id'           =>  auth()->user()->id
-            ]);
+                Comment::create([
+                    'commentable_type' => $validData['commentable_type'],
+                    'commentable_id' => $request->commentable_id,
+                    'comment' => $validData['comment'],
+                    'user_id' => auth()->user()->id
+                ]);
         }
 
         return Redirect::to(URL::previous() . "#comments")->with('success','دیدگاه شما ثبت شد و بعد از تایید در سایت نمایش داده می شود.');;

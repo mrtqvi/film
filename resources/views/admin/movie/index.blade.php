@@ -73,7 +73,7 @@
                                             <a href="{{ route('admin.upload-video.index' , ['id' => $movie->id , 'quality' => '240' , 'model' => get_class($movie)]) }}" class="btn btn-sm btn-outline-dark @if ($movie->isUploaded('240')) btn-success @endif" target="_blank">240P</a>
                                         </td>
                                         <td>
-                                            <a href="#" target="_blank"
+                                            <a href="{{ $movie->show() }}" target="_blank"
                                                 class="text-decoration-none text-info mr-3">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
