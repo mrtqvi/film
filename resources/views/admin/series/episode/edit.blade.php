@@ -51,7 +51,7 @@
                                     rows="5">{{ old('description', $episode->description) }}</textarea>
                             </div>
                             <div class="form-group col-md-4">
-                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id , 'quality' => '1080' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100">
+                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id , 'quality' => '1080' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100 @if ($episode->isUploaded('1080')) btn-success @endif)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                         fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -63,7 +63,7 @@
                                 </a>
                             </div>
                             <div class="form-group col-md-4">
-                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id, 'quality' => '720' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100">
+                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id, 'quality' => '720' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100 @if ($episode->isUploaded('720')) btn-success @endif">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                         fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -75,7 +75,7 @@
                                 </a>
                             </div>
                             <div class="form-group col-md-4">
-                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id, 'quality' => '480' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100">
+                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id, 'quality' => '480' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100 @if ($episode->isUploaded('480')) btn-success @endif">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                         fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -87,7 +87,7 @@
                                 </a>
                             </div>
                             <div class="form-group col-md-4">
-                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id , 'quality' => '360' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100">
+                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id , 'quality' => '360' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100 @if ($episode->isUploaded('360')) btn-success @endif">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                         fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -99,7 +99,7 @@
                                 </a>
                             </div>
                             <div class="form-group col-md-4">
-                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id,'quality' => '240' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100">
+                                <a href="{{ route('admin.upload-video.index' , ['id' => $episode->id,'quality' => '240' , 'model' => get_class($episode)]) }}" target="_blank" type="button" id="browseFile" class="btn btn-outline-dark w-100 @if ($episode->isUploaded('240')) btn-success @endif">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                         fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
