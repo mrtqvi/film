@@ -36,8 +36,7 @@ class TeaserController extends Controller
             
             $disk = Storage::disk('teasers');
             $jalaliDate = Jalalian::forge(time());
-            // $path = $jalaliDate->getYear() . '/' . $jalaliDate->getMonth() . '/' . $jalaliDate->getDay();
-            $path = $jalaliDate->getYear() . '/' . $request->quality;
+            $path = $jalaliDate->getYear() . '/' . $jalaliDate->getMonth() . '/' . $jalaliDate->getDay();
             $path = $disk->putFileAs($path, $file, $fileName);
             
             // delete chunked file

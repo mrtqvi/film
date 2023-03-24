@@ -89,4 +89,9 @@ class Movie extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function videosable()
+    {
+        return $this->morphMany(Video::class , 'videosable');
+    }
 }
