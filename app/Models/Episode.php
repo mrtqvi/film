@@ -19,6 +19,10 @@ class Episode extends Model
         'series_id'
     ];
 
+    protected $with = [
+        'videosable'
+    ];
+
 
     public function comments()
     {
