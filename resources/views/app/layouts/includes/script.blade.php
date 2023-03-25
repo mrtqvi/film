@@ -58,10 +58,10 @@
 
         breakpoints: {
             0: {
-                slidesPerView: 2,
+                slidesPerView: 4,
             },
             520: {
-                slidesPerView: 2,
+                slidesPerView: 4,
             },
             768: {
                 slidesPerView: 3,

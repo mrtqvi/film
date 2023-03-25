@@ -8,6 +8,7 @@ use App\Models\Actor;
 use App\Models\Category;
 use App\Models\Movie;
 use App\Models\Teaser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
@@ -57,13 +58,13 @@ class MovieController extends Controller
             $inputs['wallpaper'] = $imageService->save($request->wallpaper);
         }
 
-        if ($request->filled('teaser')) 
+        if ($request->filled('teaser'))
             $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
 
         $movie = Movie::create($inputs);
 
         $movie->categories()->sync($inputs['categories']);
-        
+
         return to_route('admin.movies.agents' , $movie->id)->with('toast-success', 'فیلم جدید اضافه شد.');
     }
 
@@ -104,12 +105,12 @@ class MovieController extends Controller
                 $inputs['wallpaper'] = $imageService->save($request->wallpaper);
             }
 
-            if ($request->filled('teaser')) 
+            if ($request->filled('teaser'))
                 $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
 
-                
+
                 $movie->update($inputs);
-                
+
                 $movie->categories()->sync($inputs['categories']);
         });
 

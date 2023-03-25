@@ -62,4 +62,9 @@ class MovieController extends Controller
             return response()->json(['status' => 3]);
         }
     }
+
+    public function watchMovie(Movie $movies)
+    {
+        return view('app.movie.watchMovie.index' , compact('movies'));
+    }
 }

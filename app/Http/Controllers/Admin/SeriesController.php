@@ -49,13 +49,13 @@ class SeriesController extends Controller
             $inputs['wallpaper'] = $imageService->save($request->wallpaper);
         }
 
-        if ($request->filled('teaser')) 
+        if ($request->filled('teaser'))
             $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
 
         $series = Series::create($inputs);
 
         $series->categories()->sync($inputs['categories']);
-        
+
         return to_route('admin.series.agents' , $series->id)->with('toast-success', 'سریال جدید اضافه شد.');
     }
 
@@ -91,12 +91,12 @@ class SeriesController extends Controller
                 $inputs['wallpaper'] = $imageService->save($request->wallpaper);
             }
 
-            if ($request->filled('teaser')) 
+            if ($request->filled('teaser'))
                 $inputs['teaser_id'] = $this->attachTeaser($inputs['teaser']);
 
-                
+
                 $series->update($inputs);
-                
+
                 $series->categories()->sync($inputs['categories']);
         });
 
@@ -108,6 +108,10 @@ class SeriesController extends Controller
      */
     public function destroy(Series $series)
     {
+
+        $series->favorites()->delete();
+        $series->episodes()->delete();
+        $series->sliders()->delete();
         $series->delete();
 
         return back()->with('toast-success' , 'سریال حذف شد');

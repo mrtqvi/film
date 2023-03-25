@@ -1,4 +1,4 @@
-@extends('app.layouts.app', ['title' => 'فال و فیلم | لیست علاقه مندی ها'])
+@extends('app.layouts.app', ['title' => ' لیست علاقه مندی ها'])
 
 @section('content')
 

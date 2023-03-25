@@ -15,14 +15,14 @@
                 <div class="flex flex-row flex-wrap w-full md:px-16 px-5 h-full justify-center items-end mt-14">
                     <div class="grid grid-cols-12">
                         <div class="flex col-span-12 w-auto">
-                            <div
-                                class="bg-gray-300/20  flex text-center rounded-2xl  justify-center items-center font-light text-sm md:h-[120px] h-16 w-56 ">
-                                <div class="pl-1 flex justify-center items-center">
-                                    <p
-                                        class="text-white md:mr-3 md:mt-2 md:text-xl sm:text-sm text-xs text-center font-bold z-30">
-                                        126 دقیقه</p>
-                                </div>
-                            </div>
+{{--                            <div--}}
+{{--                                class="bg-gray-300/20  flex text-center rounded-2xl  justify-center items-center font-light text-sm md:h-[120px] h-16 w-56 ">--}}
+{{--                                <div class="pl-1 flex justify-center items-center">--}}
+{{--                                    <p--}}
+{{--                                        class="text-white md:mr-3 md:mt-2 md:text-xl sm:text-sm text-xs text-center font-bold z-30">--}}
+{{--                                        126 دقیقه</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div
                                 class="bg-gray-300/20  mr-4 flex text-center rounded-2xl  justify-center items-center font-light text-sm md:h-[120px] h-16 w-56 ">
                                 <div class="pl-1 flex justify-center items-center">
@@ -47,17 +47,17 @@
                                         {{ $series->year_construction }}</p>
                                 </div>
                             </div>
-                            <div
-                                class="bg-[#64D947] hover:bg-gray-300/40 transition-all cursor-pointer mr-4 flex  text-center rounded-2xl  justify-center items-center text-white font-light text-sm md:h-[120px] h-16 w-56 ">
-                                <div class="pl-1 flex">
-                                    <svg class="mt-[2px] w-10  text-white text-5xl flex justify-center items-center"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play-fill"
-                                        viewBox="0 0 16 16">
-                                        <path
-                                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-                                    </svg>
-                                </div>
-                            </div>
+{{--                            <div--}}
+{{--                                class="bg-[#64D947] hover:bg-gray-300/40 transition-all cursor-pointer mr-4 flex  text-center rounded-2xl  justify-center items-center text-white font-light text-sm md:h-[120px] h-16 w-56 ">--}}
+{{--                                <div class="pl-1 flex">--}}
+{{--                                    <svg class="mt-[2px] w-10  text-white text-5xl flex justify-center items-center"--}}
+{{--                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play-fill"--}}
+{{--                                        viewBox="0 0 16 16">--}}
+{{--                                        <path--}}
+{{--                                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />--}}
+{{--                                    </svg>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
         </div>
     </section>
     <div class="grid grid-cols-12 gap-6 mt-16">
-        <div class="lg:col-span-6 col-span-12   flex flex-wrap">
+        <div class="lg:col-span-7 col-span-12   flex flex-wrap">
             <div class="">
                 <div class="flex md:mr-10 mr-5">
                     <img src="{{ asset($series->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
@@ -84,17 +84,17 @@
                                 علمی تخیلی </div>
                         </div>
                         <div class="flex">
-                            <button
-                                class="bg-green-500 mt-6 mr-3 flex hover:bg-green-600 text-white font-bold py-3 md:px-12 px-3  rounded-full">
+                            <a href="#series"
+                               class="bg-green-500 mt-6 mr-3 flex hover:bg-green-600 text-white font-bold py-3 md:px-12 px-3  rounded-full">
                                 <div class="pl-1 flex">
                                     <svg class="mt-[2px] text-white" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                         height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                                         <path
                                             d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                                     </svg>
                                 </div>
                                 تماشا
-                            </button>
+                            </a>
                             @auth
                             <div
                                 class="border border-gray-600 flex justify-center items-center w-12 h-12 rounded-full mt-6 mr-2">
@@ -131,27 +131,32 @@
                 </div>
             </div>
             <div class="mt-7 ml-10 md:mr-10 mr-5">
+                <div class="flex  mb-2">
+                    <p class="text-sm text-gray-200 mr-1">کارگردان : {{ $series->director }} </p>
+                    <p class="text-sm mt-[1px] text-gray-200 mr-4">
+                        {{ $series->producer == null ? '' : '  نویسنده : ' . $series->producer }}
+                    </p>
+                </div>
                 <p class="text-white font-semibold">خلاصه داستان</p>
                 <p class="text-gray-400 mt-1 w-full text-sm">
-                    {{ $series->description }}
+                    {{  Str::limit($series->description, 200, '...') }}
                 </p>
             </div>
         </div>
-        <div class="lg:col-span-6  col-span-12 md:mr-10 md:ml-5 mr-5 ml-5 md:mt-0 mt-7 flex flex-wrap">
+        <div class="lg:col-span-5  col-span-12 lg:pt-5 lg:ml-20 md:mr-10  mr-5 ml-5 sm:mr-5 sm:ml-5 md:mt-0 pt-10 flex flex-wrap">
             <div class="w-full h-64">
-                <video id="video" class="video-js vjs-default-skin w-full rounded-lg h-64" controls preload="auto">
-                    <source src="{{ asset('teasers/test/720.mp4') }}" type="video/mp4" label="720P">
-                    <source src="{{ asset('teasers/test/480.mp4') }}" type="video/mp4" label="480P" selected="true">
-                    <source src="{{ asset('teasers/test/360.mp4') }}" type="video/mp4" label="360P">
-                </video>
+                <video src="{{ asset($series->teaser->teaser ?? '') }}" controls class="rounded-t-xl"></video>
+                <p class="justify-center bg-gray-700 py-2 text-white rounded-b-lg lg:flex md:hidden text-xl ">تیزر سریال</p>
             </div>
         </div>
     </div>
     <!-- cast -->
-    <div class="md:p-10  p-5 ">
-        <section class="flex items-center justify-between col-span-12 border-r-4 mb-5 border-[#1AFF23] ">
-            <span class="flex items-center font-bold text-white mr-3 ">بازیگران</span>
-        </section>
+    <div class="md:p-10 sm:mt-20 mt-14 p-5 ">
+        @if($series->actors->count() >= 1)
+            <section class="flex items-center justify-between col-span-12 border-r-4 mb-5 border-[#1AFF23] ">
+                <span class="flex items-center font-bold text-white mr-3 ">بازیگران</span>
+            </section>
+        @endif
         <div class="swiper">
             <section class="slide-container">
                 <div class="swiper-wrapper">
@@ -174,6 +179,7 @@
     <!-- end cst -->
 
     <!-- episode -->
+    <p id="series"></p>
     @foreach($series->episodes as $episode)
     <div class="px-20">
         <div class="relative font-medium flex items-center content-center">
@@ -192,10 +198,10 @@
                                 <p class=" lg:block px-4 my-4 text-sm ">{{ Str::limit($episode->description , 120, '...') }}</p>
 
 
-                                <div class="text-xs ">
+                                <div  class="text-xs ">
                                     <a href="{{ route('episode' , $episode->id) }}">
                                     <button type="button"
-                                            class="border flex items-center  text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-500 group hover:text-black focus:outline-none focus:shadow-outline">
+                                            class="flex items-center  text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-500 group hover:text-black focus:outline-none focus:shadow-outline">
                                         <svg class="mt-[2px] text-gray-400 group-hover:text-gray-700 transition-all"
                                              xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              viewBox="0 0 16 16">

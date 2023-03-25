@@ -12,8 +12,8 @@
             @endforeach
         </div>
     @endif
-    <div class="grid grid-cols-12">
-        <div class="flex col-span-6">
+    <div class="grid grid-cols-12 ">
+        <div class="flex lg:col-span-7 ">
             <form class="mr-10" action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('put') }}
@@ -78,35 +78,35 @@
 
         </div>
 
-        <div class=" col-span-6">
+        <div class="lg:col-span-5 lg:mr-5 mr-10 mr-10 col-span-12 ">
             <p class="mt-7">تغیر کلمه عبور</p>
             <form action="{{ route('profile.update-password') }}" method="post">
                 @csrf
                 <div class="mb-3 mt-4 ">
                     <label for="current_password" class="block mb-2 text-sm font-medium text-white">کلمه عبور فعلی</label>
                     <input type="password" name="current_password" id="current_password"
-                           class="text-sm rounded-lg focus:ring-green-500 focus:border-green-500 md:w-[500px] w-[405px] p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                           class="text-sm rounded-lg focus:ring-green-500 focus:border-green-500 lg:w-60 w-[405px] p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                            required>
                 </div>
-                <div class="flex mt-3 mb-2">
+                <div class="mt-3 mb-2">
                     <div class="">
                         <label for="password" class="block mb-2  text-sm font-medium text-white">کلمه عبور جدید</label>
                         <input type="password" name="password"
                                id="password"
-                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  md:w-60 w-48 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  lg:w-60 w-[405px] p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                                required>
                     </div>
-                    <div class="mr-5">
+                    <div class="mt-2">
                         <label for="password_confirmation" class="block mb-2 text-sm font-medium text-white">تکرار کلمه عبور</label>
                         <input type="password" name="password_confirmation"
                                id="password_confirmation"
-                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  md:w-60 w-48 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  lg:w-60 w-[405px] p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                                required>
                     </div>
                 </div>
                 <button
                     class="mt-3  bg-transparent border-solid border-2 transition-all border-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg">
-                    تغیر رمز عبور
+                    تغیر کلمه عبور
                 </button>
             </form>
         </div>
