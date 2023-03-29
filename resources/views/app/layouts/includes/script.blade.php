@@ -42,6 +42,40 @@
     });
 </script>
 <script>
+    var swiper = new Swiper(".slide-container-film", {
+        slidesPerView: 5,
+        spaceBetween: 25,
+        sliderPerGroup: 5,
+        loop: false,
+        centerSlide: "true",
+        fade: "true",
+        grabCursor: "true",
+
+        navigation: {
+            nextEl: "#swiper-button-next1",
+            prevEl: "#swiper-button-prev1",
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 2,
+            },
+            520: {
+                slidesPerView: 4,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            960: {
+                slidesPerView: 3,
+            },
+            1000: {
+                slidesPerView: 5,
+            },
+        },
+    });
+</script>
+<script>
     var swiper = new Swiper(".slide-container", {
         slidesPerView: 5,
         spaceBetween: 10,

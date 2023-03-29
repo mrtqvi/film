@@ -52,11 +52,10 @@
                     <img src="{{ asset($series->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
                         alt="">
                     <div class="">
-                        <p class="text-white font-bold text-4xl mr-4 mt-2">{{ $series->en_title }}</p>
+                        <p class="text-white font-bold md:text-4xl text-sm  px-3 mt-4">{{ $series->fa_title }} | {{ $series->en_title }}</p>
                         <div class="flex justify-start items-center mr-3 mt-3">
                             @foreach($series->categories as $seriesCategory)
-                            <div
-                                class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center md:text-xs text-[10px] rounded-full">
+                            <div class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center md:text-xs text-[10px] rounded-full">
                                 {{ $seriesCategory->name }}</div>
                             @endforeach
                         </div>
@@ -118,12 +117,6 @@
                 <p class="text-gray-400 mt-1 w-full text-sm">
                     {{  Str::limit($series->description, 200, '...') }}
                 </p>
-            </div>
-        </div>
-        <div class="lg:col-span-5  col-span-12 lg:pt-5 lg:ml-20 md:mr-10  mr-5 ml-5 sm:mr-5 sm:ml-5 md:mt-0 pt-10 flex flex-wrap">
-            <div class="w-full h-64">
-                <video src="{{ asset($series->teaser->teaser ?? '') }}" controls class="rounded-t-xl"></video>
-                <p class="justify-center bg-gray-700 py-2 text-white rounded-b-lg lg:flex md:hidden text-xl ">تیزر سریال</p>
             </div>
         </div>
     </div>
@@ -205,7 +198,7 @@
         <section class="flex flex-wrap w-full mt-3">
             @foreach($series->factors as $factor)
             <section class="flex items-center my-3 ml-6">
-                <span class="text-sm font-bold ml-3">{{ $factor->key }}  &nbsp;:</span> 
+                <span class="text-sm font-bold ml-3">{{ $factor->key }}  &nbsp;:</span>
                 <span class="text-sm">{{ $factor->value }}</span>
             </section>
             @endforeach

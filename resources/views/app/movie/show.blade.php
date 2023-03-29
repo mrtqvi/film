@@ -62,8 +62,8 @@
                 <div class="flex md:mr-10 mr-5">
                     <img src="{{ asset($movie->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
                         alt="">
-                    <div class="">
-                        <p class="text-white font-bold text-4xl mr-4 mt-4">{{ $movie->fa_title }}</p>
+                    <div class="w-full">
+                        <p class="text-white font-bold md:text-4xl text-sm  px-3 mt-4">{{ $movie->fa_title }} | {{ $movie->en_title }}</p>
                         <div class="flex justify-start items-center mr-3 mt-5">
                             @foreach ($movie->categories as $movieCategory)
                                 <div
@@ -132,13 +132,7 @@
                 </p>
             </div>
         </div>
-        <div
-            class="lg:col-span-5  col-span-12 lg:pt-5 lg:ml-20 md:mr-10  mr-5 ml-5 sm:mr-5 sm:ml-5 md:mt-0 pt-10 flex flex-wrap">
-            <div class="w-full h-64">
-                <video src="{{ asset($movie->teaser->teaser ?? '') }}" controls class="rounded-t-xl"></video>
-                <p class="justify-center bg-gray-700 py-2 text-white rounded-b-lg lg:flex md:hidden text-xl ">تیزر سریال</p>
-            </div>
-        </div>
+
     </div>
     <!-- cast -->
     <div class="md:p-10 sm:mt-20 mt-14 p-5 ">
@@ -206,7 +200,7 @@
         <section class="flex flex-wrap w-full mt-3">
             @foreach($movie->factors as $factor)
             <section class="flex items-center my-3 ml-6">
-                <span class="text-sm font-bold ml-3">{{ $factor->key }}  &nbsp;:</span> 
+                <span class="text-sm font-bold ml-3">{{ $factor->key }}  &nbsp;:</span>
                 <span class="text-sm">{{ $factor->value }}</span>
             </section>
             @endforeach
