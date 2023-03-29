@@ -6,14 +6,14 @@
             <h2 class="font-bold">فیلم های سینمایی</h2>
         </div>
         <div class="flex flex-wrap justify-between">
-            <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
+            <label class="relative inline-flex items-center ml-5 cursor-pointer my-2">
                 <span class="text-sm ml-2">جدیدترین</span>
                 <input type="checkbox" value="" class="sr-only peer" checked disabled>
                 <div
                     class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-300">
                 </div>
             </label>
-            <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
+            <label class="relative inline-flex items-center ml-5 cursor-pointer my-2">
                 <span class="text-sm ml-2" onclick="filterAction('imdb')">نمره IMDB</span>
                 <input type="checkbox" value="1" id="imdb" class="sr-only peer" @checked(request('imdb') == 1) data-filter="imdb"
                 data-action="{{ request()->fullUrlWithQuery(['imdb' => 1]) }}">
@@ -21,7 +21,7 @@
                     class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400">
                 </div>
             </label>
-            <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
+            <label class="relative inline-flex items-center ml-5 cursor-pointer my-2">
                 <span class="text-sm ml-2" onclick="filterAction('favorites')">انتخاب کاربران</span>
                 <input type="checkbox" value="" id="favorites" class="sr-only peer" @checked(request('favorites') == 1) data-filter="favorites"
                 data-action="{{ request()->fullUrlWithQuery(['favorites' => 1]) }}">
@@ -29,7 +29,7 @@
                     class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400">
                 </div>
             </label>
-            <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
+            <label class="relative inline-flex items-center ml-5 cursor-pointer my-2">
                 <span class="text-sm ml-2" onclick="filterAction('most-comments')">بیشترین دیدگاه</span>
                 <input type="checkbox" value="" id="most-comments" class="sr-only peer" @checked(request('most-comments') == 1) data-filter="most-comments"
                 data-action="{{ request()->fullUrlWithQuery(['most-comments' => 1]) }}">
@@ -42,16 +42,16 @@
     <div class="grid grid-cols-12 gap-3 px-3 md:px-6 my-5">
         @forelse($movies as $movie)
             <div class="flex justify-center bg-main rounded col-span-full lg:col-span-6 relative">
-                <div class="absolute flex text-xs left-5 top-4 space-x-1 space-x-reverse z-40">
+                <div class="absolute flex text-xs left-5 top-4 space-x-1 space-x-reverse z-30">
                     @foreach ($movie->categories as $movieCategory)
                         <a href="" class="px-2 rounded-xl py-0.5 bg-slate-800">{{ $movieCategory->name }}</a>
                     @endforeach
                 </div>
                 <div
-                    class="flex items-center rounded-lg shadow border min-w-full border-gray-800 md:max-w-full md:flex-row relative">
-                    <img class="w-44 h-56 object-cover rounded-3xl p-4" src="{{ asset($movie->poster) }}" alt="" />
+                    class="flex flex-wrap sm:flex-nowrap items-center rounded-lg shadow border min-w-full border-gray-800 md:max-w-full md:flex-row relative">
+                    <img class="w-full sm:w-44 h-56 object-contain sm:object-cover rounded-3xl p-2 sm:p-4" src="{{ asset($movie->poster) }}" alt="" />
                     <span
-                        class="dir-ltr text-white border border-slate-50 mt-1 absolute bottom-6 right-6 w-8 h-8 pt-1 px-0.5 rounded-full bg-yellow-500 text-center">+{{ $movie->ages }}</span>
+                        class="dir-ltr text-white border border-slate-50 mt-1 absolute top-2 sm:top-6 right-6 sm:left-6 w-8 h-8 pt-1 px-0.5 rounded-full bg-yellow-500 text-center">+{{ $movie->ages }}</span>
                     <div class="flex flex-col justify-start p-6 w-full">
                         <h5 class="my-2 text-gray-400">
                             {{ $movie->fa_title }} | {{ $movie->en_title }}
@@ -69,7 +69,7 @@
                                 </svg>
                                 دیدن فیلم
                             </a>
-                            <div class="pr-2 flex items-center">
+                            <div class="pr-2 flex items-center ml-auto">
                                 @auth
                                     @if($movie->user->contains(auth()->user()->id))
                                         <section class="add-to-favorite flex justify-start">
@@ -100,7 +100,7 @@
                                 @endauth
 
                             </div>
-                            <div class="flex flex justify-end w-32 items-center">
+                            <div class="flex justify-end w-32 items-center">
                                 <span>
                                     <small class="">{{ $movie->imdb }}</small>
                                 </span>

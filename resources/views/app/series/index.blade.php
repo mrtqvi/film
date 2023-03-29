@@ -6,14 +6,14 @@
             <h2 class="font-bold">سریال ها</h2>
         </div>
         <div class="flex flex-wrap justify-between">
-            <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
+            <label class="relative inline-flex items-center ml-5 cursor-pointer my-2">
                 <span class="text-sm ml-2">جدیدترین</span>
                 <input type="checkbox" value="" class="sr-only peer" checked disabled>
                 <div
                     class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-300">
                 </div>
             </label>
-            <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
+            <label class="relative inline-flex items-center ml-5 cursor-pointer my-2">
                 <span class="text-sm ml-2" onclick="filterAction('imdb')">نمره IMDB</span>
                 <input type="checkbox" value="1" id="imdb" class="sr-only peer" @checked(request('imdb') == 1) data-filter="imdb"
                 data-action="{{ request()->fullUrlWithQuery(['imdb' => 1]) }}">
@@ -21,7 +21,7 @@
                     class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400">
                 </div>
             </label>
-            <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
+            <label class="relative inline-flex items-center ml-5 cursor-pointer my-2">
                 <span class="text-sm ml-2" onclick="filterAction('favorites')">انتخاب کاربران</span>
                 <input type="checkbox" value="" id="favorites" class="sr-only peer" @checked(request('favorites') == 1) data-filter="favorites"
                 data-action="{{ request()->fullUrlWithQuery(['favorites' => 1]) }}">
@@ -29,7 +29,7 @@
                     class="w-11 h-6 rounded-full peer bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400">
                 </div>
             </label>
-            <label class="relative inline-flex items-center mr-5 cursor-pointer my-2">
+            <label class="relative inline-flex items-center ml-5 cursor-pointer my-2">
                 <span class="text-sm ml-2" onclick="filterAction('most-comments')">بیشترین دیدگاه</span>
                 <input type="checkbox" value="" id="most-comments" class="sr-only peer" @checked(request('most-comments') == 1) data-filter="most-comments"
                 data-action="{{ request()->fullUrlWithQuery(['most-comments' => 1]) }}">
@@ -42,17 +42,17 @@
     <div class="grid grid-cols-12 gap-3 px-3 md:px-6 my-5">
         @forelse($allSeries as $series)
             <div class="flex justify-center bg-main rounded col-span-full lg:col-span-6 relative">
-                <div class="absolute flex text-xs left-5 top-4 space-x-1 space-x-reverse z-40">
+                <div class="absolute flex text-xs left-5 top-4 space-x-1 space-x-reverse z-30">
                     @foreach ($series->categories as $seriesCategory)
                         <a href="" class="px-2 rounded-xl py-0.5 bg-slate-800">{{ $seriesCategory->name }}</a>
                     @endforeach
                     <span class="px-2 rounded-xl py-0.5 text-gray-900 bg-yellow-500">{{ $series->episodes->count() }} قسمت</span>
                 </div>
                 <div
-                    class="flex items-center rounded-lg shadow border min-w-full border-gray-800 md:max-w-full md:flex-row relative">
-                    <img class="w-44 h-56 object-cover rounded-3xl p-4" src="{{ asset($series->poster) }}" alt=""/>
+                    class="flex flex-wrap sm:flex-nowrap items-center rounded-lg shadow border min-w-full border-gray-800 md:max-w-full md:flex-row relative">
+                    <img class="w-full sm:w-44 h-56 object-contain sm:object-cover rounded-3xl p-2 sm:p-4" src="{{ asset($series->poster) }}" alt="{{ $series->fa_title }}"/>
                     <span
-                        class="dir-ltr text-white border border-slate-50 mt-1 absolute bottom-6 right-6 w-8 h-8 pt-1 px-0.5 rounded-full bg-yellow-500 text-center">+{{ $series->ages }}</span>
+                        class="dir-ltr text-white border border-slate-50 mt-1 absolute top-2 sm:top-6 right-6 sm:left-6 w-8 h-8 pt-1 px-0.5 rounded-full bg-yellow-500 text-center">+{{ $series->ages }}</span>
                     <div class="flex flex-col justify-start p-6 w-full">
                         <h5 class="my-2 text-gray-400">
                             {{ $series->fa_title }} | {{ $series->en_title }}
@@ -60,7 +60,7 @@
                         <p class="mb-4 text-xs text-gray-500 leading-6">
                             {{ Str::limit($series->description, 120, '...') }}
                         </p>
-                        <div class="flex justify-start">
+                        <div class="flex justify-between">
                             <a href="{{ $series->show() }}"
                                class="flex text-xs h-8 px-2   items-center  bg-[#64D947] hover:bg-[#00BD08] text-slate-900 transition-all delay-200 py-2  rounded">
                                 <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -70,7 +70,7 @@
                                 </svg>
                                 دیدن فیلم
                             </a>
-                            <div class="mr-2 flex items-center mt-1">
+                            <div class="mr-2 flex items-center mt-1 ml-auto">
 
                                 @auth
                                     @if($series->user->contains(auth()->user()->id))

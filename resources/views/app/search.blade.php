@@ -6,20 +6,27 @@
 <section class="text-lg px-3 md:px-6 my-5">نتایج جستجو : {{ $keyword }}</section>
 <div class="grid grid-cols-12 gap-3 px-3 md:px-6 my-5">
 @forelse ($results as $item)
-<div class="flex justify-center bg-main rounded col-span-full relative">
-    <span class="px-1 py-0.5 bg-lime-300 text-gray-800 border border-lime-600 absolute rounded-xl text-xs left-3 top-3">{{ get_class($item) == App\Models\Series::class ? 'سریال' : ' سینمایی' }}</span>
-    <div class="flex items-center rounded-lg shadow border border-gray-800 w-full md:flex-row">
-        <img class="w-36 h-48 object-cover rounded-3xl p-4" src="{{ asset($item->poster) }}" alt="" />
-        <div class="flex flex-col justify-start p-6  w-full">
-            <h5 class="mb-2 text-gray-400">
+<div class="flex justify-center bg-main rounded col-span-full lg:col-span-6 relative">
+    <div class="absolute flex text-xs left-5 top-4 space-x-1 space-x-reverse z-30">
+        @foreach ($item->categories as $itemCategory)
+            <a href="" class="px-2 rounded-xl py-0.5 bg-slate-800">{{ $itemCategory->name }}</a>
+        @endforeach
+    </div>
+    <div
+        class="flex flex-wrap sm:flex-nowrap items-center rounded-lg shadow border min-w-full border-gray-800 md:max-w-full md:flex-row relative">
+        <img class="w-full sm:w-44 h-56 object-contain sm:object-cover rounded-3xl p-2 sm:p-4" src="{{ asset($item->poster) }}" alt="" />
+        <span
+            class="dir-ltr text-white border border-slate-50 mt-1 absolute top-2 sm:top-6 right-6 sm:left-6 w-8 h-8 pt-1 px-0.5 rounded-full bg-yellow-500 text-center">+{{ $item->ages }}</span>
+        <div class="flex flex-col justify-start p-6 w-full">
+            <h5 class="my-2 text-gray-400">
                 {{ $item->fa_title }} | {{ $item->en_title }}
             </h5>
             <p class="mb-4 text-xs text-gray-500 leading-6">
-                {{ Str::limit($item->description, 300, '...') }}
+                {{ Str::limit($item->description, 120, '...') }}
             </p>
             <div class="flex justify-between">
                 <a href="{{ $item->show() }}"
-                    class="flex text-xs h-8 px-4 items-center bg-[#64D947] hover:bg-[#00BD08] text-slate-900 transition-all delay-200 py-2  rounded">
+                    class="flex text-xs h-8 px-2   items-center  bg-[#64D947] hover:bg-[#00BD08] text-slate-900 transition-all delay-200 py-2  rounded">
                     <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                         <path
@@ -27,9 +34,9 @@
                     </svg>
                     دیدن فیلم
                 </a>
-                <div class="flex items-center">
+                <div class="flex justify-end w-32 items-center">
                     <span>
-                        <small class="">8.7</small>
+                        <small class="">{{ $item->imdb }}</small>
                     </span>
                     </span>
                     <div class="mr-0.5">
