@@ -309,7 +309,7 @@
                                 </p>
                             </div>
                         </section>
-                        <div class="text-gray-500 dark:text-gray-400 mt-2">{{ $comment->comment }}</d>
+                        <div class="text-gray-500 dark:text-gray-400 mt-2">{{ $comment->comment }}</div>
                     </section>
                 @endforeach
             </article>
