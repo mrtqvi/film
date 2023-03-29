@@ -15,17 +15,17 @@ class Category extends Model
         'name' ,
         'image' ,
         'description',
-        'slug'
     ];
 
     public function sluggable(): array
     {
         return [
-            'name' => [
-                'source' => 'slug'
+            'slug' => [
+                'source'    =>  'name'
             ]
         ];
     }
+
 
     public function show()
     {
