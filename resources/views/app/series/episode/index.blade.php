@@ -9,6 +9,9 @@
 
 
 @section('content')
+    <div class="flex items-center p-4 mt-5 space-x-2 space-x-reverse text-2xl">
+        <span>{{ $episode->title }}</span>
+    </div>
     <div class="w-full">
         @auth
             <video id="video" class="video-js vjs-default-skin rounded-lg w-full h-screen" controls preload="auto">
@@ -20,15 +23,19 @@
         @guest
             <section>
                 <div class="w-full h-[450px] relative">
-                    <img src="{{ asset($episode->image) }}" class="w-full blur-sm bg-cover h-[400px]  object-cover relative" alt="">
+                    <img src="{{ asset($episode->image) }}" class="w-full blur-sm bg-cover h-[400px]  object-cover relative"
+                        alt="">
                     <div class="bg-gradient-to-t from-[#191a1f] to-transparent w-full h-[400px] top-0 absolute">
                         <div class="flex flex-col flex-wrap w-full h-full md:px-16 px-5 justify-center items-center mt-14">
                             <div class="absolute top-16 text-white text-lg">
                                 <h4>برای تماشا ابتدا وارد حساب کاربری خود شوید</h4>
                             </div>
                             <div class="flex items-center space-x-3 space-x-reverse absolute top-36">
-                                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">ورود</button>
-                                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">ثبت نام</button>                                
+                                <a href="{{ route('login') }}"
+                                    class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">ورود</a>
+                                <a href="{{ route('register') }}"
+                                    class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">ثبت
+                                    نام</a>
                             </div>
                         </div>
                     </div>
@@ -36,9 +43,47 @@
             </section>
         @endguest
     </div>
-
-
-    <!-- comment -->
+    @if ($nextepisodes->isNotEmpty())
+        <div class="flex items-center px-4 mt-5 space-x-2 space-x-reverse text-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-10 h-10">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+            </svg>
+            <span>قسمت های بعدی</span>
+        </div>
+        <div class="grid grid-cols-12 mt-8 px-4">
+            @foreach ($nextepisodes as $seriesEpisode)
+                <div class="flex justify-center bg-main rounded col-span-full lg:col-span-6 relative">
+                    <div
+                        class="flex items-center rounded-lg shadow border min-w-full border-gray-800 md:max-w-full md:flex-row relative">
+                        <img class="w-44 h-44 object-cover rounded-3xl p-4" src="{{ asset($seriesEpisode->image) }}"
+                            alt="" />
+                        <div class="flex flex-col justify-start p-6 w-full">
+                            <h5 class="my-2 text-gray-400">
+                                {{ $seriesEpisode->title }}
+                            </h5>
+                            <p class="mb-4 text-xs text-gray-500 leading-6">
+                                {{ Str::limit($seriesEpisode->description, 120, '...') }}
+                            </p>
+                            <div class="flex justify-between">
+                                <a href="{{ route('episode', $seriesEpisode->id) }}"
+                                    class="flex text-xs h-8 px-2   items-center  bg-yellow-500 hover:bg-yellow-600 text-slate-900 transition-all delay-200 py-2  rounded">
+                                    <svg class=" ml-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                                    </svg>
+                                    تماشا
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
+    </ <!-- comment -->
     <section class="py-8 lg:py-16" id="comments">
         <div class="max-w-4xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">

@@ -134,7 +134,7 @@ active
             </li>
             <li class="relative">
                 <a href="{{ route('series.index') }}"
-                    class="flex h-12 cursor-pointer items-center truncate rounded-[5px] py-4 px-6 text-sm outline-none transition duration-300 ease-linear hover:outline-none focus:outline-none hover:opacity-60 @active('series') active @endactive"
+                    class="flex h-12 cursor-pointer items-center truncate rounded-[5px] py-4 px-6 text-sm outline-none transition duration-300 ease-linear hover:outline-none focus:outline-none hover:opacity-60 @active('series') active @endactive @active('episode') active @endactive"
                     data-te-sidenav-link-ref>
                     <span class="ml-4 [&>svg]:text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

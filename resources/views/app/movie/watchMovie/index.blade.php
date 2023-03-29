@@ -8,6 +8,10 @@
     <link href="{{ asset('assets/app/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/app/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/app/css/fonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/app/plugins/video-js/video-js.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/app/plugins/video-js/quality-selector.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/app/plugins/video-js/video.js') }}"></script>
+    <script src="{{ asset('assets/app/plugins/video-js/videojs-quality-selector.min.js') }}"></script>
     <title> فال و فیلم | {{ $movies->fa_title }}</title>
 </head>
 <body class="bg-low-dark">
@@ -20,6 +24,23 @@
     </video>
 </div>
 
+<script>
+    var options, player;
+
+    options = {
+        controlBar: {
+            children: [
+                'playToggle',
+                'progressControl',
+                'volumePanel',
+                'qualitySelector',
+                'fullscreenToggle',
+            ],
+        },
+    };
+
+    player = videojs('video', options);
+</script>
 </body>
 </html>
 

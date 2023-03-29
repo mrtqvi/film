@@ -15,14 +15,6 @@
                 <div class="flex flex-row flex-wrap w-full md:px-16 px-5 h-full justify-center items-end mt-14">
                     <div class="grid grid-cols-12">
                         <div class="flex col-span-12 w-auto">
-{{--                            <div--}}
-{{--                                class="bg-gray-300/20  flex text-center rounded-2xl  justify-center items-center font-light text-sm md:h-[120px] h-16 w-56 ">--}}
-{{--                                <div class="pl-1 flex justify-center items-center">--}}
-{{--                                    <p--}}
-{{--                                        class="text-white md:mr-3 md:mt-2 md:text-xl sm:text-sm text-xs text-center font-bold z-30">--}}
-{{--                                        126 دقیقه</p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             <div
                                 class="bg-gray-300/20  mr-4 flex text-center rounded-2xl  justify-center items-center font-light text-sm md:h-[120px] h-16 w-56 ">
                                 <div class="pl-1 flex justify-center items-center">
@@ -47,17 +39,6 @@
                                         {{ $series->year_construction }}</p>
                                 </div>
                             </div>
-{{--                            <div--}}
-{{--                                class="bg-[#64D947] hover:bg-gray-300/40 transition-all cursor-pointer mr-4 flex  text-center rounded-2xl  justify-center items-center text-white font-light text-sm md:h-[120px] h-16 w-56 ">--}}
-{{--                                <div class="pl-1 flex">--}}
-{{--                                    <svg class="mt-[2px] w-10  text-white text-5xl flex justify-center items-center"--}}
-{{--                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play-fill"--}}
-{{--                                        viewBox="0 0 16 16">--}}
-{{--                                        <path--}}
-{{--                                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />--}}
-{{--                                    </svg>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -73,15 +54,11 @@
                     <div class="">
                         <p class="text-white font-bold text-4xl mr-4 mt-2">{{ $series->en_title }}</p>
                         <div class="flex justify-start items-center mr-3 mt-3">
+                            @foreach($series->categories as $seriesCategory)
                             <div
                                 class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center md:text-xs text-[10px] rounded-full">
-                                اکشن </div>
-                            <div
-                                class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center mr-1 md:text-xs text-[10px] rounded-full">
-                                درام </div>
-                            <div
-                                class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center mr-1 md:text-xs text-[10px] rounded-full">
-                                علمی تخیلی </div>
+                                {{ $seriesCategory->name }}</div>
+                            @endforeach
                         </div>
                         <div class="flex">
                             <a href="#series"
@@ -134,10 +111,10 @@
                 <div class="flex  mb-2">
                     <p class="text-sm text-gray-200 mr-1">کارگردان : {{ $series->director }} </p>
                     <p class="text-sm mt-[1px] text-gray-200 mr-4">
-                        {{ $series->producer == null ? '' : '  نویسنده : ' . $series->producer }}
+                        {{ $series->producer ? '  نویسنده : ' . $series->producer : '' }}
                     </p>
                 </div>
-                <p class="text-white font-semibold">خلاصه داستان</p>
+                <p class="text-white font-semibold mt-5">خلاصه داستان</p>
                 <p class="text-gray-400 mt-1 w-full text-sm">
                     {{  Str::limit($series->description, 200, '...') }}
                 </p>
@@ -151,7 +128,7 @@
         </div>
     </div>
     <!-- cast -->
-    <div class="md:p-10 sm:mt-20 mt-14 p-5 ">
+    <div class="md:p-10 mt-3 p-5 ">
         @if($series->actors->count() >= 1)
             <section class="flex items-center justify-between col-span-12 border-r-4 mb-5 border-[#1AFF23] ">
                 <span class="flex items-center font-bold text-white mr-3 ">بازیگران</span>
@@ -181,15 +158,15 @@
     <!-- episode -->
     <p id="series"></p>
     @foreach($series->episodes as $episode)
-    <div class="px-20">
+    <div class="px-5 py-3">
         <div class="relative font-medium flex items-center content-center">
             <div class="w-full">
                 <div class=" mx-auto bg-low-dark border  border-gray-800 rounded-xl  overflow-hidden ">
                     <div class="md:flex">
                         <div class="md:m-2">
-                            <img class="h-72 w-full object-cover md:h-full md:w-96 rounded-r-lg" src="{{ asset($episode->image) }}" alt="Man looking at item at a store">
+                            <img class="h-52 w-full object-cover md:w-72 rounded-lg" src="{{ asset($episode->image) }}" alt="Man looking at item at a store">
                         </div>
-                        <div class="p-2 mt-3 h-[260px]">
+                        <div class="p-3 mt-3">
                             <div class="flex-col md:mr-4 mr-1  text-gray-300">
                                 <p class="md:pt-4 pt-1 md:text-2xl text-center flex font-bold mr-3 ">{{ $episode->title }}</p>
                                 <hr class="hr-text" data-content="">
@@ -222,6 +199,19 @@
     @endforeach
 
     <!-- end episode -->
+    @if ($series->factors->isNotEmpty())
+    <div class="mt-4 ml-10 md:mr-10 mr-5">
+        <p class="text-white font-semibold mt-5">عوامل سریال</p>
+        <section class="flex flex-wrap w-full mt-3">
+            @foreach($series->factors as $factor)
+            <section class="flex items-center my-3 ml-6">
+                <span class="text-sm font-bold ml-3">{{ $factor->key }}  &nbsp;:</span> 
+                <span class="text-sm">{{ $factor->value }}</span>
+            </section>
+            @endforeach
+        </section>
+    </div>
+    @endempty
 
     <!-- comment -->
     <section class="py-8 lg:py-16" id="comments">

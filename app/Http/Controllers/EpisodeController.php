@@ -10,6 +10,7 @@ class EpisodeController extends Controller
 {
     public function index(Episode $episode)
     {
-        return view('app.series.episode.index' , compact('episode'));
+        $nextepisodes = Episode::where('series_id' ,$episode->series_id)->where('id' , ">" , $episode->id)->get();
+        return view('app.series.episode.index' , compact('episode' , 'nextepisodes'));
     }
 }

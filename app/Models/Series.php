@@ -109,7 +109,4 @@ class Series extends Model
         return $this->belongsToMany(Favorite::class , 'series_user' );
     }
 
-
-
-
 }

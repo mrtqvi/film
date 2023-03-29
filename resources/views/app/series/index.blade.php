@@ -46,7 +46,7 @@
                     @foreach ($series->categories as $seriesCategory)
                         <a href="" class="px-2 rounded-xl py-0.5 bg-slate-800">{{ $seriesCategory->name }}</a>
                     @endforeach
-                    <span class="px-2 rounded-xl py-0.5 text-gray-900 bg-yellow-500">62 قسمت</span>
+                    <span class="px-2 rounded-xl py-0.5 text-gray-900 bg-yellow-500">{{ $series->episodes->count() }} قسمت</span>
                 </div>
                 <div
                     class="flex items-center rounded-lg shadow border min-w-full border-gray-800 md:max-w-full md:flex-row relative">

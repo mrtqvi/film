@@ -16,14 +16,6 @@
                     <div class="grid grid-cols-12">
                         <div class="flex col-span-12 w-auto">
                             <div
-                                class="bg-gray-300/20  flex text-center rounded-2xl  justify-center items-center font-light text-sm md:h-[120px] h-16 w-56 ">
-                                <div class="pl-1 flex justify-center items-center">
-                                    <p
-                                        class="text-white md:mr-3 md:mt-2 md:text-xl sm:text-sm text-xs text-center font-bold z-30">
-                                        126 دقیقه</p>
-                                </div>
-                            </div>
-                            <div
                                 class="bg-gray-300/20  mr-4 flex text-center rounded-2xl  justify-center items-center font-light text-sm md:h-[120px] h-16 w-56 ">
                                 <div class="pl-1 flex justify-center items-center">
                                     <p
@@ -176,14 +168,6 @@
     </div>
     <!-- end cst -->
 
-    {{--    @if ($movie->actors->count() >= 1) --}}
-    {{--    <div class=" p-10"> --}}
-    {{--        <section class="flex items-center justify-between col-span-12 border-r-4 mb-5 border-[#1AFF23] "> --}}
-    {{--            <span class="flex items-center font-bold text-white mr-3 ">عوامل فیلم</span> --}}
-    {{--        </section> --}}
-    {{--    </div> --}}
-    {{--    @endif --}}
-
     <div class="w-full mt-4">
         @auth
             <video id="video" class="video-js vjs-default-skin rounded-lg w-full h-screen" controls preload="auto">
@@ -215,6 +199,20 @@
             </section>
         @endguest
     </div>
+
+    @if ($movie->factors->isNotEmpty())
+    <div class="mt-4 ml-10 md:mr-10 mr-5">
+        <p class="text-white font-semibold mt-5">عوامل فیلم</p>
+        <section class="flex flex-wrap w-full mt-3">
+            @foreach($movie->factors as $factor)
+            <section class="flex items-center my-3 ml-6">
+                <span class="text-sm font-bold ml-3">{{ $factor->key }}  &nbsp;:</span> 
+                <span class="text-sm">{{ $factor->value }}</span>
+            </section>
+            @endforeach
+        </section>
+    </div>
+    @endempty
 
     <!-- comment -->
     <section class="py-8 lg:py-16" id="comments">
