@@ -13,15 +13,12 @@
         </div>
     @endif
     <div class="grid grid-cols-12 ">
-        <div class="flex lg:col-span-7 ">
-            <form class="mr-10" action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
+        <div class="flex lg:col-span-7 col-span-12">
+            <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('put') }}
-                <div class="pt-3">
-
+                <div class="pt-3 px-5">
                     <div class="flex justify-start">
-                        <div class="flex">
-                        </div>
                         <div class="profile-pic items-center">
                             <label class="-label -z-50  flex justify-center items-center" for="file">
 
@@ -36,78 +33,82 @@
                             <img src="{{ asset(auth()->user()->profile_photo ?? 'images/default/avatar.jpg') }}"
                                  id="output">
                         </div>
-                        <div class="mr-4 mt-2">
-                            <p class="text-white mt-4 flex ">{{ auth()->user()->full_name }}</p>
-                            <p class="text-gray-300 text-sm mt-2 flex ">نام کاربری : {{ auth()->user()->user_name }}</p>
-                            <p class="text-gray-300 text-sm mt-2 flex ">{{ auth()->user()->email  }}</p>
+                        <div class="mr-2 mt-2">
+                            <p class="text-white w-full mt-4 flex ">{{ auth()->user()->full_name }}</p>
+                            <p class="text-gray-300 w-full md:text-sm text-xs mt-2 flex ">نام کاربری : {{ auth()->user()->user_name }}</p>
+                            <p class="text-gray-300 w-full md:text-sm text-xs mt-2 flex ">{{ auth()->user()->email  }}</p>
                         </div>
                     </div>
                     <p class="text-gray-300 text-xs mt-4 flex">سایز عکس انتخابی بهتر است در سایز 250x250 پیکسل باشد</p>
                 </div>
-                <div class="flex items-center">
-                    <p class="text-white flex text-lg mt-4 w-[120px] pt-5 ">اطلاعات کاربری</p>
-                    <span class="border-b md:w-[370px] w-[300px] flex  mt-10  border-green-400"></span>
+                <div class="flex items-center px-5">
+                    <p class="text-white flex md:text-lg text-sm mt-4 w-[120px] pt-5 ">اطلاعات کاربری</p>
+                    <span class="border-b md:w-[370px] w-full flex  mt-10  border-green-400"></span>
                 </div>
-                <div class="flex">
+                <div class="flex px-5">
                     <div class="mt-8 ">
                         <label for="full_name" class="block mb-2  text-sm font-medium text-white">نام و خانوادگی</label>
                         <input type="text" name="full_name" value="{{ old('full_name', auth()->user()->full_name) }}"
                                id="full_name"
-                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  md:w-60 w-48 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                               class="text-sm rounded-lg w-full focus:ring-green-500 focus:border-green-500  md:w-60 w-48 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                                required>
                     </div>
-                    <div class="mt-8 mr-5">
+                    <div class="mt-8 mr-2 ">
                         <label for="username" class="block mb-2 text-sm font-medium text-white">نام کاربری</label>
                         <input type="text" name="user_name" value="{{old('user_name', auth()->user()->user_name) }}"
                                id="username"
-                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  md:w-60 w-48 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                               class=" text-sm rounded-lg w-full focus:ring-green-500 focus:border-green-500  md:w-60 w-48 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                                required>
                     </div>
                 </div>
-                <div class="mb-6 mt-7 ">
+                <div class="mb-6 mt-7 px-5">
                     <label for="username" class="block mb-2 text-sm font-medium text-white">ایمیل</label>
                     <input type="text" name="email" value="{{ old('email', auth()->user()->email) }}" id="username"
-                           class="text-sm rounded-lg focus:ring-green-500 focus:border-green-500 md:w-[500px] w-[405px] p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                           class="text-sm rounded-lg focus:ring-green-500 focus:border-green-500 md:w-[490px] w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                            required>
                 </div>
-                <button
-                    class="mt-3  bg-transparent border-solid border-2 transition-all border-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg">
-                    ثبت تغیرات
-                </button>
+                <div class="px-5">
+                    <button
+                        class="mt-3  bg-transparent border-solid border-2 transition-all border-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg">
+                        ثبت تغیرات
+                    </button>
+                </div>
             </form>
 
         </div>
 
-        <div class="lg:col-span-5 lg:mr-5 mr-10 mr-10 col-span-12 ">
-            <p class="mt-7">تغیر کلمه عبور</p>
+        <div class="lg:col-span-5 lg:mr-5 col-span-12 ">
+            <p class="mt-7 px-5">تغیر کلمه عبور</p>
             <form action="{{ route('profile.update-password') }}" method="post">
                 @csrf
-                <div class="mb-3 mt-4 ">
+                <div class="mb-3 mt-4 px-5">
                     <label for="current_password" class="block mb-2 text-sm font-medium text-white">کلمه عبور فعلی</label>
                     <input type="password" name="current_password" id="current_password"
-                           class="text-sm rounded-lg focus:ring-green-500 focus:border-green-500 lg:w-60 w-[405px] p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                           class="text-sm rounded-lg focus:ring-green-500 focus:border-green-500 lg:w-60 w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                            required>
                 </div>
-                <div class="mt-3 mb-2">
+                <div class="mt-3 mb-2 px-5">
                     <div class="">
                         <label for="password" class="block mb-2  text-sm font-medium text-white">کلمه عبور جدید</label>
                         <input type="password" name="password"
                                id="password"
-                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  lg:w-60 w-[405px] p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  lg:w-60 w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                                required>
                     </div>
                     <div class="mt-2">
                         <label for="password_confirmation" class="block mb-2 text-sm font-medium text-white">تکرار کلمه عبور</label>
                         <input type="password" name="password_confirmation"
                                id="password_confirmation"
-                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  lg:w-60 w-[405px] p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                               class=" text-sm rounded-lg focus:ring-green-500 focus:border-green-500  lg:w-60 w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
                                required>
                     </div>
                 </div>
-                <button
-                    class="mt-3  bg-transparent border-solid border-2 transition-all border-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg">
-                    تغیر کلمه عبور
-                </button>
+                <div class="px-5">
+                    <button
+                        class="mt-3 px-5  bg-transparent border-solid border-2 transition-all border-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg">
+                        تغیر کلمه عبور
+                    </button>
+                </div>
             </form>
         </div>
 
@@ -116,7 +117,7 @@
         @csrf
         @method('DELETE')
         <button
-            class="mt-3 mr-6 text-red-600  transition-all  hover:text-red-700 font-light py-2 px-4 rounded-lg">
+            class="mt-3 mr-3 text-red-600  transition-all  hover:text-red-700 font-light py-2 px-4 rounded-lg">
             حذف حساب کاربری
         </button>
     </form>
