@@ -18,6 +18,11 @@ class Slider extends Model
         'status',
     ];
 
+    public function scopePublished($query)
+    {
+        $query->where('status' , 1);
+    }
+
 
     // accessor
     public function setUrlAttribute($url)

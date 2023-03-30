@@ -108,8 +108,8 @@ class SeriesController extends Controller
      */
     public function destroy(Series $series)
     {
-
-        $series->favorites()->delete();
+        $series->likes()->detach();
+        $series->comments()->delete();
         $series->episodes()->delete();
         $series->sliders()->delete();
         $series->delete();

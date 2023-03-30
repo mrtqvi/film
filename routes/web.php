@@ -59,7 +59,7 @@ Route::prefix('admin')->middleware(['auth' , 'admin'])->as('admin.')->group(func
     Route::get('movies/{movie}/agents' , [MovieController::class , 'agentsView'])->name('movies.agents');
     Route::post('factors' , FactorController::class)->name('factor.store');
 
-    Route::get('sliders/{slider-top}/status', [SliderController::class, 'status'])->name('sliders.status');
+    Route::get('sliders/{slider}/status', [SliderController::class, 'status'])->name('sliders.status');
     Route::get('series/{series}/status', [SeriesController::class, 'status'])->name('series.status');
     Route::get('movies/{movie}/status', [MovieController::class, 'status'])->name('movies.status');
     Route::get('comment/{comment}/is_approved', [CommentController::class, 'approved'])->name('comments.is_approved');

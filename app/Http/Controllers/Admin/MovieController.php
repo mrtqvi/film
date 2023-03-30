@@ -125,6 +125,8 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie): RedirectResponse
     {
+        $movie->likes()->detach();
+        $movie->comments()->delete();
         $movie->delete();
         return back()->with('toast-success' , 'فیلم مورد نظر حذف گردید.');
     }

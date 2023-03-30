@@ -34,7 +34,7 @@
                                         </td>
                                         <td>
                                             @if($comment->commentable->en_title == null)
-                                                {{ $comment->commentable->title }}
+                                                {{ $comment->commentable->fa_title }}
                                             @else
                                                 {{ $comment->commentable->en_title }}
                                             @endif

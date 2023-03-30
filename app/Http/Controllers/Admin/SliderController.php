@@ -22,7 +22,7 @@ class SliderController extends Controller
         $sliders = Slider::query();
 
         if ($searchString = request('search'))
-            $sliders->where('alt', "LIKE" , "%{$searchString}%");
+            $sliders->where('title', "LIKE" , "%{$searchString}%");
 
         if (request('status'))
             $sliders->wherePublished();

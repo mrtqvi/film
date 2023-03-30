@@ -28,13 +28,10 @@
         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item text-secondary text-left" href="#">{{ auth()->user()->full_name }}</a>
           <hr class="mb-1 mt-1">
-          <a class="dropdown-item text-secondary text-left" href="">
+          <a href="{{ route('profile.edit') }}" class="dropdown-item text-secondary text-left">
             <i class="fe fe-user"></i>
             پروفایل
           </a>
-          <a class="dropdown-item text-secondary text-left" href="#">
-            <i class="fe fe-settings"></i>
-            تنظیمات حساب</a>
           <form action="{{ route('logout') }}" method="post" class="d-flex align-items-center">
             @csrf
             <button class="dropdown-item text-secondary text-left" href="#">
