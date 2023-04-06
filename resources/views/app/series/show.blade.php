@@ -46,7 +46,7 @@
         </div>
     </section>
     <div class="grid grid-cols-12 gap-6 mt-16">
-        <div class="lg:col-span-7 col-span-12   flex flex-wrap">
+        <div class="lg:col-span-7 col-span-12  flex flex-wrap">
             <div class="">
                 <div class="flex md:mr-10 mr-5">
                     <img src="{{ asset($series->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
@@ -119,6 +119,12 @@
                 <p class="text-gray-400 mt-1 w-full text-sm">
                     {{  Str::limit($series->description, 200, '...') }}
                 </p>
+            </div>
+        </div>
+        <div
+            class="lg:col-span-5  col-span-12 lg:pt-5 lg:ml-36 md:mr-10  mr-5 ml-5 sm:mr-5 sm:ml-5 md:mt-0 pt-10 flex flex-wrap">
+            <div class="w-full h-64">
+                <video src="{{ asset($series->teaser->teaser ?? '') }}" controls class="rounded-t-xl"></video>
             </div>
         </div>
     </div>
