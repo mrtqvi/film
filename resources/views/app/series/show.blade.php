@@ -46,17 +46,16 @@
         </div>
     </section>
     <div class="grid grid-cols-12 gap-6 mt-16">
-        <div class="lg:col-span-7 col-span-12   flex flex-wrap">
+        <div class="lg:col-span-7 col-span-12  flex flex-wrap">
             <div class="">
                 <div class="flex md:mr-10 mr-5">
                     <img src="{{ asset($series->poster) }}" class="w-[142px] h-[200px] md:flex  object-cover rounded-lg"
                         alt="">
                     <div class="">
-                        <p class="text-white font-bold text-4xl mr-4 mt-2">{{ $series->en_title }}</p>
+                        <p class="text-white font-bold md:text-4xl text-sm  px-3 mt-4">{{ $series->fa_title }} | {{ $series->en_title }}</p>
                         <div class="flex justify-start items-center mr-3 mt-3">
                             @foreach($series->categories as $seriesCategory)
-                            <div
-                                class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center md:text-xs text-[10px] rounded-full">
+                            <div class="text-gray-300 border-[1px] border-gray-500 md:px-5 px-2 py-1 font-normal text-center md:text-xs text-[10px] rounded-full">
                                 {{ $seriesCategory->name }}</div>
                             @endforeach
                         </div>
@@ -103,6 +102,8 @@
                                         @endif
                                 </div>
                             @endauth
+
+
                         </div>
                     </div>
                 </div>
@@ -120,10 +121,10 @@
                 </p>
             </div>
         </div>
-        <div class="lg:col-span-5  col-span-12 lg:pt-5 lg:ml-20 md:mr-10  mr-5 ml-5 sm:mr-5 sm:ml-5 md:mt-0 pt-10 flex flex-wrap">
+        <div
+            class="lg:col-span-5  col-span-12 lg:pt-5 lg:ml-36 md:mr-10  mr-5 ml-5 sm:mr-5 sm:ml-5 md:mt-0 pt-10 flex flex-wrap">
             <div class="w-full h-64">
                 <video src="{{ asset($series->teaser->teaser ?? '') }}" controls class="rounded-t-xl"></video>
-                <p class="justify-center bg-gray-700 py-2 text-white rounded-b-lg lg:flex md:hidden text-xl ">تیزر سریال</p>
             </div>
         </div>
     </div>
@@ -205,7 +206,7 @@
         <section class="flex flex-wrap w-full mt-3">
             @foreach($series->factors as $factor)
             <section class="flex items-center my-3 ml-6">
-                <span class="text-sm font-bold ml-3">{{ $factor->key }}  &nbsp;:</span> 
+                <span class="text-sm font-bold ml-3">{{ $factor->key }}  &nbsp;:</span>
                 <span class="text-sm">{{ $factor->value }}</span>
             </section>
             @endforeach
@@ -220,36 +221,86 @@
                 <h2 class="text-lg lg:text-2xl font-bold text-gray-200 ">دیدگاه
                     ({{ $series->comments()->approved()->get()->count() }})</h2>
             </div>
-            @if ($message = session('success'))
-                <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
-                    role="alert">
-                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 ml-3" fill="currentColor"
-                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Info</span>
-                    <div>
-                        <span class="font-medium">موفقیت آمیز</span> {{ $message }}
-                    </div>
-                </div>
-            @endif
-            <form action="{{ route('comment.store') }}" class="mb-6" method="post">
-                @csrf
+            @guest
                 <input type="hidden" name="commentable_id" value="{{ $series->id }}">
                 <input type="hidden" name="commentable_type" value="{{ get_class($series) }}">
                 <div class="py-2 px-4 mb-4 rounded-lg rounded-t-lg  bg-low-dark ">
                     <label for="comment" class="sr-only"></label>
                     <textarea id="comment" rows="2" name="comment"
-                        class="px-0 w-full text-sm 0 border-0 focus:ring-0 focus:outline-none text-white placeholder-gray-400 bg-low-dark"
-                        placeholder="دیدگاه خود را بنویسید ..." required></textarea>
+                              class="px-0 w-full text-sm 0 border-0 focus:ring-0 focus:outline-none text-white placeholder-gray-400 bg-low-dark"
+                              placeholder="دیدگاه خود را بنویسید ..." required></textarea>
                 </div>
-                <button type="submit"
-                    class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-green-500 rounded-lg f hover:bg-green-600">
+                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" type="submit"
+                        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-green-500 rounded-lg f hover:bg-green-600">
                     اضافه کردن دیدگاه
                 </button>
-            </form>
+                <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+                     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                    <div class="relative transition-all w-full h-full max-w-md md:h-auto">
+                        <!-- Modal content -->
+                        <div class="relative  rounded-lg shadow bg-low-dark border border-green-800">
+                            <button type="button"
+                                    class="absolute top-3 left-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                                    data-modal-hide="authentication-modal">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <div class="px-6 py-6 lg:px-8">
+                                <div class="space-y-3">
+                                    <h3 class="text-sm flex justify-center mt-4 font-medium text-gray-900 dark:text-white">اگر
+                                        در فال و فیلم حساب کاربری ندارید ثبت نام کنید!؟</h3>
+                                    <a href="{{ route('register') }}" type="submit"
+                                       class="w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-green-500 hover:bg-green-600 focus:ring-green-800">ثبت
+                                        نام</a>
+                                </div>
+                                <div class="space-y-3 mt-5">
+                                    <h3 class="text-sm flex justify-center mt-4 font-medium text-gray-900 dark:text-white">اگر
+                                        در فال و فیلم حساب کاربری وارد شوید:</h3>
+                                    <a href="{{ route('login') }}" type="submit"
+                                       class="w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-green-500 hover:bg-green-600 focus:ring-green-800">ورود</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endguest
+            @auth
+                @if ($message = session('success'))
+                    <div class="flex p-4 mb-4 text-sm rounded-lg bg-low-dark text-green-400 border border-green-400"
+                         role="alert">
+                        <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 ml-3" fill="currentColor"
+                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div>
+                            <span class="font-medium">موفقیت آمیز</span> {{ $message }}
+                        </div>
+                    </div>
+                @endif
+                <form action="{{ route('comment.store') }}" class="mb-6" method="post">
+                    @csrf
+                    <input type="hidden" name="commentable_id" value="{{ $series->id }}">
+                    <input type="hidden" name="commentable_type" value="{{ get_class($series) }}">
+                    <div class="py-2 px-4 mb-4 rounded-lg rounded-t-lg  bg-low-dark ">
+                        <label for="comment" class="sr-only"></label>
+                        <textarea id="comment" rows="2" name="comment"
+                                  class="px-0 w-full text-sm 0 border-0 focus:ring-0 focus:outline-none text-white placeholder-gray-400 bg-low-dark"
+                                  placeholder="دیدگاه خود را بنویسید ..." required></textarea>
+                    </div>
+                    <button type="submit"
+                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-green-500 rounded-lg f hover:bg-green-600">
+                        اضافه کردن دیدگاه
+                    </button>
+                </form>
+            @endauth
             <article class=" text-base  rounded-lg">
                 @foreach ($series->comments()->approved()->get() as $comment)
                     <section class="bg-low-dark p-6 mb-3 rounded">
@@ -260,11 +311,11 @@
                                         src="{{ asset($comment->user->profile()) }}"
                                         alt="{{ $comment->user->full_name }}">{{ $comment->user->full_name }}</p>
                                 <p class="text-sm text-gray-400"><time pubdate datetime="2022-02-08"
-                                        title="February 8th, 2022">{{ jalaliDate($comment->created_at, '%d %B %Y') }}</time>
+                                                                       title="February 8th, 2022">{{ jalaliDate($comment->created_at, '%d %B %Y') }}</time>
                                 </p>
                             </div>
                         </section>
-                        <div class="text-gray-500 dark:text-gray-400 mt-2">{{ $comment->comment }}</d>
+                        <div class="text-gray-500 dark:text-gray-400 mt-2">{{ $comment->comment }}</div>
                     </section>
                 @endforeach
             </article>

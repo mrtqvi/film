@@ -24,7 +24,7 @@
                                 <div class="flex md:flex-row flex-wrap items-center ">
                                     <span class="text-white md:mx-2 md:flex hidden">|</span>
                                     <span
-                                        class="font-light mt-1 md:d-flex  sm:flex-col flex text-center items-center justify-center text-sm text-gray-200">2:15:00
+                                        class="font-light mt-1 md:d-flex  sm:flex-col flex text-center items-center justify-center text-sm text-gray-200">
                                                 - @foreach ($slider->series->categories as $serieCategory)
                                             {{ $serieCategory->name . ' ' }}
                                         @endforeach - {{ $slider->series->year_construction }}</span>
@@ -52,10 +52,10 @@
             </div>
         @endforeach
     </div>
-    <div>
-        <button id="swiper-button-next" type="button"
-                class="absolute top-4 left-8 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-prev>
+    <div class="">
+            <button id="swiper-button-next" type="button"
+                    class="absolute top-4 left-8 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-prev>
                         <span
                             class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-8 sm:h-8 bg-white/30 group-hover:bg-white/50  group-focus:ring-2 group-focus:ring-white  group-focus:outline-none">
                             <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
@@ -67,7 +67,7 @@
                             </svg>
                             <span class="sr-only">Previous</span>
                         </span>
-        </button>
+            </button>
         <button id="swiper-button-prev" type="button"
                 class="absolute top-4 right-10 z-30 flex items-center justify-center h-full px-2 cursor-pointer group focus:outline-none"
                 data-carousel-next>

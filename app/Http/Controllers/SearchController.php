@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Models\Series;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -25,9 +26,12 @@ class SearchController extends Controller
 
             $movies = Movie::published()->where('fa_title', 'LIKE', "%{$keyword}%")->orWhere('en_title', 'LIKE', "%{$keyword}%")->latest()->get();
 
+            $sliders = Slider::published()->where('title', 'LIKE', "%{$keyword}%")->latest()->get();
+
+
             $results = $series->merge($movies);
         }
-        
-        return view('app.search', compact('results', 'keyword'));
+
+        return view('app.search', compact('results', 'keyword' , 'sliders'));
     }
 }

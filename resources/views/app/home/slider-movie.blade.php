@@ -4,7 +4,7 @@
         <span class="flex items-center font-bold text-white mr-3 ">محبوب ترین ها</span>
     </section>
     <section class="swiper">
-        <section class="slide-container ">
+        <section class="slide-container-film">
             <section class="card-wrapper swiper-wrapper w-52 h-72">
                 @foreach($popularFilms as $popularFilm)
                     <section class="swiper-slide flex ">
@@ -98,7 +98,7 @@
         <span class="flex items-center font-bold text-white mr-3 ">جدید ترین ها</span>
     </section>
     <section class="swiper">
-        <section class="slide-container ">
+        <section class="slide-container-film">
             <section class="card-wrapper swiper-wrapper w-52 h-72">
                 @foreach($newFilms as $film)
                     <section class="swiper-slide flex ">
@@ -192,7 +192,7 @@
         <span class="flex items-center font-bold text-white mr-3 ">پر بحث ترین ها</span>
     </section>
     <section class="swiper">
-        <section class="slide-container ">
+        <section class="slide-container-film">
             <section class="card-wrapper swiper-wrapper w-52 h-72">
                 @foreach($mostComments as $series)
                     <section class="swiper-slide flex ">

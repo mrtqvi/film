@@ -99,4 +99,9 @@ class Movie extends Model
     {
         return $this->videosable->where('quality' , $quality)->first() ? true : false;
     }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class , 'movie_user' );
+    }
 }

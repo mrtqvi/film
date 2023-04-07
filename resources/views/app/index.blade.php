@@ -6,9 +6,6 @@
 
     @include('app.home.slider')
 
-
     @include('app.home.slider-movie')
-
-
 
 @endsection
