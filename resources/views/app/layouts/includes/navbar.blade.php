@@ -4,9 +4,9 @@ class="border-gray-200 bg-main z-40 px-2 sm:px-4 border-b border-b-slate-600 md:
 <div class="flex flex-wrap items-center justify-between">
     <!-- logo -->
     <div
-        class="relative flex justify-center md:fixed top-0 right-0 w-auto md:w-[calc(16rem_-_1px)] order-2 md:order-1 border-0 py-5 md:border-l border-l-slate-700">
+        class="relative flex justify-center md:fixed top-0 right-0 w-auto md:w-[calc(16rem_-_1px)] order-2 md:order-1 border-0 py-2 md:border-l border-l-slate-700">
         <a href="">
-            <img src="{{ asset('images/default/logo.png') }}" class="w-32" alt="لوگوی سایت">
+            <img src="{{ asset('images/default/logo.png') }}" class="w-14 mt-0" alt="لوگوی سایت">
         </a>
     </div>
     <!-- toggle sidebar -->
