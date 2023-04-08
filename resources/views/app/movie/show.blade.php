@@ -132,12 +132,14 @@
                 </p>
             </div>
         </div>
+        @if (!empty($movie->teaser))
         <div
             class="lg:col-span-5  col-span-12 lg:pt-5 lg:ml-36 md:mr-10  mr-5 ml-5 sm:mr-5 sm:ml-5 md:mt-0 pt-10 flex flex-wrap">
             <div class="w-full h-64">
                 <video src="{{ asset($movie->teaser->teaser ?? '') }}" controls class="rounded-t-xl"></video>
             </div>
         </div>
+        @endif
     </div>
     <!-- cast -->
     <div class="md:p-10 sm:mt-20 mt-14 p-5 ">
