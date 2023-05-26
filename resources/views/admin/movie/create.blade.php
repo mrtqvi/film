@@ -37,7 +37,7 @@
                                     class="form-control custom-input-size custom-focus @error('fa_title') is-invalid @enderror" id="fa_title">
                             </div>
                             <div class="col-12 slug d-flex">
-                                <span>https://falofilm.com/movies/</span>
+                                <span>https://seriafilm.ir/movies/</span>
                                 <span class="slug-box"></span>
                             </div>
                             <div class="form-group col-md-12">

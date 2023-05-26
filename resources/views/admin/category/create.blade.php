@@ -30,7 +30,7 @@
                                     class="form-control custom-input-size custom-focus" id="name">
                             </div>
                             <div class="col-12 slug d-flex">
-                                <span>https://falofilm.com/category/</span>
+                                <span>https://seriafilm.ir/category/</span>
                                 <span class="slug-box"></span>
                             </div>
                             <div class="form-group col-md-12 my-2">

@@ -4,7 +4,7 @@
 <head>
     @include('app.layouts.includes.head-tag')
     @yield('head-tag')
-    <title>{{ "فال و فیلم | {$title}" ?? '<بدون عنوان>' }}</title>
+    <title>{{ "سریا فیلم | {$title}" ?? '<بدون عنوان>' }}</title>
 </head>
 
 <body class="bg-main font-sans">

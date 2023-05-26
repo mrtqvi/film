@@ -38,7 +38,7 @@
                                     id="fa_title">
                             </div>
                             <div class="col-12 slug d-flex">
-                                <span>https://falofilm.com/series/</span>
+                                <span>https://seriafilm.ir/series/</span>
                                 <span class="slug-box"></span>
                             </div>
                             <div class="form-group col-md-12 mb-0">

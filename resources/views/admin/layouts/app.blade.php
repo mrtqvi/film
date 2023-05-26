@@ -8,7 +8,7 @@
 
 <title>
     @isset($title)
-        {{ ' فال و فیلم |' . $title }}
+        {{ ' سریا فیلم |' . $title }}
     @endisset
 </title>
 

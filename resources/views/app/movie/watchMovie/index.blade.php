@@ -12,7 +12,7 @@
     <link href="{{ asset('assets/app/plugins/video-js/quality-selector.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/app/plugins/video-js/video.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/video-js/videojs-quality-selector.min.js') }}"></script>
-    <title> فال و فیلم | {{ $movies->fa_title }}</title>
+    <title> سریا فیلم | {{ $movies->fa_title }}</title>
 </head>
 <body class="bg-low-dark">
 

@@ -254,14 +254,14 @@
                             <div class="px-6 py-6 lg:px-8">
                                 <div class="space-y-3">
                                     <h3 class="text-sm flex justify-center mt-4 font-medium text-gray-900 dark:text-white">اگر
-                                        در فال و فیلم حساب کاربری ندارید ثبت نام کنید!؟</h3>
+                                        در سریا فیلم حساب کاربری ندارید ثبت نام کنید!؟</h3>
                                     <a href="{{ route('register') }}" type="submit"
                                         class="w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-green-500 hover:bg-green-600 focus:ring-green-800">ثبت
                                         نام</a>
                                 </div>
                                 <div class="space-y-3 mt-5">
                                     <h3 class="text-sm flex justify-center mt-4 font-medium text-gray-900 dark:text-white">اگر
-                                        در فال و فیلم حساب کاربری وارد شوید:</h3>
+                                        در سریا فیلم حساب کاربری وارد شوید:</h3>
                                     <a href="{{ route('login') }}" type="submit"
                                         class="w-full text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-green-500 hover:bg-green-600 focus:ring-green-800">ورود</a>
                                 </div>

@@ -7,7 +7,7 @@
     <link href="{{ asset('assets/app/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/app/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/app/css/fonts.css') }}" rel="stylesheet">
-    <title>فال و فیلم | ورود</title>
+    <title>سریا فیلم | ورود</title>
     <title>{{ $title ?? '<بدون عنوان>' }}</title>
 </head>
 
